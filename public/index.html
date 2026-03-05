@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
+    <title>GOLDEN TICKET</title>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            background: linear-gradient(90deg, gold, darkorange);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 1em;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            font-size: 1em;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ffcc00;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <h1>GOLDEN TICKET</h1>
+    <span>(π logo)</span>
+    <input type="text" id="metamaskAddress" placeholder="Enter MetaMask Address" />
+    <button id="submitButton">GANHAR 50 BSPI</button>
+    <div id="statusMessage"></div>
+    <footer>
+        <p>Current Date and Time: <span id="currentDateTime"></span></p>
+    </footer>
+    <script>
+        // Display current date and time
+        document.getElementById('currentDateTime').innerText = new Date().toUTCString();
+
+        document.getElementById('submitButton').onclick = function() {
+            const address = document.getElementById('metamaskAddress').value;
+            fetch('/api/enviar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ address: address })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.transactionHash) {
+                    document.getElementById('statusMessage').innerText = 'Transaction Hash: ' + data.transactionHash;
+                } else {
+                    document.getElementById('statusMessage').innerText = 'Error: ' + data.error;
+                }
+            })
+            .catch(error => {
+                document.getElementById('statusMessage').innerText = 'Network Error';
+            });
+        };
+    </script>
+</body>
+</html>
