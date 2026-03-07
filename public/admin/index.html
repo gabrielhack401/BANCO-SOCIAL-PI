@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - BSPI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0a0a0a; color: #fff; font-family: 'Space Grotesk', sans-serif; }
+        input { background: #1a1a1a; border: 1px solid #333; color: white; padding: 10px; border-radius: 10px; width: 100%; }
+    </style>
+</head>
+<body class="p-6">
+    <div class="max-w-md mx-auto bg-zinc-900 p-8 rounded-2xl border border-yellow-500/30">
+        <h1 class="text-3xl font-bold text-yellow-500 mb-6">🔐 PAINEL SECRETO</h1>
+
+        <!-- TELA DE LOGIN -->
+        <div id="loginDiv">
+            <input type="password" id="senha" placeholder="Senha" class="mb-4">
+            <button onclick="login()" class="w-full bg-yellow-500 text-black font-bold py-3 rounded-xl hover:bg-yellow-400 transition">
+                ENTRAR
+            </button>
+            <div id="loginErro" class="text-red-500 text-sm mt-2 text-center"></div>
+        </div>
+
+        <!-- PAINEL (OCULTO INICIALMENTE) -->
+        <div id="painelDiv" style="display: none;">
+            <div class="bg-black/30 p-4 rounded-xl mb-4">
+                <p class="text-zinc-400 text-sm">Endereço da Master</p>
+                <p class="text-yellow-500 text-xs break-all" id="endereco">-</p>
+            </div>
+
+            <div class="bg-black/30 p-4 rounded-xl mb-4">
+                <p class="text-zinc-400 text-sm">Saldo BSPI da Master</p>
+                <p class="text-3xl font-bold text-yellow-500" id="saldo">0</p>
+            </div>
+
+            <div class="bg-black/30 p-4 rounded-xl mb-4">
+                <p class="text-zinc-400 text-sm">Status</p>
+                <p class="text-green-500" id="status">Conectado</p>
+            </div>
+
+            <div class="text-center text-xs text-zinc-500 mt-4">
+                🔒 Apenas administradores
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let authToken = '';
+
+        async function login() {
+            const senha = document.getElementById('senha').value;
+            const res = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ senha })
+            });
+            const data = await res.json();
+
+            if (data.ok) {
+                authToken = senha;
+                document.getElementById('loginDiv').style.display = 'none';
+                document.getElementById('painelDiv').style.display = 'block';
+                carregarDados();
+            } else {
+                document.getElementById('loginErro').innerText = '❌ Senha incorreta';
+            }
+        }
+
+        async function carregarDados() {
+            const res = await fetch('/api/admin/dados', {
+                headers: { 'Authorization': authToken }
+            });
+            const data = await res.json();
+            
+            if (data.erro) {
+                document.getElementById('status').innerText = '❌ ' + data.erro;
+                document.getElementById('status').className = 'text-red-500';
+                return;
+            }
+
+            document.getElementById('endereco').innerText = data.endereco;
+            document.getElementById('saldo').innerText = parseFloat(data.saldo).toFixed(2);
+            document.getElementById('status').innerText = '✅ Online';
+        }
+    </script>
+</body>
+</html>
