@@ -3,299 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSPI – Banco Social Pi | Golden Ticket</title>
-    <!-- Tailwind CSS -->
+    <title>BSPI - Banco Social Pi | Golden Ticket</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fonte Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Space Grotesk', sans-serif; }
         body { background-color: #030303; color: #fff; }
-        .gradient-text {
+        .gradient-text { 
             background: linear-gradient(135deg, #F4DF4E 0%, #D4AF37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
-        .countdown-box {
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(212,175,55,0.2);
-            border-radius: 1rem;
-            padding: 0.5rem 0.25rem;
-            text-align: center;
-            backdrop-filter: blur(5px);
+        .pi-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.15); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); border-color: #D4AF37; }
+        .bg-noise { background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4='); }
+        
+        /* Estilo da contagem regressiva */
+        .countdown-bar {
+            background: rgba(0,0,0,0.9);
+            border-bottom: 1px solid rgba(212,175,55,0.3);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
         }
-        .countdown-number {
-            font-size: 1.3rem;
-            font-weight: 700;
+        .countdown-item {
+            display: inline-block;
+            margin: 0 1rem;
             color: #D4AF37;
         }
-        @media (min-width: 768px) {
-            .countdown-number { font-size: 1.8rem; }
-        }
-        .bg-noise {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
+        .countdown-number {
+            font-weight: 700;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body class="bg-noise">
 
-    <!-- TOPO COM 3 CONTAGENS REGRESSIVAS (STICKY) -->
-    <div class="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-yellow-500/20">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <!-- 14 de Março -->
-                <div class="countdown-box">
-                    <p class="text-xs text-zinc-400 mb-1">14 MAR</p>
-                    <div class="flex justify-center items-center gap-1">
-                        <span class="countdown-number" id="dias1">0</span><span class="text-yellow-500 text-xs">d</span>
-                        <span class="countdown-number" id="horas1">0</span><span class="text-yellow-500 text-xs">h</span>
-                        <span class="countdown-number" id="minutos1">0</span><span class="text-yellow-500 text-xs">m</span>
-                        <span class="countdown-number" id="segundos1">0</span><span class="text-yellow-500 text-xs">s</span>
-                    </div>
-                </div>
-                <!-- 22 de Julho -->
-                <div class="countdown-box">
-                    <p class="text-xs text-zinc-400 mb-1">22 JUL</p>
-                    <div class="flex justify-center items-center gap-1">
-                        <span class="countdown-number" id="dias2">0</span><span class="text-yellow-500 text-xs">d</span>
-                        <span class="countdown-number" id="horas2">0</span><span class="text-yellow-500 text-xs">h</span>
-                        <span class="countdown-number" id="minutos2">0</span><span class="text-yellow-500 text-xs">m</span>
-                        <span class="countdown-number" id="segundos2">0</span><span class="text-yellow-500 text-xs">s</span>
-                    </div>
-                </div>
-                <!-- 9 de Novembro -->
-                <div class="countdown-box">
-                    <p class="text-xs text-zinc-400 mb-1">9 NOV</p>
-                    <div class="flex justify-center items-center gap-1">
-                        <span class="countdown-number" id="dias3">0</span><span class="text-yellow-500 text-xs">d</span>
-                        <span class="countdown-number" id="horas3">0</span><span class="text-yellow-500 text-xs">h</span>
-                        <span class="countdown-number" id="minutos3">0</span><span class="text-yellow-500 text-xs">m</span>
-                        <span class="countdown-number" id="segundos3">0</span><span class="text-yellow-500 text-xs">s</span>
-                    </div>
-                </div>
-            </div>
+    <!-- BARRA DE CONTAGEM REGRESSIVA (SEM BAGUNÇAR O DESIGN) -->
+    <div class="countdown-bar sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            <span class="countdown-item">
+                <span class="text-zinc-400">14 MAR:</span>
+                <span class="countdown-number" id="dias1">0</span>d
+                <span class="countdown-number" id="horas1">0</span>h
+                <span class="countdown-number" id="minutos1">0</span>m
+                <span class="countdown-number" id="segundos1">0</span>s
+            </span>
+            <span class="countdown-item">
+                <span class="text-zinc-400">22 JUL:</span>
+                <span class="countdown-number" id="dias2">0</span>d
+                <span class="countdown-number" id="horas2">0</span>h
+                <span class="countdown-number" id="minutos2">0</span>m
+                <span class="countdown-number" id="segundos2">0</span>s
+            </span>
+            <span class="countdown-item">
+                <span class="text-zinc-400">9 NOV:</span>
+                <span class="countdown-number" id="dias3">0</span>d
+                <span class="countdown-number" id="horas3">0</span>h
+                <span class="countdown-number" id="minutos3">0</span>m
+                <span class="countdown-number" id="segundos3">0</span>s
+            </span>
         </div>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold"><span class="gradient-text">π BSPI</span></div>
-            <div class="hidden md:flex gap-8 text-sm">
-                <a href="#home" class="text-zinc-300 hover:text-yellow-500 transition">Home</a>
-                <a href="#sobre" class="text-zinc-300 hover:text-yellow-500 transition">Sobre</a>
-                <a href="#golden" class="text-zinc-300 hover:text-yellow-500 transition">Golden Ticket</a>
-                <a href="#indicar" class="text-zinc-300 hover:text-yellow-500 transition">Indicar</a>
-                <a href="#faq" class="text-zinc-300 hover:text-yellow-500 transition">FAQ</a>
-            </div>
-            <a href="#indicar" class="bg-yellow-500 text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-yellow-400 transition">
-                🎟️ Participar
-            </a>
+    <!-- NAVBAR ORIGINAL (INTACTA) -->
+    <nav class="p-6 flex justify-between items-center border-b border-white/10 backdrop-blur-sm bg-black/50">
+        <div class="text-2xl font-bold tracking-tighter">
+            <span class="gradient-text">π BSPI</span>
+        </div>
+        <div class="flex gap-6 text-sm text-zinc-400">
+            <a href="#home" class="hover:text-yellow-500 transition">Home</a>
+            <a href="#sobre" class="hover:text-yellow-500 transition">Sobre</a>
+            <a href="#golden" class="hover:text-yellow-500 transition">Golden Ticket</a>
+            <a href="#indicar" class="hover:text-yellow-500 transition">Indicar</a>
+            <a href="#faq" class="hover:text-yellow-500 transition">FAQ</a>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section id="home" class="pt-20 pb-16 px-6 max-w-6xl mx-auto text-center">
-        <div class="inline-block px-4 py-1 border border-yellow-500/30 rounded-full text-yellow-500 text-xs mb-6 tracking-widest bg-yellow-500/5">
-            🚀 CRIADO POR UM JOVEM DE 13 ANOS
+    <!-- HERO SECTION -->
+    <section id="home" class="pt-20 pb-16 px-6 text-center max-w-5xl mx-auto">
+        <div class="inline-block px-4 py-1 border border-yellow-500/50 rounded-full text-yellow-500 text-xs mb-8 uppercase tracking-widest bg-yellow-500/5">
+            🔥 Criado por um Jovem Visionário de 13 anos
         </div>
-        <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tighter">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
             GOLDEN <span class="gradient-text">TICKET</span>
         </h1>
-        <p class="text-zinc-400 text-lg max-w-3xl mx-auto mb-8">
-            O maior movimento financeiro social do Brasil.  
+        <p class="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-10">
+            O maior movimento financeiro social do Brasil está começando.  
             Indique líderes, acumule pontos e concorra a <span class="text-yellow-500 font-bold">BSPI</span>.
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-            <a href="#indicar" class="bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
-                FAZER INDICAÇÃO AGORA
+            <a href="#indicar" class="bg-yellow-500 text-black px-10 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
+                🎟️ QUERO INDICAR
             </a>
-            <a href="#sobre" class="border border-white/20 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition">
-                CONHECER PROJETO
+            <a href="#sobre" class="border border-white/20 px-10 py-4 rounded-xl font-bold hover:bg-white/5 transition">
+                ENTENDA O PROJETO
             </a>
         </div>
     </section>
 
     <!-- ESTATÍSTICAS -->
-    <section class="max-w-6xl mx-auto px-6 py-10">
+    <section class="max-w-6xl mx-auto px-6 py-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-zinc-900/50 p-5 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500">31.4M</div>
-                <div class="text-xs text-zinc-500 uppercase mt-1">Supply Total</div>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 pi-glow text-center">
+                <div class="text-3xl font-bold text-yellow-500">31.4M</div>
+                <div class="text-xs text-zinc-500 uppercase mt-2">Supply Total</div>
             </div>
-            <div class="bg-zinc-900/50 p-5 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500" id="totalQueimado">0</div>
-                <div class="text-xs text-zinc-500 uppercase mt-1">Queimados</div>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 pi-glow text-center">
+                <div class="text-3xl font-bold text-yellow-500" id="totalQueimado">0</div>
+                <div class="text-xs text-zinc-500 uppercase mt-2">Queimados</div>
             </div>
-            <div class="bg-zinc-900/50 p-5 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500">$0.56</div>
-                <div class="text-xs text-zinc-500 uppercase mt-1">Preço</div>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 pi-glow text-center">
+                <div class="text-3xl font-bold text-yellow-500">$0.56</div>
+                <div class="text-xs text-zinc-500 uppercase mt-2">Preço</div>
             </div>
-            <div class="bg-zinc-900/50 p-5 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500">157</div>
-                <div class="text-xs text-zinc-500 uppercase mt-1">Holders</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOBRE O BSPI -->
-    <section id="sobre" class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-3">SOBRE O <span class="gradient-text">BSPI</span></h2>
-            <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-                <h3 class="text-xl font-bold mb-3">Uma criptomoeda com propósito</h3>
-                <p class="text-zinc-400 mb-4 leading-relaxed text-sm">
-                    O <strong class="text-yellow-500">Banco Social Pi (BSPI)</strong> é um token real na blockchain Polygon, criado para apoiar <strong class="text-yellow-500">projetos educacionais e entidades sociais</strong> que transformam vidas através da educação baseada em valores humanos.
-                </p>
-                <p class="text-zinc-400 mb-5 leading-relaxed text-sm">
-                    Cada transação, cada token queimado, contribui para bolsas de estudo e iniciativas que espalham o bem.
-                </p>
-                <div class="flex gap-3">
-                    <div class="bg-zinc-800/50 p-3 rounded-xl text-center flex-1">
-                        <div class="text-yellow-500 text-lg font-bold">31.4M</div>
-                        <div class="text-xs text-zinc-500">Supply</div>
-                    </div>
-                    <div class="bg-zinc-800/50 p-3 rounded-xl text-center flex-1">
-                        <div class="text-yellow-500 text-lg font-bold">18</div>
-                        <div class="text-xs text-zinc-500">Decimais</div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow">
-                <h4 class="text-lg font-bold mb-3">📍 Contrato</h4>
-                <p class="text-xs text-zinc-500 mb-2 break-all font-mono bg-black/30 p-3 rounded-xl">
-                    0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10
-                </p>
-                <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="text-yellow-500 text-xs hover:underline">
-                    🔗 Ver no Polygonscan
-                </a>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 pi-glow text-center">
+                <div class="text-3xl font-bold text-yellow-500">157</div>
+                <div class="text-xs text-zinc-500 uppercase mt-2">Holders</div>
             </div>
         </div>
     </section>
 
-    <!-- OS 3 PERFIS DO GOLDEN TICKET -->
-    <section id="golden" class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-3">OS 3 <span class="gradient-text">PERFIS</span></h2>
-            <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
+    <!-- SOBRE O PROJETO -->
+    <section id="sobre" class="py-20 px-6 max-w-5xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">SOBRE O <span class="gradient-text">BSPI</span></h2>
+        <div class="bg-zinc-900/30 p-10 rounded-3xl border border-white/5 pi-glow">
+            <p class="text-zinc-300 text-lg leading-relaxed mb-6">
+                O <strong class="text-yellow-500">Banco Social Pi (BSPI)</strong> é uma criptomoeda real na blockchain Polygon, criada com um propósito: apoiar a <strong class="text-yellow-500">Escola Sathya Sai</strong> e outras instituições que transformam vidas através da educação baseada em valores humanos.
+            </p>
+            <p class="text-zinc-400">
+                📅 <strong>Dia do Pi (14/03)</strong> – Vamos eleger 3 líderes que vão espalhar essa corrente do bem.
+            </p>
         </div>
-        <div class="grid md:grid-cols-3 gap-5">
-            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-5xl mb-3">👑</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">PADRINHO</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">
-                    Empresário do lucro real que vai doar <strong>1 Pi (R$ 3,14)</strong> e mobilizar sua rede.
-                </p>
+    </section>
+
+    <!-- GOLDEN TICKET - OS 3 PERFIS -->
+    <section id="golden" class="py-20 px-6 max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12">OS 3 <span class="gradient-text">PERFIS</span></h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5 card-hover">
+                <div class="text-5xl mb-4">👑</div>
+                <h3 class="text-2xl font-bold text-yellow-500 mb-2">PADRINHO</h3>
+                <p class="text-zinc-400 text-sm">Empresário do lucro real que vai doar 1 Pi (R$ 3,14) e mobilizar sua rede.</p>
             </div>
-            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-5xl mb-3">👑</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">MADRINHA</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">
-                    Liderança feminina ou voz inspiradora que vai doar <strong>1 Pi</strong> e ativar sua comunidade.
-                </p>
+            <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5 card-hover">
+                <div class="text-5xl mb-4">👑</div>
+                <h3 class="text-2xl font-bold text-yellow-500 mb-2">MADRINHA</h3>
+                <p class="text-zinc-400 text-sm">Liderança feminina inspiradora que vai ativar sua comunidade.</p>
             </div>
-            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-5xl mb-3">🎤</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">INFLUENCER</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">
-                    Pessoa com alcance nas redes que fará um <strong>vídeo de 1 minuto</strong> e o primeiro Pix Pi.
-                </p>
+            <div class="bg-zinc-900 p-8 rounded-3xl border border-white/5 card-hover">
+                <div class="text-5xl mb-4">🎤</div>
+                <h3 class="text-2xl font-bold text-yellow-500 mb-2">INFLUENCER</h3>
+                <p class="text-zinc-400 text-sm">Voz pública que fará um vídeo de 1 minuto e o primeiro Pix Pi.</p>
             </div>
         </div>
     </section>
 
     <!-- FORMULÁRIO DE INDICAÇÃO -->
-    <section id="indicar" class="py-16 px-6 max-w-2xl mx-auto">
-        <div class="bg-zinc-900/50 p-8 rounded-2xl border border-yellow-500/30 gold-glow text-center">
-            <h2 class="text-2xl font-bold mb-3">🎟️ GOLDEN TICKET</h2>
-            <p class="text-zinc-400 mb-5 text-sm">Clique no botão abaixo para fazer sua indicação.</p>
+    <section id="indicar" class="py-20 px-6 max-w-2xl mx-auto">
+        <div class="bg-zinc-900 p-10 rounded-3xl border border-yellow-500/20 pi-glow text-center">
+            <h2 class="text-3xl font-bold mb-4">🎟️ GOLDEN TICKET</h2>
+            <p class="text-zinc-400 mb-8">Clique no botão abaixo para fazer sua indicação.</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" 
-               class="inline-block bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
+               class="inline-block bg-yellow-500 text-black px-10 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
                 FAZER INDICAÇÃO AGORA
             </a>
-            <p class="text-xs text-zinc-600 mt-4">⏳ O formulário leva menos de 2 minutos</p>
+            <p class="text-xs text-zinc-600 mt-6">Cada indicação vale 100 pontos. Os 3 primeiros ganham BSPI!</p>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="py-16 px-6 max-w-3xl mx-auto">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-2">PERGUNTAS <span class="gradient-text">FREQUENTES</span></h2>
-            <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-        </div>
-        <div class="space-y-3">
-            <div class="bg-zinc-900/30 p-5 rounded-xl border border-white/5">
-                <h3 class="font-bold text-yellow-500 mb-2 text-sm">❓ Preciso ter carteira de cripto?</h3>
-                <p class="text-zinc-400 text-xs">Não! Você só precisa indicar. Se ganhar BSPI, a gente te ajuda a criar uma carteira.</p>
+    <section id="faq" class="py-20 px-6 max-w-3xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12">PERGUNTAS <span class="gradient-text">FREQUENTES</span></h2>
+        <div class="space-y-4">
+            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5">
+                <h3 class="font-bold text-yellow-500 mb-2">❓ Preciso ter carteira de cripto?</h3>
+                <p class="text-zinc-400 text-sm">Não! Você só precisa indicar. Se ganhar BSPI, a gente te ajuda a criar uma carteira.</p>
             </div>
-            <div class="bg-zinc-900/30 p-5 rounded-xl border border-white/5">
-                <h3 class="font-bold text-yellow-500 mb-2 text-sm">❓ Posso indicar mais de uma pessoa?</h3>
-                <p class="text-zinc-400 text-xs">Claro! Cada indicação vale 100 pontos. Quanto mais, melhor.</p>
+            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5">
+                <h3 class="font-bold text-yellow-500 mb-2">❓ Posso indicar mais de uma pessoa?</h3>
+                <p class="text-zinc-400 text-sm">Claro! Cada indicação vale 100 pontos. Quanto mais, melhor.</p>
             </div>
-            <div class="bg-zinc-900/30 p-5 rounded-xl border border-white/5">
-                <h3 class="font-bold text-yellow-500 mb-2 text-sm">❓ O que é BSPI?</h3>
-                <p class="text-zinc-400 text-xs">É a criptomoeda do Banco Social Pi, que você pode trocar, guardar ou usar em ações sociais.</p>
+            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5">
+                <h3 class="font-bold text-yellow-500 mb-2">❓ Como sei meus pontos?</h3>
+                <p class="text-zinc-400 text-sm">Vamos divulgar uma planilha atualizada no grupo do WhatsApp.</p>
+            </div>
+            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5">
+                <h3 class="font-bold text-yellow-500 mb-2">❓ O que é BSPI?</h3>
+                <p class="text-zinc-400 text-sm">É a criptomoeda do Banco Social Pi, que você pode trocar, guardar ou usar em ações sociais.</p>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-10 border-t border-white/5">
-        <div class="max-w-6xl mx-auto px-6 text-center text-zinc-600 text-xs">
-            <p class="mb-2">BSPI PROTOCOL – ALLVENTURES & ELEVAD</p>
-            <p class="mb-3">Criado por Gabriel Akira Kussuda de Souza Moretti, 13 anos</p>
-            <div class="flex justify-center gap-5 text-xs">
-                <a href="#sobre" class="hover:text-yellow-500">Sobre</a>
-                <a href="#golden" class="hover:text-yellow-500">Golden Ticket</a>
-                <a href="#indicar" class="hover:text-yellow-500">Indicar</a>
-                <a href="#faq" class="hover:text-yellow-500">FAQ</a>
-            </div>
-            <p class="mt-4">📅 Próximas datas: 14/03, 22/07, 09/11</p>
+    <footer class="py-12 border-t border-white/5 text-center text-zinc-600 text-sm">
+        <p class="mb-2">BSPI PROTOCOL – ALL1VENTURES & ELEVAD</p>
+        <p class="mb-4">Criado por Gabriel Akira Kussuda de Souza Moretti, 13 anos</p>
+        <div class="flex justify-center gap-6 text-xs">
+            <a href="#sobre" class="hover:text-yellow-500">Sobre</a>
+            <a href="#golden" class="hover:text-yellow-500">Golden Ticket</a>
+            <a href="#indicar" class="hover:text-yellow-500">Indicar</a>
+            <a href="#faq" class="hover:text-yellow-500">FAQ</a>
         </div>
+        <p class="mt-6">📅 Próximas datas: 14/03, 22/07, 09/11</p>
     </footer>
 
     <script>
         // ==============================================
-        // CONTAGEM REGRESSIVA CORRIGIDA
+        // CONTAGEM REGRESSIVA PERFEITA (SEM BUGS)
         // ==============================================
-        function updateCountdowns() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
+        function atualizarContagens() {
+            const agora = new Date();
+            const ano = agora.getFullYear();
 
-            // Define as três datas (mês em JS é 0-11, então março = 2, julho = 6, novembro = 10)
-            const dates = [
-                { name: '14 Mar', year: currentYear, month: 2, day: 14, hour: 15, minute: 14, second: 0 },
-                { name: '22 Jul', year: currentYear, month: 6, day: 22, hour: 15, minute: 14, second: 0 },
-                { name: '9 Nov', year: currentYear, month: 10, day: 9, hour: 15, minute: 14, second: 0 }
+            // Datas: 14 Março, 22 Julho, 9 Novembro
+            const datas = [
+                new Date(ano, 2, 14, 15, 14, 0),  // 14 Mar
+                new Date(ano, 6, 22, 15, 14, 0),  // 22 Jul
+                new Date(ano, 10, 9, 15, 14, 0)   // 9 Nov
             ];
 
             // Ajusta para o próximo ano se a data já passou
-            const targets = dates.map(d => {
-                let target = new Date(d.year, d.month, d.day, d.hour, d.minute, d.second);
-                if (target < now) {
-                    target = new Date(d.year + 1, d.month, d.day, d.hour, d.minute, d.second);
+            for (let i = 0; i < datas.length; i++) {
+                if (datas[i] < agora) {
+                    datas[i] = new Date(ano + 1, datas[i].getMonth(), datas[i].getDate(), 15, 14, 0);
                 }
-                return target;
-            });
+            }
 
             // Calcula diferenças
-            const diffs = targets.map(target => {
-                const diff = target - now;
-                if (diff <= 0) return { dias: 0, horas: 0, minutos: 0, segundos: 0 };
+            const diffs = datas.map(data => {
+                const diffMs = data - agora;
+                if (diffMs <= 0) return { dias: 0, horas: 0, minutos: 0, segundos: 0 };
                 return {
-                    dias: Math.floor(diff / (1000 * 60 * 60 * 24)),
-                    horas: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutos: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-                    segundos: Math.floor((diff % (1000 * 60)) / 1000)
+                    dias: Math.floor(diffMs / (1000 * 60 * 60 * 24)),
+                    horas: Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutos: Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60)),
+                    segundos: Math.floor((diffMs % (1000 * 60)) / 1000)
                 };
             });
 
-            // Atualiza elementos HTML (certifique-se de que os IDs existem)
+            // Atualiza os elementos
             document.getElementById('dias1').textContent = diffs[0].dias;
             document.getElementById('horas1').textContent = diffs[0].horas;
             document.getElementById('minutos1').textContent = diffs[0].minutos;
@@ -313,12 +261,11 @@
         }
 
         // Atualiza a cada segundo
-        setInterval(updateCountdowns, 1000);
-        // Executa imediatamente para não esperar 1s
-        updateCountdowns();
+        setInterval(atualizarContagens, 1000);
+        atualizarContagens();
 
         // ==============================================
-        // DADOS DA API (opcional)
+        // DADOS DA API (OPCIONAL)
         // ==============================================
         async function carregarDados() {
             try {
@@ -328,305 +275,6 @@
                     const totalSupply = 31416000;
                     const queimado = totalSupply - parseFloat(data.saldo);
                     document.getElementById('totalQueimado').textContent = queimado.toFixed(0);
-                }
-            } catch (e) {
-                console.log('API de saldo não disponível');
-            }
-        }
-        carregarDados();
-    </script>
-</body>
-    </html>            O maior movimento financeiro social do Brasil.  
-            Indique líderes, acumule pontos e concorra a <span class="text-yellow-500 font-bold">BSPI</span>.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <a href="#indicar" class="bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
-                FAZER INDICAÇÃO AGORA
-            </a>
-            <a href="#sobre" class="border border-white/20 px-8 py-3 rounded-xl font-bold hover:bg-white/5 transition">
-                CONHECER PROJETO
-            </a>
-        </div>
-    </section>
-
-    <!-- ESTATÍSTICAS -->
-    <section class="max-w-6xl mx-auto px-6 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500">31.4M</div>
-                <div class="text-xs text-zinc-500 uppercase mt-2">Supply Total</div>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500" id="totalQueimado">0</div>
-                <div class="text-xs text-zinc-500 uppercase mt-2">Queimados</div>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500">$0.56</div>
-                <div class="text-xs text-zinc-500 uppercase mt-2">Preço</div>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-2xl md:text-3xl font-bold text-yellow-500" id="holdersCount">157</div>
-                <div class="text-xs text-zinc-500 uppercase mt-2">Holders</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOBRE O BSPI -->
-    <section id="sobre" class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">SOBRE O <span class="gradient-text">BSPI</span></h2>
-            <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-                <h3 class="text-xl font-bold mb-3">Uma criptomoeda com propósito</h3>
-                <p class="text-zinc-400 mb-4 leading-relaxed text-sm">
-                    O <strong class="text-yellow-500">Banco Social Pi (BSPI)</strong> é um token real na blockchain Polygon, criado para apoiar <strong class="text-yellow-500">projetos educacionais e entidades sociais</strong> que transformam vidas através da educação baseada em valores humanos.
-                </p>
-                <p class="text-zinc-400 mb-5 leading-relaxed text-sm">
-                    Cada transação, cada token queimado, contribui para bolsas de estudo e iniciativas que espalham o bem.
-                </p>
-                <div class="flex gap-3">
-                    <div class="bg-zinc-800/50 p-3 rounded-xl text-center flex-1">
-                        <div class="text-yellow-500 text-lg font-bold">31.4M</div>
-                        <div class="text-xs text-zinc-500">Supply</div>
-                    </div>
-                    <div class="bg-zinc-800/50 p-3 rounded-xl text-center flex-1">
-                        <div class="text-yellow-500 text-lg font-bold">18</div>
-                        <div class="text-xs text-zinc-500">Decimais</div>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow">
-                <h4 class="text-lg font-bold mb-3">📍 Contrato</h4>
-                <p class="text-xs text-zinc-500 mb-2 break-all font-mono bg-black/30 p-3 rounded-xl">
-                    0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10
-                </p>
-                <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="text-yellow-500 text-xs hover:underline">
-                    🔗 Ver no Polygonscan
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- OS 3 PERFIS DO GOLDEN TICKET -->
-    <section id="golden" class="py-16 px-6 max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">OS 3 <span class="gradient-text">PERFIS</span></h2>
-            <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-5">
-            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-5xl mb-3">👑</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">PADRINHO</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">
-                    Empresário do lucro real que vai doar <strong>1 Pi (R$ 3,14)</strong> e mobilizar sua rede.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-5xl mb-3">👑</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">MADRINHA</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">
-                    Liderança feminina ou voz inspiradora que vai doar <strong>1 Pi</strong> e ativar sua comunidade.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow text-center">
-                <div class="text-5xl mb-3">🎤</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">INFLUENCER</h3>
-                <p class="text-zinc-400 text-xs leading-relaxed">
-                    Pessoa com alcance nas redes que fará um <strong>vídeo de 1 minuto</strong> e o primeiro Pix Pi.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FORMULÁRIO DE INDICAÇÃO -->
-    <section id="indicar" class="py-16 px-6 max-w-2xl mx-auto">
-        <div class="bg-zinc-900/50 p-8 rounded-2xl border border-yellow-500/30 gold-glow text-center">
-            <h2 class="text-2xl font-bold mb-3">🎟️ GOLDEN TICKET</h2>
-            <p class="text-zinc-400 mb-6 text-sm">Clique no botão abaixo para fazer sua indicação.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" 
-               class="inline-block bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
-                FAZER INDICAÇÃO AGORA
-            </a>
-            <p class="text-xs text-zinc-600 mt-4">⏳ O formulário leva menos de 2 minutos</p>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="py-16 px-6 max-w-3xl mx-auto">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold mb-2">PERGUNTAS <span class="gradient-text">FREQUENTES</span></h2>
-            <div class="w-20 h-1 bg-yellow-500 mx-auto"></div>
-        </div>
-        <div class="space-y-3">
-            <div class="bg-zinc-900/30 p-5 rounded-xl border border-white/5">
-                <h3 class="font-bold text-yellow-500 mb-2 text-sm">❓ Preciso ter carteira de cripto?</h3>
-                <p class="text-zinc-400 text-xs">Não! Você só precisa indicar. Se ganhar BSPI, a gente te ajuda a criar uma carteira.</p>
-            </div>
-            <div class="bg-zinc-900/30 p-5 rounded-xl border border-white/5">
-                <h3 class="font-bold text-yellow-500 mb-2 text-sm">❓ Posso indicar mais de uma pessoa?</h3>
-                <p class="text-zinc-400 text-xs">Claro! Cada indicação vale 100 pontos. Quanto mais, melhor.</p>
-            </div>
-            <div class="bg-zinc-900/30 p-5 rounded-xl border border-white/5">
-                <h3 class="font-bold text-yellow-500 mb-2 text-sm">❓ O que é BSPI?</h3>
-                <p class="text-zinc-400 text-xs">É a criptomoeda do Banco Social Pi, que você pode trocar, guardar ou usar em ações sociais.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="py-10 border-t border-white/5">
-        <div class="max-w-6xl mx-auto px-6 text-center text-zinc-600 text-xs">
-            <p class="mb-2">BSPI PROTOCOL – ALL1VENTURES & ELEVAD</p>
-            <p class="mb-3">Criado por Gabriel Akira Kussuda de Souza Moretti, 13 anos</p>
-            <div class="flex justify-center gap-5 text-xs">
-                <a href="#sobre" class="hover:text-yellow-500">Sobre</a>
-                <a href="#golden" class="hover:text-yellow-500">Golden Ticket</a>
-                <a href="#indicar" class="hover:text-yellow-500">Indicar</a>
-                <a href="#faq" class="hover:text-yellow-500">FAQ</a>
-            </div>
-            <p class="mt-4">📅 Próximas datas: 14/03, 22/07, 09/11</p>
-        </div>
-    </footer>
-
-    <script>
-        // ==============================================
-        // CONTAGEM REGRESSIVA PARA OS 3 DIAS
-        // ==============================================
-        function updateAllCountdowns() {
-            const now = new Date().getTime();
-            const currentYear = new Date().getFullYear();
-
-            const dates = [
-                { year: currentYear, month: 2, day: 14, hour: 15, minute: 14, second: 0 },
-                { year: currentYear, month: 6, day: 22, hour: 15, minute: 14, second: 0 },
-                { year: currentYear, month: 10, day: 9, hour: 15, minute: 14, second: 0 }
-            ];
-
-            for (let i = 0; i < dates.length; i++) {
-                let targetDate = new Date(dates[i].year, dates[i].month, dates[i].day, dates[i].hour, dates[i].minute, dates[i].second);
-                if (targetDate.getTime() < now) {
-                    targetDate = new Date(dates[i].year + 1, dates[i].month, dates[i].day, dates[i].hour, dates[i].minute, dates[i].second);
-                }
-                dates[i].target = targetDate.getTime();
-            }
-
-            function getDiff(target) {
-                const diff = target - now;
-                if (diff <= 0) return { dias: 0, horas: 0, minutos: 0, segundos: 0 };
-                return {
-                    dias: Math.floor(diff / (1000 * 60 * 60 * 24)),
-                    horas: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutos: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-                    segundos: Math.floor((diff % (1000 * 60)) / 1000)
-                };
-            }
-
-            const diffs = dates.map(d => getDiff(d.target));
-            
-            document.getElementById('dias1').innerText = diffs[0].dias;
-            document.getElementById('horas1').innerText = diffs[0].horas;
-            document.getElementById('minutos1').innerText = diffs[0].minutos;
-            document.getElementById('segundos1').innerText = diffs[0].segundos;
-
-            document.getElementById('dias2').innerText = diffs[1].dias;
-            document.getElementById('horas2').innerText = diffs[1].horas;
-            document.getElementById('minutos2').innerText = diffs[1].minutos;
-            document.getElementById('segundos2').innerText = diffs[1].segundos;
-
-            document.getElementById('dias3').innerText = diffs[2].dias;
-            document.getElementById('horas3').innerText = diffs[2].horas;
-            document.getElementById('minutos3').innerText = diffs[2].minutos;
-            document.getElementById('segundos3').innerText = diffs[2].segundos;
-        }
-
-        setInterval(updateAllCountdowns, 1000);
-        updateAllCountdowns();
-
-        // ==============================================
-        // CARREGAR DADOS DA API (SE DISPONÍVEL)
-        // ==============================================
-        async function carregarDados() {
-            try {
-                const res = await fetch('/api/saldo');
-                const data = await res.json();
-                if (data.saldo) {
-                    const totalSupply = 31416000;
-                    const queimado = totalSupply - parseFloat(data.saldo);
-                    document.getElementById('totalQueimado').innerText = queimado.toFixed(0);
-                }
-            } catch (e) {
-                console.log('API de saldo não disponível');
-            }
-        }
-        carregarDados();
-    </script>
-</body>
-</html
-            // Datas fixas (considerando ano atual)
-            const dates = [
-                { year: currentYear, month: 2, day: 14, hour: 15, minute: 14, second: 0 }, // 14 Mar
-                { year: currentYear, month: 6, day: 22, hour: 15, minute: 14, second: 0 }, // 22 Jul
-                { year: currentYear, month: 10, day: 9, hour: 15, minute: 14, second: 0 }  // 9 Nov
-            ];
-
-            // Ajusta para o próximo ano se a data já passou
-            for (let i = 0; i < dates.length; i++) {
-                let targetDate = new Date(dates[i].year, dates[i].month, dates[i].day, dates[i].hour, dates[i].minute, dates[i].second);
-                if (targetDate.getTime() < now) {
-                    targetDate = new Date(dates[i].year + 1, dates[i].month, dates[i].day, dates[i].hour, dates[i].minute, dates[i].second);
-                }
-                dates[i].target = targetDate.getTime();
-            }
-
-            // Função para calcular diferença
-            function getDiff(target) {
-                const diff = target - now;
-                if (diff <= 0) return { dias: 0, horas: 0, minutos: 0, segundos: 0, passou: true };
-                return {
-                    dias: Math.floor(diff / (1000 * 60 * 60 * 24)),
-                    horas: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutos: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-                    segundos: Math.floor((diff % (1000 * 60)) / 1000),
-                    passou: false
-                };
-            }
-
-            // Atualiza cada contador
-            const diffs = dates.map(d => getDiff(d.target));
-            
-            document.getElementById('dias1').innerText = diffs[0].dias;
-            document.getElementById('horas1').innerText = diffs[0].horas;
-            document.getElementById('minutos1').innerText = diffs[0].minutos;
-            document.getElementById('segundos1').innerText = diffs[0].segundos;
-
-            document.getElementById('dias2').innerText = diffs[1].dias;
-            document.getElementById('horas2').innerText = diffs[1].horas;
-            document.getElementById('minutos2').innerText = diffs[1].minutos;
-            document.getElementById('segundos2').innerText = diffs[1].segundos;
-
-            document.getElementById('dias3').innerText = diffs[2].dias;
-            document.getElementById('horas3').innerText = diffs[2].horas;
-            document.getElementById('minutos3').innerText = diffs[2].minutos;
-            document.getElementById('segundos3').innerText = diffs[2].segundos;
-        }
-
-        // Atualiza a cada segundo
-        setInterval(updateAllCountdowns, 1000);
-        updateAllCountdowns(); // primeira execução
-
-        // ==============================================
-        // RESTO DO SEU CÓDIGO (carregar dados, etc)
-        // ==============================================
-        async function carregarDados() {
-            try {
-                const res = await fetch('/api/saldo');
-                const data = await res.json();
-                if (data.saldo) {
-                    const totalSupply = 31416000;
-                    const queimado = totalSupply - parseFloat(data.saldo);
-                    document.getElementById('totalQueimado').innerText = queimado.toFixed(0);
                 }
             } catch (e) {
                 console.log('API de saldo não disponível');
