@@ -15,24 +15,47 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        * { font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: #030303; color: #fff; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
+        }
         
-        /* Gradiente e efeitos do BSPI */
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        /* Utilitários BSPI */
         .gradient-text {
             background: linear-gradient(135deg, #F4DF4E 0%, #D4AF37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .gold-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-5px); border-color: #D4AF37; }
+        
+        .gold-glow {
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            border-color: #D4AF37;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+        
         .bg-noise {
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
         }
         
-        /* Cards de contagem regressiva (BSPI) */
+        /* Cards de contagem regressiva */
         .countdown-card {
             background: linear-gradient(145deg, rgba(0,0,0,0.8), rgba(20,20,20,0.9));
             border: 1px solid rgba(212,175,55,0.3);
@@ -42,10 +65,13 @@
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
+        
         .countdown-card:hover {
             border-color: #D4AF37;
             background: rgba(0,0,0,0.95);
+            transform: scale(1.02);
         }
+        
         .countdown-number {
             font-size: 2.5rem;
             font-weight: 700;
@@ -53,14 +79,17 @@
             line-height: 1;
             text-shadow: 0 0 20px rgba(212,175,55,0.5);
         }
+        
         @media (min-width: 768px) {
             .countdown-number { font-size: 3rem; }
         }
+        
         .countdown-unit {
             font-size: 1rem;
             color: #D4AF37;
             opacity: 0.8;
         }
+        
         .countdown-label {
             font-size: 0.8rem;
             color: #a0a0a0;
@@ -87,8 +116,10 @@
             transition: all 0.3s;
             z-index: 100;
         }
+        
         .whatsapp-float:hover {
             transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
         }
         
         /* Estilos da Eleva (seções claras) */
@@ -100,39 +131,64 @@
             margin: 2rem auto;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
+        
         .eleva-blue {
             color: #1e3a8a;
         }
-        .eleva-bg-blue {
-            background-color: #1e3a8a;
-        }
-        .eleva-border-blue {
-            border-color: #3b82f6;
-        }
-        .quote {
+        
+        .quote-eleva {
             font-style: italic;
             font-size: 1.2rem;
             color: #4b5563;
             border-left: 4px solid #3b82f6;
             padding-left: 1rem;
         }
+        
+        .eleva-card {
+            background-color: #f0f9ff;
+            border: 1px solid #bfdbfe;
+            transition: all 0.3s;
+        }
+        
+        .eleva-card:hover {
+            background-color: #e0f2fe;
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f5c542;
+        }
     </style>
 </head>
 <body class="bg-noise">
 
-    <!-- BOTÃO FLUTUANTE WHATSAPP (número correto da Eleva) -->
-    <a href="https://wa.me/5516994557000" class="whatsapp-float animate__animated animate__pulse animate__infinite" target="_blank">
+    <!-- BOTÃO FLUTUANTE WHATSAPP (número da Eleva) -->
+    <a href="https://wa.me/5516994557000?text=Quero%20saber%20mais%20sobre%20o%20Banco%20Social%20Pi" 
+       class="whatsapp-float animate__animated animate__pulse animate__infinite" 
+       target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- TOPO COM CONTAGENS REGRESSIVAS (BSPI) -->
+    <!-- TOPO COM CONTAGENS REGRESSIVAS BSPI -->
     <div class="bg-black/95 border-b border-yellow-500/30 gold-glow">
         <div class="max-w-7xl mx-auto px-4 py-6">
             <p class="text-center text-yellow-500 text-sm mb-4 tracking-widest animate__animated animate__fadeInDown">
                 ⏳ CONTAGEM REGRESSIVA PARA OS DIAS DO PI
             </p>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- 14 de Março -->
+                <!-- 14 Março -->
                 <div class="countdown-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
                     <div class="text-yellow-500 font-bold text-lg mb-2">π 14 DE MARÇO</div>
                     <div class="flex justify-center items-center gap-2 mb-2">
@@ -146,7 +202,7 @@
                     </div>
                     <div class="countdown-label">Dia Internacional do Pi</div>
                 </div>
-                <!-- 22 de Julho -->
+                <!-- 22 Julho -->
                 <div class="countdown-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
                     <div class="text-yellow-500 font-bold text-lg mb-2">22/7 ≈ π • 22 DE JULHO</div>
                     <div class="flex justify-center items-center gap-2 mb-2">
@@ -160,7 +216,7 @@
                     </div>
                     <div class="countdown-label">Dia da Aproximação do Pi</div>
                 </div>
-                <!-- 9 de Novembro -->
+                <!-- 9 Novembro -->
                 <div class="countdown-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                     <div class="text-yellow-500 font-bold text-lg mb-2">314° DIA • 9 DE NOVEMBRO</div>
                     <div class="flex justify-center items-center gap-2 mb-2">
@@ -178,21 +234,22 @@
         </div>
     </div>
 
-    <!-- NAVBAR -->
+    <!-- NAVBAR UNIFICADA -->
     <nav class="bg-black/90 border-b border-white/10 sticky top-0 z-40 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-3xl font-bold">
                 <span class="gradient-text">π BSPI</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-300">
-                <a href="#home" class="hover:text-yellow-500 transition">Home</a>
-                <a href="#sobre-bspi" class="hover:text-yellow-500 transition">O BSPI</a>
-                <a href="#eleva" class="hover:text-yellow-500 transition">Consultoria Eleva</a>
-                <a href="#golden" class="hover:text-yellow-500 transition">Golden Ticket</a>
-                <a href="#indicar" class="hover:text-yellow-500 transition">Indicar</a>
-                <a href="#contato" class="hover:text-yellow-500 transition">Contato</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#home" class="text-zinc-300 hover:text-yellow-500 transition">Home</a>
+                <a href="#sobre-bspi" class="text-zinc-300 hover:text-yellow-500 transition">O BSPI</a>
+                <a href="#eleva" class="text-zinc-300 hover:text-yellow-500 transition">Consultoria Eleva</a>
+                <a href="#datas" class="text-zinc-300 hover:text-yellow-500 transition">Datas do Pi</a>
+                <a href="#golden" class="text-zinc-300 hover:text-yellow-500 transition">Golden Ticket</a>
+                <a href="#indicar" class="text-zinc-300 hover:text-yellow-500 transition">Indicar</a>
+                <a href="#contato" class="text-zinc-300 hover:text-yellow-500 transition">Contato</a>
             </div>
-            <a href="#indicar" class="bg-yellow-500 text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-400 transition">
+            <a href="#indicar" class="bg-yellow-500 text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-400 transition-all hover:scale-105 shadow-lg">
                 🎟️ Participar
             </a>
         </div>
@@ -200,16 +257,16 @@
 
     <!-- HERO SECTION (BSPI + ELEVA) -->
     <section id="home" class="pt-20 pb-16 px-6 max-w-6xl mx-auto text-center">
-        <div class="inline-block px-4 py-1 border border-yellow-500/30 rounded-full text-yellow-500 text-xs mb-6 tracking-widest bg-yellow-500/5">
+        <div class="inline-block px-4 py-1 border border-yellow-500/30 rounded-full text-yellow-500 text-xs mb-6 tracking-widest bg-yellow-500/5 animate__animated animate__fadeInDown">
             🚀 CRIADO POR GABRIEL AKIRA, 13 ANOS
         </div>
-        <h1 class="text-5xl md:text-8xl font-bold mb-4 tracking-tighter">
+        <h1 class="text-5xl md:text-8xl font-bold mb-4 tracking-tighter animate__animated animate__fadeInUp">
             BANCO <span class="gradient-text">SOCIAL PI</span>
         </h1>
-        <p class="text-zinc-400 text-lg max-w-3xl mx-auto mb-6">
+        <p class="text-zinc-400 text-lg max-w-3xl mx-auto mb-4 animate__animated animate__fadeInUp animate__delay-1s">
             O Banco Pi organiza o que já existe: a vontade de contribuir — de forma simples e possível para todos.
         </p>
-        <div class="quote text-white/80 max-w-2xl mx-auto mb-8 border-l-4 border-yellow-500 pl-4 text-left">
+        <div class="quote-eleva text-white/80 max-w-2xl mx-auto mb-8 border-l-4 border-yellow-500 pl-4 text-left animate__animated animate__fadeInUp animate__delay-1s">
             “Quando elevamos nossos olhos, vemos possibilidades. Quando baixamos, apenas obstáculos.” – William Shakespeare
         </div>
         <div class="flex flex-wrap justify-center gap-4">
@@ -222,7 +279,7 @@
         </div>
     </section>
 
-    <!-- ESTATÍSTICAS DO BSPI (EM TEMPO REAL) -->
+    <!-- ESTATÍSTICAS DO BSPI -->
     <section class="max-w-7xl mx-auto px-6 py-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
@@ -244,7 +301,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO: O BANCO SOCIAL PI (TUDO SOBRE O BSPI) -->
+    <!-- SEÇÃO: O BANCO SOCIAL PI (COMPLETA) -->
     <section id="sobre-bspi" class="py-16 px-6 max-w-5xl mx-auto">
         <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">O <span class="gradient-text">BANCO SOCIAL PI</span></h2>
         <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 gold-glow">
@@ -265,97 +322,73 @@
     </section>
 
     <!-- SEÇÃO: CONSULTORIA ELEVA (COMPLETA) -->
-    <section id="eleva" class="py-16 px-6 max-w-6xl mx-auto bg-white rounded-3xl shadow-xl text-gray-800">
-        <div class="text-center mb-8">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">CONSULTORIA <span class="text-blue-600">ELEVA</span></h2>
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
-            </p>
-        </div>
-
-        <!-- O que fazemos (3 cards) -->
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 card-hover">
-                <h3 class="text-xl font-bold text-blue-800 mb-3">Mapeamento Organizacional</h3>
-                <p class="text-gray-600 text-sm">Entendemos a estrutura, processos-chave e posicionamento da organização. Envolve entrevistas, análise de documentos e observação direta.</p>
+    <section id="eleva" class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="bg-white rounded-3xl shadow-xl p-8 md:p-12">
+            <div class="text-center mb-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">CONSULTORIA <span class="text-blue-600">ELEVA</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
+                </p>
             </div>
-            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 card-hover">
-                <h3 class="text-xl font-bold text-blue-800 mb-3">Análise de Stakeholders</h3>
-                <p class="text-gray-600 text-sm">Compreendemos doadores, voluntários, beneficiários e parceiros, moldando ações mais direcionadas.</p>
-            </div>
-            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 card-hover">
-                <h3 class="text-xl font-bold text-blue-800 mb-3">Avaliação de Impacto</h3>
-                <p class="text-gray-600 text-sm">Analisamos resultados, medimos impacto e eficácia, identificamos lacunas e áreas de melhoria.</p>
-            </div>
-        </div>
 
-        <!-- Frase e depoimento -->
-        <div class="quote max-w-3xl mx-auto mb-8 text-gray-700">
-            “A abordagem da ELEVA, ancorada nesse rigoroso diagnóstico inicial, garante que as soluções propostas estejam alinhadas com a realidade e as necessidades específicas de cada organização, conduzindo‑a à excelência em sua missão.”
-        </div>
+            <!-- O que fazemos (3 cards) -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="eleva-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Mapeamento Organizacional</h3>
+                    <p class="text-gray-600 text-sm">Entendemos a estrutura, processos-chave e posicionamento da organização. Envolve entrevistas, análise de documentos e observação direta.</p>
+                </div>
+                <div class="eleva-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Análise de Stakeholders</h3>
+                    <p class="text-gray-600 text-sm">Compreendemos doadores, voluntários, beneficiários e parceiros, moldando ações mais direcionadas.</p>
+                </div>
+                <div class="eleva-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-800 mb-3">Avaliação de Impacto</h3>
+                    <p class="text-gray-600 text-sm">Analisamos resultados, medimos impacto e eficácia, identificamos lacunas e áreas de melhoria.</p>
+                </div>
+            </div>
 
-        <div class="bg-blue-600 text-white p-6 rounded-xl text-center max-w-2xl mx-auto">
-            <p class="text-lg italic mb-2">“Vocês são muito eficientes... não troco por ninguém. 🥰🥰🥰”</p>
-            <p class="font-bold">Isabel Roldão</p>
-            <p class="text-sm opacity-80">CEPIM – Odette Dip Badran / Cliente desde 2016</p>
+            <!-- Frase e depoimento -->
+            <div class="quote-eleva max-w-3xl mx-auto mb-8">
+                “A abordagem da ELEVA, ancorada nesse rigoroso diagnóstico inicial, garante que as soluções propostas estejam alinhadas com a realidade e as necessidades específicas de cada organização, conduzindo‑a à excelência em sua missão.”
+            </div>
+
+            <div class="bg-blue-600 text-white p-6 rounded-xl text-center max-w-2xl mx-auto">
+                <p class="text-lg italic mb-2">“Vocês são muito eficientes... não troco por ninguém. 🥰🥰🥰”</p>
+                <p class="font-bold">Isabel Roldão</p>
+                <p class="text-sm opacity-80">CEPIM – Odette Dip Badran / Cliente desde 2016</p>
+            </div>
         </div>
     </section>
 
-    <!-- PROJETOS SOCIAIS APOIADOS (AMBIENTE ELEVA) -->
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 text-white">PROJETOS <span class="gradient-text">APOIADOS</span></h2>
-        <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow flex gap-4 items-center">
-                <div class="text-5xl">🌱</div>
-                <div>
-                    <h3 class="text-xl font-bold text-yellow-500">Educação Ambiental</h3>
-                    <p class="text-zinc-400">Instituto Nova Era</p>
-                </div>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow flex gap-4 items-center">
-                <div class="text-5xl">🚀</div>
-                <div>
-                    <h3 class="text-xl font-bold text-yellow-500">Territórios Supernova</h3>
-                    <p class="text-zinc-400">Lançamento do projeto</p>
-                </div>
-            </div>
-        </div>
-        <p class="text-center text-zinc-500 text-sm mt-6">Tudo é acompanhado de forma auditada e transparente.</p>
-    </section>
-
-    <!-- GOLDEN TICKET (BSPI) -->
-    <section id="golden" class="py-16 px-6 max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 text-white">GOLDEN <span class="gradient-text">TICKET</span></h2>
+    <!-- DATAS DO PI -->
+    <section id="datas" class="py-16 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">📅 DIAS DO <span class="gradient-text">PI</span></h2>
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
+            <div class="bg-zinc-900/30 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
+                <div class="text-7xl mb-4">π</div>
+                <h3 class="text-3xl font-bold text-yellow-500 mb-3">14 de Março</h3>
+                <p class="text-zinc-400 text-sm">Dia Internacional do Pi. A data mais famosa, celebrada mundialmente.</p>
+            </div>
+            <div class="bg-zinc-900/30 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
+                <div class="text-7xl mb-4">22/7</div>
+                <h3 class="text-3xl font-bold text-yellow-500 mb-3">22 de Julho</h3>
+                <p class="text-zinc-400 text-sm">Dia da Aproximação do Pi (22/7 ≈ 3,14).</p>
+            </div>
+            <div class="bg-zinc-900/30 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
+                <div class="text-7xl mb-4">314°</div>
+                <h3 class="text-3xl font-bold text-yellow-500 mb-3">9/10 Novembro</h3>
+                <p class="text-zinc-400 text-sm">314º dia do ano, uma forma diferente de homenagear o π.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GOLDEN TICKET - PERFIS -->
+    <section id="golden" class="py-16 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">GOLDEN <span class="gradient-text">TICKET</span></h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
                 <div class="text-5xl mb-3">👑</div>
                 <h3 class="text-xl font-bold text-yellow-500 mb-2">PADRINHO</h3>
-                <p class="text-zinc-400 text-sm">Empresário do lucro real que vai doar 1 Pi (R$ 3,14) e mobilizar sua rede.</p>
+                <p class="text-zinc-400">Empresário que vai doar 1 Pi (R$ 3,14) e mobilizar sua rede.</p>
             </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-5xl mb-3">👑</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">MADRINHA</h3>
-                <p class="text-zinc-400 text-sm">Liderança feminina ou voz inspiradora que vai doar 1 Pi e ativar sua comunidade.</p>
-            </div>
-            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-5xl mb-3">🎤</div>
-                <h3 class="text-xl font-bold text-yellow-500 mb-2">INFLUENCER</h3>
-                <p class="text-zinc-400 text-sm">Pessoa com alcance nas redes que fará um vídeo de 1 minuto e o primeiro Pix Pi.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- FORMULÁRIO DE INDICAÇÃO (BSPI) -->
-    <section id="indicar" class="py-16 px-6 max-w-2xl mx-auto">
-        <div class="bg-zinc-900/50 p-8 rounded-2xl border border-yellow-500/30 gold-glow text-center">
-            <h2 class="text-2xl font-bold mb-3 text-white">🎟️ GOLDEN TICKET</h2>
-            <p class="text-zinc-400 mb-5">Clique para fazer sua indicação. Cada indicação vale 100 pontos.</p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" class="inline-block bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition shadow-lg">
-                FAZER INDICAÇÃO AGORA
-            </a>
-        </div>
-    </section>
-
-    <!-- CONTATO (ELEVA) -->
-    <section id="contato" class="py-16 px-6 max-w-3xl mx-auto">
-        <div class="bg-zinc-900/50 p-8 rounded-2xl border borde
+            <div class="bg-zinc-900/50 p-8 roun
