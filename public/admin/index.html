@@ -5,44 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Admin - BSPI</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0a0a0a; color: #fff; font-family: 'Space Grotesk', sans-serif; }
-        input { background: #1a1a1a; border: 1px solid #333; color: white; padding: 10px; border-radius: 10px; width: 100%; }
+        * { font-family: 'Space Grotesk', sans-serif; }
+        body { background-color: #030303; color: #fff; }
+        .gradient-text { 
+            background: linear-gradient(135deg, #F4DF4E 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.15); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-3px); border-color: #D4AF37; }
+        input { background: #1a1a1a; border: 1px solid #333; color: white; padding: 12px; border-radius: 12px; width: 100%; }
     </style>
 </head>
 <body class="p-6">
-    <div class="max-w-md mx-auto bg-zinc-900 p-8 rounded-2xl border border-yellow-500/30">
-        <h1 class="text-3xl font-bold text-yellow-500 mb-6">🔐 PAINEL SECRETO</h1>
+
+    <div class="max-w-4xl mx-auto">
+        
+        <!-- CABEÇALHO -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold">
+                <span class="gradient-text">PAINEL ADMIN BSPI</span>
+            </h1>
+            <div class="text-xs text-zinc-500" id="statusServidor">🔴 Desconectado</div>
+        </div>
 
         <!-- TELA DE LOGIN -->
-        <div id="loginDiv">
+        <div id="loginDiv" class="bg-zinc-900/70 p-8 rounded-3xl border border-yellow-500/30 gold-glow max-w-md mx-auto">
+            <h2 class="text-2xl font-bold mb-6 text-center">🔐 ACESSO RESTRITO</h2>
             <input type="password" id="senha" placeholder="Senha" class="mb-4">
             <button onclick="login()" class="w-full bg-yellow-500 text-black font-bold py-3 rounded-xl hover:bg-yellow-400 transition">
                 ENTRAR
             </button>
-            <div id="loginErro" class="text-red-500 text-sm mt-2 text-center"></div>
+            <div id="loginErro" class="text-red-500 text-sm mt-3 text-center"></div>
         </div>
 
         <!-- PAINEL (OCULTO INICIALMENTE) -->
         <div id="painelDiv" style="display: none;">
-            <div class="bg-black/30 p-4 rounded-xl mb-4">
-                <p class="text-zinc-400 text-sm">Endereço da Master</p>
-                <p class="text-yellow-500 text-xs break-all" id="endereco">-</p>
+            
+            <!-- BOTÃO LOGOUT -->
+            <div class="flex justify-end mb-6">
+                <button onclick="logout()" class="text-sm text-zinc-500 hover:text-yellow-500 transition">
+                    ⬅️ Sair do painel
+                </button>
             </div>
 
-            <div class="bg-black/30 p-4 rounded-xl mb-4">
-                <p class="text-zinc-400 text-sm">Saldo BSPI da Master</p>
-                <p class="text-3xl font-bold text-yellow-500" id="saldo">0</p>
+            <!-- INFORMAÇÕES REAIS DA MASTER -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- CARD DO ENDEREÇO -->
+                <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow">
+                    <h3 class="text-lg font-bold mb-4 text-yellow-500">🔑 CONTA MASTER</h3>
+                    <p class="text-xs text-zinc-400 mb-1">Endereço:</p>
+                    <p class="text-sm break-all bg-black/30 p-3 rounded-xl mb-3 font-mono" id="enderecoMaster">-</p>
+                </div>
+
+                <!-- CARD DO SALDO -->
+                <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow">
+                    <h3 class="text-lg font-bold mb-4 text-yellow-500">💰 SALDO BSPI</h3>
+                    <p class="text-4xl font-bold text-yellow-500" id="saldoMaster">0</p>
+                    <p class="text-xs text-zinc-400 mt-2">Tokens disponíveis na master</p>
+                </div>
             </div>
 
-            <div class="bg-black/30 p-4 rounded-xl mb-4">
-                <p class="text-zinc-400 text-sm">Status</p>
-                <p class="text-green-500" id="status">Conectado</p>
+            <!-- STATUS DO SISTEMA -->
+            <div class="bg-zinc-900/30 p-6 rounded-2xl border border-white/5 gold-glow mt-6">
+                <h3 class="text-lg font-bold mb-4 text-yellow-500">⚙️ STATUS DO SISTEMA</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">API:</span>
+                        <span class="text-green-500" id="statusAPI">✅ Online</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">Blockchain:</span>
+                        <span class="text-green-500" id="statusBlockchain">✅ Conectado</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">Carteira master:</span>
+                        <span class="text-green-500" id="statusCarteira">✅ Ativa</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-400">Última atualização:</span>
+                        <span class="text-xs text-zinc-500" id="ultimaAtualizacao">-</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="text-center text-xs text-zinc-500 mt-4">
-                🔒 Apenas administradores
-            </div>
+            <!-- RODAPÉ -->
+            <p class="text-center text-xs text-zinc-600 mt-8">
+                🔒 Apenas administradores • Dados reais da blockchain
+            </p>
         </div>
     </div>
 
@@ -62,27 +116,60 @@
                 authToken = senha;
                 document.getElementById('loginDiv').style.display = 'none';
                 document.getElementById('painelDiv').style.display = 'block';
-                carregarDados();
+                document.getElementById('statusServidor').innerHTML = '🟢 Conectado';
+                carregarDadosReais();
+                // Atualiza a cada 30 segundos
+                setInterval(carregarDadosReais, 30000);
             } else {
                 document.getElementById('loginErro').innerText = '❌ Senha incorreta';
             }
         }
 
-        async function carregarDados() {
-            const res = await fetch('/api/admin/dados', {
-                headers: { 'Authorization': authToken }
-            });
-            const data = await res.json();
-            
-            if (data.erro) {
-                document.getElementById('status').innerText = '❌ ' + data.erro;
-                document.getElementById('status').className = 'text-red-500';
-                return;
-            }
+        function logout() {
+            authToken = '';
+            document.getElementById('loginDiv').style.display = 'block';
+            document.getElementById('painelDiv').style.display = 'none';
+            document.getElementById('statusServidor').innerHTML = '🔴 Desconectado';
+        }
 
-            document.getElementById('endereco').innerText = data.endereco;
-            document.getElementById('saldo').innerText = parseFloat(data.saldo).toFixed(2);
-            document.getElementById('status').innerText = '✅ Online';
+        async function carregarDadosReais() {
+            try {
+                const res = await fetch('/api/admin/dados', {
+                    headers: { 'Authorization': authToken }
+                });
+                const data = await res.json();
+                
+                if (data.erro) {
+                    document.getElementById('statusAPI').innerHTML = '❌ Erro';
+                    document.getElementById('statusAPI').className = 'text-red-500';
+                    return;
+                }
+
+                // Atualiza endereço
+                document.getElementById('enderecoMaster').innerText = data.endereco || 'Não disponível';
+                
+                // Atualiza saldo (se existir)
+                if (data.saldo !== undefined) {
+                    document.getElementById('saldoMaster').innerText = parseFloat(data.saldo).toFixed(2);
+                } else {
+                    document.getElementById('saldoMaster').innerText = '0';
+                }
+
+                // Atualiza status
+                document.getElementById('statusAPI').innerHTML = '✅ Online';
+                document.getElementById('statusBlockchain').innerHTML = '✅ Conectado';
+                document.getElementById('statusCarteira').innerHTML = data.endereco ? '✅ Ativa' : '⚠️ Não configurada';
+                
+                // Atualiza timestamp
+                const agora = new Date();
+                document.getElementById('ultimaAtualizacao').innerText = 
+                    agora.toLocaleTimeString('pt-BR');
+
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                document.getElementById('statusAPI').innerHTML = '❌ Falha';
+                document.getElementById('statusAPI').className = 'text-red-500';
+            }
         }
     </script>
 </body>
