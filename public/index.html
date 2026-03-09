@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSPI – Banco Social Pi | Golden Ticket</title>
+    <title>Banco Social Pi | Consultoria Eleva</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -11,53 +11,28 @@
     <!-- Fonte Space Grotesk -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Animate.css para animações suaves -->
+    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     
     <style>
-        /* Reset e estilos globais */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Space Grotesk', sans-serif;
-            scroll-behavior: smooth;
-        }
+        * { font-family: 'Space Grotesk', sans-serif; margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: #030303; color: #fff; }
         
-        body {
-            background-color: #030303;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        
-        /* Utilitários personalizados */
+        /* Gradiente e efeitos do BSPI */
         .gradient-text {
             background: linear-gradient(135deg, #F4DF4E 0%, #D4AF37 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
-        .gold-glow {
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            border-color: #D4AF37;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
-        }
-        
-        /* Efeito de ruído no fundo */
+        .gold-glow { box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); border-color: #D4AF37; }
         .bg-noise {
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
         }
         
-        /* Cards de contagem regressiva */
+        /* Cards de contagem regressiva (BSPI) */
         .countdown-card {
             background: linear-gradient(145deg, rgba(0,0,0,0.8), rgba(20,20,20,0.9));
             border: 1px solid rgba(212,175,55,0.3);
@@ -67,13 +42,10 @@
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
         }
-        
         .countdown-card:hover {
             border-color: #D4AF37;
             background: rgba(0,0,0,0.95);
-            transform: scale(1.02);
         }
-        
         .countdown-number {
             font-size: 2.5rem;
             font-weight: 700;
@@ -81,19 +53,14 @@
             line-height: 1;
             text-shadow: 0 0 20px rgba(212,175,55,0.5);
         }
-        
         @media (min-width: 768px) {
-            .countdown-number {
-                font-size: 3rem;
-            }
+            .countdown-number { font-size: 3rem; }
         }
-        
         .countdown-unit {
             font-size: 1rem;
             color: #D4AF37;
             opacity: 0.8;
         }
-        
         .countdown-label {
             font-size: 0.8rem;
             color: #a0a0a0;
@@ -102,7 +69,7 @@
             margin-top: 0.5rem;
         }
         
-        /* Botão flutuante do WhatsApp */
+        /* Botão flutuante WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -120,41 +87,45 @@
             transition: all 0.3s;
             z-index: 100;
         }
-        
         .whatsapp-float:hover {
             transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6);
         }
         
-        /* Scrollbar personalizada */
-        ::-webkit-scrollbar {
-            width: 10px;
+        /* Estilos da Eleva (seções claras) */
+        .eleva-section {
+            background-color: #ffffff;
+            color: #1f2937;
+            border-radius: 2rem;
+            padding: 3rem 2rem;
+            margin: 2rem auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+        .eleva-blue {
+            color: #1e3a8a;
         }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #D4AF37;
-            border-radius: 5px;
+        .eleva-bg-blue {
+            background-color: #1e3a8a;
         }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #f5c542;
+        .eleva-border-blue {
+            border-color: #3b82f6;
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #4b5563;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
         }
     </style>
 </head>
 <body class="bg-noise">
 
-    <!-- BOTÃO FLUTUANTE WHATSAPP -->
-    <a href="https://wa.me/5516991770762?text=Quero%20participar%20do%20Golden%20Ticket%20BSPI" 
-       class="whatsapp-float animate__animated animate__pulse animate__infinite" 
-       target="_blank">
+    <!-- BOTÃO FLUTUANTE WHATSAPP (número correto da Eleva) -->
+    <a href="https://wa.me/5516994557000" class="whatsapp-float animate__animated animate__pulse animate__infinite" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- TOPO COM CONTAGENS REGRESSIVAS (FIXO) -->
+    <!-- TOPO COM CONTAGENS REGRESSIVAS (BSPI) -->
     <div class="bg-black/95 border-b border-yellow-500/30 gold-glow">
         <div class="max-w-7xl mx-auto px-4 py-6">
             <p class="text-center text-yellow-500 text-sm mb-4 tracking-widest animate__animated animate__fadeInDown">
@@ -165,79 +136,41 @@
                 <div class="countdown-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s">
                     <div class="text-yellow-500 font-bold text-lg mb-2">π 14 DE MARÇO</div>
                     <div class="flex justify-center items-center gap-2 mb-2">
-                        <div>
-                            <span class="countdown-number" id="dias1">00</span>
-                            <span class="countdown-unit">d</span>
-                        </div>
+                        <span class="countdown-number" id="dias1">00</span><span class="countdown-unit">d</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="horas1">00</span>
-                            <span class="countdown-unit">h</span>
-                        </div>
+                        <span class="countdown-number" id="horas1">00</span><span class="countdown-unit">h</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="minutos1">00</span>
-                            <span class="countdown-unit">m</span>
-                        </div>
+                        <span class="countdown-number" id="minutos1">00</span><span class="countdown-unit">m</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="segundos1">00</span>
-                            <span class="countdown-unit">s</span>
-                        </div>
+                        <span class="countdown-number" id="segundos1">00</span><span class="countdown-unit">s</span>
                     </div>
                     <div class="countdown-label">Dia Internacional do Pi</div>
                 </div>
-                
                 <!-- 22 de Julho -->
                 <div class="countdown-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
                     <div class="text-yellow-500 font-bold text-lg mb-2">22/7 ≈ π • 22 DE JULHO</div>
                     <div class="flex justify-center items-center gap-2 mb-2">
-                        <div>
-                            <span class="countdown-number" id="dias2">00</span>
-                            <span class="countdown-unit">d</span>
-                        </div>
+                        <span class="countdown-number" id="dias2">00</span><span class="countdown-unit">d</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="horas2">00</span>
-                            <span class="countdown-unit">h</span>
-                        </div>
+                        <span class="countdown-number" id="horas2">00</span><span class="countdown-unit">h</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="minutos2">00</span>
-                            <span class="countdown-unit">m</span>
-                        </div>
+                        <span class="countdown-number" id="minutos2">00</span><span class="countdown-unit">m</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="segundos2">00</span>
-                            <span class="countdown-unit">s</span>
-                        </div>
+                        <span class="countdown-number" id="segundos2">00</span><span class="countdown-unit">s</span>
                     </div>
                     <div class="countdown-label">Dia da Aproximação do Pi</div>
                 </div>
-                
                 <!-- 9 de Novembro -->
                 <div class="countdown-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s">
                     <div class="text-yellow-500 font-bold text-lg mb-2">314° DIA • 9 DE NOVEMBRO</div>
                     <div class="flex justify-center items-center gap-2 mb-2">
-                        <div>
-                            <span class="countdown-number" id="dias3">00</span>
-                            <span class="countdown-unit">d</span>
-                        </div>
+                        <span class="countdown-number" id="dias3">00</span><span class="countdown-unit">d</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="horas3">00</span>
-                            <span class="countdown-unit">h</span>
-                        </div>
+                        <span class="countdown-number" id="horas3">00</span><span class="countdown-unit">h</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="minutos3">00</span>
-                            <span class="countdown-unit">m</span>
-                        </div>
+                        <span class="countdown-number" id="minutos3">00</span><span class="countdown-unit">m</span>
                         <span class="countdown-number">:</span>
-                        <div>
-                            <span class="countdown-number" id="segundos3">00</span>
-                            <span class="countdown-unit">s</span>
-                        </div>
+                        <span class="countdown-number" id="segundos3">00</span><span class="countdown-unit">s</span>
                     </div>
                     <div class="countdown-label">314º dia do ano</div>
                 </div>
@@ -251,826 +184,178 @@
             <div class="text-3xl font-bold">
                 <span class="gradient-text">π BSPI</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#home" class="text-zinc-300 hover:text-yellow-500 transition-colors">Home</a>
-                <a href="#sobre" class="text-zinc-300 hover:text-yellow-500 transition-colors">Sobre</a>
-                <a href="#datas" class="text-zinc-300 hover:text-yellow-500 transition-colors">Datas do Pi</a>
-                <a href="#golden" class="text-zinc-300 hover:text-yellow-500 transition-colors">Golden Ticket</a>
-                <a href="#indicar" class="text-zinc-300 hover:text-yellow-500 transition-colors">Indicar</a>
-                <a href="#faq" class="text-zinc-300 hover:text-yellow-500 transition-colors">FAQ</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-zinc-300">
+                <a href="#home" class="hover:text-yellow-500 transition">Home</a>
+                <a href="#sobre-bspi" class="hover:text-yellow-500 transition">O BSPI</a>
+                <a href="#eleva" class="hover:text-yellow-500 transition">Consultoria Eleva</a>
+                <a href="#golden" class="hover:text-yellow-500 transition">Golden Ticket</a>
+                <a href="#indicar" class="hover:text-yellow-500 transition">Indicar</a>
+                <a href="#contato" class="hover:text-yellow-500 transition">Contato</a>
             </div>
-            <a href="#indicar" class="bg-yellow-500 text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-400 transition-all hover:scale-105 shadow-lg">
+            <a href="#indicar" class="bg-yellow-500 text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-400 transition">
                 🎟️ Participar
             </a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (BSPI + ELEVA) -->
     <section id="home" class="pt-20 pb-16 px-6 max-w-6xl mx-auto text-center">
-        <div class="inline-block px-4 py-1 border border-yellow-500/30 rounded-full text-yellow-500 text-xs mb-6 tracking-widest bg-yellow-500/5 animate__animated animate__fadeInDown">
-            🚀 CRIADO POR UM JOVEM DE 13 ANOS
+        <div class="inline-block px-4 py-1 border border-yellow-500/30 rounded-full text-yellow-500 text-xs mb-6 tracking-widest bg-yellow-500/5">
+            🚀 CRIADO POR GABRIEL AKIRA, 13 ANOS
         </div>
-        <h1 class="text-5xl md:text-8xl font-bold mb-6 tracking-tighter animate__animated animate__fadeInUp">
-            GOLDEN <span class="gradient-text">TICKET</span>
+        <h1 class="text-5xl md:text-8xl font-bold mb-4 tracking-tighter">
+            BANCO <span class="gradient-text">SOCIAL PI</span>
         </h1>
-        <p class="text-zinc-400 text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed animate__animated animate__fadeInUp animate__delay-1s">
-            O maior movimento financeiro social do Brasil.  
-            Indique líderes, acumule pontos e concorra a <span class="text-yellow-500 font-bold">BSPI</span>.
+        <p class="text-zinc-400 text-lg max-w-3xl mx-auto mb-6">
+            O Banco Pi organiza o que já existe: a vontade de contribuir — de forma simples e possível para todos.
         </p>
-        <div class="flex flex-wrap justify-center gap-4 animate__animated animate__fadeInUp animate__delay-1s">
-            <a href="#indicar" class="bg-yellow-500 text-black px-10 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg">
-                🎟️ FAZER INDICAÇÃO AGORA
+        <div class="quote text-white/80 max-w-2xl mx-auto mb-8 border-l-4 border-yellow-500 pl-4 text-left">
+            “Quando elevamos nossos olhos, vemos possibilidades. Quando baixamos, apenas obstáculos.” – William Shakespeare
+        </div>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#sobre-bspi" class="bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition shadow-lg">
+                CONHECER O BSPI
             </a>
-            <a href="#sobre" class="border border-white/20 px-10 py-4 rounded-xl font-bold hover:bg-white/5 transition">
-                CONHECER PROJETO
+            <a href="#eleva" class="border border-yellow-500/50 text-yellow-500 px-8 py-3 rounded-xl font-bold hover:bg-yellow-500/10 transition">
+                CONHECER A ELEVA
             </a>
         </div>
     </section>
 
-    <!-- ESTATÍSTICAS EM TEMPO REAL -->
+    <!-- ESTATÍSTICAS DO BSPI (EM TEMPO REAL) -->
     <section class="max-w-7xl mx-auto px-6 py-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
                 <div class="text-3xl md:text-4xl font-bold text-yellow-500">31.4M</div>
                 <div class="text-xs text-zinc-500 uppercase mt-2">Supply Total</div>
-                <div class="text-[10px] text-zinc-700 mt-1">31.416.000 BSPI</div>
             </div>
             <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
                 <div class="text-3xl md:text-4xl font-bold text-yellow-500" id="totalQueimado">0</div>
                 <div class="text-xs text-zinc-500 uppercase mt-2">Queimados</div>
-                <div class="text-[10px] text-zinc-700 mt-1" id="percentualQueimado">0% do supply</div>
             </div>
             <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
                 <div class="text-3xl md:text-4xl font-bold text-yellow-500">$0.56</div>
                 <div class="text-xs text-zinc-500 uppercase mt-2">Preço</div>
-                <div class="text-[10px] text-zinc-700 mt-1">≈ R$ 3,14</div>
             </div>
             <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
                 <div class="text-3xl md:text-4xl font-bold text-yellow-500" id="holdersCount">157</div>
                 <div class="text-xs text-zinc-500 uppercase mt-2">Holders</div>
-                <div class="text-[10px] text-zinc-700 mt-1">carteiras com BSPI</div>
             </div>
         </div>
     </section>
 
-    <!-- SOBRE O PROJETO -->
-    <section id="sobre" class="py-20 px-6 max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">SOBRE O <span class="gradient-text">BSPI</span></h2>
-            <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full"></div>
-        </div>
-        <div class="bg-gradient-to-br from-zinc-900 to-black p-8 md:p-12 rounded-3xl border border-white/5 gold-glow">
-            <p class="text-zinc-300 text-lg md:text-xl leading-relaxed mb-6">
-                O <strong class="text-yellow-500">Banco Social Pi (BSPI)</strong> é uma criptomoeda real na blockchain Polygon, criada com um propósito: apoiar <strong class="text-yellow-500">projetos educacionais e entidades sociais</strong> que transformam vidas através da educação baseada em valores humanos.
+    <!-- SEÇÃO: O BANCO SOCIAL PI (TUDO SOBRE O BSPI) -->
+    <section id="sobre-bspi" class="py-16 px-6 max-w-5xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6">O <span class="gradient-text">BANCO SOCIAL PI</span></h2>
+        <div class="bg-zinc-900/50 p-8 rounded-3xl border border-white/5 gold-glow">
+            <p class="text-zinc-300 text-lg leading-relaxed mb-4">
+                O <strong class="text-yellow-500">Banco Social Pi (BSPI)</strong> é uma criptomoeda real na blockchain Polygon, criada por Gabriel Akira, um jovem de 13 anos, com um propósito: apoiar projetos educacionais e sociais.
             </p>
-            <p class="text-zinc-400 leading-relaxed mb-6">
-                Acreditamos que a educação é a chave para um mundo melhor. Por isso, parte dos recursos do BSPI é destinada a instituições como a <strong class="text-yellow-500">Escola Sathya Sai</strong> (Ribeirão Preto/SP) e outras organizações que compartilham dessa missão. Estamos em processo de parceria com diversas entidades educacionais e sociais de todo o Brasil.
+            <p class="text-zinc-400 leading-relaxed mb-4">
+                Os recursos financiam <strong class="text-yellow-500">projetos sociais estruturados</strong>, como a <strong>Educação Ambiental do Instituto Nova Era</strong> e o lançamento nos <strong>Territórios Supernova</strong>. Tudo é acompanhado de forma auditada e transparente.
             </p>
             <p class="text-zinc-400 leading-relaxed">
-                Cada transação, cada token queimado, contribui para bolsas de estudo, melhoria da infraestrutura escolar, formação de professores e ações que espalham o bem. Junte-se a nós nessa corrente!
+                É um sistema simples, contínuo e coletivo: pequenas partes, quando somadas, geram projetos reais e transformação coletiva.
             </p>
-            <div class="mt-8 flex flex-wrap gap-4 justify-center">
-                <div class="bg-yellow-500/10 px-4 py-2 rounded-full border border-yellow-500/30">
-                    <span class="text-yellow-500 text-sm">🏫 Escola Sathya Sai</span>
-                </div>
-                <div class="bg-yellow-500/10 px-4 py-2 rounded-full border border-yellow-500/30">
-                    <span class="text-yellow-500 text-sm">📚 Projetos Educacionais</span>
-                </div>
-                <div class="bg-yellow-500/10 px-4 py-2 rounded-full border border-yellow-500/30">
-                    <span class="text-yellow-500 text-sm">🤝 Entidades Sociais</span>
-                </div>
+            <div class="mt-6 flex flex-wrap gap-3">
+                <span class="bg-yellow-500/10 px-3 py-1 rounded-full text-yellow-500 text-sm border border-yellow-500/30">📍 Contrato: 0x9cbA7EE4...B3f10</span>
+                <span class="bg-yellow-500/10 px-3 py-1 rounded-full text-yellow-500 text-sm border border-yellow-500/30">🔗 Polygon</span>
             </div>
         </div>
     </section>
 
-    <!-- DATAS DO PI -->
-    <section id="datas" class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">📅 DIAS DO <span class="gradient-text">PI</span></h2>
-            <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-zinc-900/30 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-7xl mb-4">π</div>
-                <h3 class="text-3xl font-bold text-yellow-500 mb-3">14 de Março</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    <strong class="text-yellow-500">Dia Internacional do Pi</strong> (3/14). A data mais famosa, celebrada mundialmente com eventos, desafios matemáticos e muita criatividade. Neste dia, teremos a primeira grande live de premiação do Golden Ticket.
-                </p>
-                <div class="mt-4 text-xs text-zinc-500">
-                    Próxima edição: <span class="text-yellow-500" id="proximaData1">14/03/2026</span>
-                </div>
-            </div>
-            <div class="bg-zinc-900/30 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-7xl mb-4">22/7</div>
-                <h3 class="text-3xl font-bold text-yellow-500 mb-3">22 de Julho</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    <strong class="text-yellow-500">Dia da Aproximação do Pi</strong> (22/7 ≈ 3,14). Muito usado em países que adotam o formato dd/mm. Uma data para celebrar a matemática de forma lúdica e criativa.
-                </p>
-                <div class="mt-4 text-xs text-zinc-500">
-                    Próxima edição: <span class="text-yellow-500" id="proximaData2">22/07/2026</span>
-                </div>
-            </div>
-            <div class="bg-zinc-900/30 p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-7xl mb-4">314°</div>
-                <h3 class="text-3xl font-bold text-yellow-500 mb-3">9/10 de Novembro</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    <strong class="text-yellow-500">314º dia do ano</strong> (9 de novembro, ou 10 em anos bissextos). Uma forma diferente e criativa de homenagear o π, celebrando o número que inspirou todo o projeto.
-                </p>
-                <div class="mt-4 text-xs text-zinc-500">
-                    Próxima edição: <span class="text-yellow-500" id="proximaData3">09/11/2026</span>
-                </div>
-            </div>
-        </div>
-        <p class="text-center text-zinc-500 text-sm mt-8">
-            Vamos celebrar o π em várias datas ao longo do ano! Cada data terá ações especiais, premiações e novidades do Golden Ticket.
-        </p>
-    </section>
-
-    <!-- GOLDEN TICKET - OS 3 PERFIS -->
-    <section id="golden" class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">OS 3 <span class="gradient-text">PERFIS</span></h2>
-            <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-gradient-to-br from-zinc-900 to-black p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-6xl mb-4">👑</div>
-                <h3 class="text-2xl font-bold text-yellow-500 mb-3">PADRINHO</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed mb-4">
-                    Empresário do lucro real que vai doar <strong class="text-yellow-500">1 Pi (R$ 3,14)</strong> e mobilizar sua rede: colaboradores, fornecedores, parceiros e clientes.
-                </p>
-                <div class="text-xs text-zinc-500 border-t border-white/5 pt-4 mt-4">
-                    💼 Perfil de liderança empresarial
-                </div>
-            </div>
-            <div class="bg-gradient-to-br from-zinc-900 to-black p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-6xl mb-4">👑</div>
-                <h3 class="text-2xl font-bold text-yellow-500 mb-3">MADRINHA</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed mb-4">
-                    Liderança feminina ou voz inspiradora que vai doar <strong class="text-yellow-500">1 Pi</strong> e ativar sua comunidade, incentivando a participação de mulheres e grupos locais.
-                </p>
-                <div class="text-xs text-zinc-500 border-t border-white/5 pt-4 mt-4">
-                    👩‍🦰 Liderança feminina e comunitária
-                </div>
-            </div>
-            <div class="bg-gradient-to-br from-zinc-900 to-black p-8 rounded-3xl border border-white/5 gold-glow text-center card-hover">
-                <div class="text-6xl mb-4">🎤</div>
-                <h3 class="text-2xl font-bold text-yellow-500 mb-3">INFLUENCER</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed mb-4">
-                    Pessoa com alcance nas redes sociais que fará um <strong class="text-yellow-500">vídeo de 1 minuto</strong> sobre o projeto e realizará o primeiro Pix Pi ao vivo.
-                </p>
-                <div class="text-xs text-zinc-500 border-t border-white/5 pt-4 mt-4">
-                    📱 Influência digital e engajamento
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMO PARTICIPAR -->
-    <section class="py-16 px-6 max-w-5xl mx-auto">
-        <div class="bg-gradient-to-r from-yellow-500/10 to-transparent p-8 md:p-12 rounded-3xl border border-yellow-500/20 gold-glow">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">📋 <span class="gradient-text">COMO PARTICIPAR</span></h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-500 text-2xl font-bold mx-auto mb-4 border-2 border-yellow-500/50">1</div>
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Indique</h3>
-                    <p class="text-zinc-400 text-sm">Preencha o formulário com os dados da pessoa que você quer indicar para um dos três perfis.</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-500 text-2xl font-bold mx-auto mb-4 border-2 border-yellow-500/50">2</div>
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Acumule Pontos</h3>
-                    <p class="text-zinc-400 text-sm">Cada indicação válida vale <strong class="text-yellow-500">100 pontos</strong>. Indique quantas pessoas quiser!</p>
-                </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center text-yellow-500 text-2xl font-bold mx-auto mb-4 border-2 border-yellow-500/50">3</div>
-                    <h3 class="text-xl font-bold text-yellow-500 mb-2">Ganhe BSPI</h3>
-                    <p class="text-zinc-400 text-sm">Os 3 participantes com mais pontos no final do ciclo ganham <strong class="text-yellow-500">1.000, 500 e 250 BSPI</strong>.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FORMULÁRIO DE INDICAÇÃO -->
-    <section id="indicar" class="py-16 px-6 max-w-3xl mx-auto">
-        <div class="bg-zinc-900/70 p-8 md:p-12 rounded-3xl border border-yellow-500/30 gold-glow text-center">
-            <div class="text-6xl mb-4">🎟️</div>
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">GOLDEN TICKET</h2>
-            <p class="text-zinc-400 mb-8 max-w-xl mx-auto">
-                Clique no botão abaixo para fazer sua indicação. Cada indicação vale <strong class="text-yellow-500">100 pontos</strong>.
+    <!-- SEÇÃO: CONSULTORIA ELEVA (COMPLETA) -->
+    <section id="eleva" class="py-16 px-6 max-w-6xl mx-auto bg-white rounded-3xl shadow-xl text-gray-800">
+        <div class="text-center mb-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">CONSULTORIA <span class="text-blue-600">ELEVA</span></h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
             </p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" 
-               target="_blank" 
-               class="inline-block bg-yellow-500 text-black px-10 py-4 rounded-xl font-bold hover:bg-yellow-400 transition transform hover:scale-105 shadow-lg text-lg">
+        </div>
+
+        <!-- O que fazemos (3 cards) -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 card-hover">
+                <h3 class="text-xl font-bold text-blue-800 mb-3">Mapeamento Organizacional</h3>
+                <p class="text-gray-600 text-sm">Entendemos a estrutura, processos-chave e posicionamento da organização. Envolve entrevistas, análise de documentos e observação direta.</p>
+            </div>
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 card-hover">
+                <h3 class="text-xl font-bold text-blue-800 mb-3">Análise de Stakeholders</h3>
+                <p class="text-gray-600 text-sm">Compreendemos doadores, voluntários, beneficiários e parceiros, moldando ações mais direcionadas.</p>
+            </div>
+            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 card-hover">
+                <h3 class="text-xl font-bold text-blue-800 mb-3">Avaliação de Impacto</h3>
+                <p class="text-gray-600 text-sm">Analisamos resultados, medimos impacto e eficácia, identificamos lacunas e áreas de melhoria.</p>
+            </div>
+        </div>
+
+        <!-- Frase e depoimento -->
+        <div class="quote max-w-3xl mx-auto mb-8 text-gray-700">
+            “A abordagem da ELEVA, ancorada nesse rigoroso diagnóstico inicial, garante que as soluções propostas estejam alinhadas com a realidade e as necessidades específicas de cada organização, conduzindo‑a à excelência em sua missão.”
+        </div>
+
+        <div class="bg-blue-600 text-white p-6 rounded-xl text-center max-w-2xl mx-auto">
+            <p class="text-lg italic mb-2">“Vocês são muito eficientes... não troco por ninguém. 🥰🥰🥰”</p>
+            <p class="font-bold">Isabel Roldão</p>
+            <p class="text-sm opacity-80">CEPIM – Odette Dip Badran / Cliente desde 2016</p>
+        </div>
+    </section>
+
+    <!-- PROJETOS SOCIAIS APOIADOS (AMBIENTE ELEVA) -->
+    <section class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 text-white">PROJETOS <span class="gradient-text">APOIADOS</span></h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow flex gap-4 items-center">
+                <div class="text-5xl">🌱</div>
+                <div>
+                    <h3 class="text-xl font-bold text-yellow-500">Educação Ambiental</h3>
+                    <p class="text-zinc-400">Instituto Nova Era</p>
+                </div>
+            </div>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow flex gap-4 items-center">
+                <div class="text-5xl">🚀</div>
+                <div>
+                    <h3 class="text-xl font-bold text-yellow-500">Territórios Supernova</h3>
+                    <p class="text-zinc-400">Lançamento do projeto</p>
+                </div>
+            </div>
+        </div>
+        <p class="text-center text-zinc-500 text-sm mt-6">Tudo é acompanhado de forma auditada e transparente.</p>
+    </section>
+
+    <!-- GOLDEN TICKET (BSPI) -->
+    <section id="golden" class="py-16 px-6 max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 text-white">GOLDEN <span class="gradient-text">TICKET</span></h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
+                <div class="text-5xl mb-3">👑</div>
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">PADRINHO</h3>
+                <p class="text-zinc-400 text-sm">Empresário do lucro real que vai doar 1 Pi (R$ 3,14) e mobilizar sua rede.</p>
+            </div>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
+                <div class="text-5xl mb-3">👑</div>
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">MADRINHA</h3>
+                <p class="text-zinc-400 text-sm">Liderança feminina ou voz inspiradora que vai doar 1 Pi e ativar sua comunidade.</p>
+            </div>
+            <div class="bg-zinc-900/50 p-6 rounded-2xl border border-white/5 gold-glow text-center card-hover">
+                <div class="text-5xl mb-3">🎤</div>
+                <h3 class="text-xl font-bold text-yellow-500 mb-2">INFLUENCER</h3>
+                <p class="text-zinc-400 text-sm">Pessoa com alcance nas redes que fará um vídeo de 1 minuto e o primeiro Pix Pi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMULÁRIO DE INDICAÇÃO (BSPI) -->
+    <section id="indicar" class="py-16 px-6 max-w-2xl mx-auto">
+        <div class="bg-zinc-900/50 p-8 rounded-2xl border border-yellow-500/30 gold-glow text-center">
+            <h2 class="text-2xl font-bold mb-3 text-white">🎟️ GOLDEN TICKET</h2>
+            <p class="text-zinc-400 mb-5">Clique para fazer sua indicação. Cada indicação vale 100 pontos.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" class="inline-block bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold hover:bg-yellow-400 transition shadow-lg">
                 FAZER INDICAÇÃO AGORA
             </a>
-            <p class="text-xs text-zinc-600 mt-4">⏳ O formulário leva menos de 2 minutos</p>
-            <div class="mt-6 text-xs text-zinc-500">
-                Já indicou? Acesse o grupo do WhatsApp para acompanhar sua pontuação.
-            </div>
         </div>
     </section>
 
-    <!-- FAQ COMPLETO -->
-    <section id="faq" class="py-20 px-6 max-w-4xl mx-auto">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4">PERGUNTAS <span class="gradient-text">FREQUENTES</span></h2>
-            <div class="w-24 h-1 bg-yellow-500 mx-auto rounded-full"></div>
-        </div>
-        <div class="space-y-4">
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Preciso ter carteira de criptomoeda para participar?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Não! Você só precisa indicar líderes através do formulário. Se você for um dos vencedores e ganhar BSPI, a equipe do projeto vai te ajudar a criar uma carteira (MetaMask, Trust Wallet etc.) e te ensinar o passo a passo para receber seus tokens com segurança.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Posso indicar mais de uma pessoa?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Claro! Cada indicação válida vale <strong class="text-yellow-500">100 pontos</strong>. Você pode indicar quantas pessoas quiser, para qualquer um dos três perfis (Padrinho, Madrinha ou Influencer). Não há limite de indicações – quanto mais, melhor!
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Como sei quantos pontos tenho?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Vamos divulgar uma planilha atualizada diariamente no grupo oficial do WhatsApp. Lá você poderá conferir seu nome, suas indicações e a pontuação atualizada em tempo real. Também enviaremos atualizações por e-mail e stories no Instagram.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ O que é BSPI e onde posso ver o contrato?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    BSPI é a sigla do Banco Social Pi, um token ERC-20 na rede Polygon. Você pode verificar o contrato no Polygonscan através <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="text-yellow-500 underline hover:text-yellow-400">deste link</a>. O contrato é público, auditável e qualquer pessoa pode verificar todas as transações.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Quais instituições serão apoiadas?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Além da <strong class="text-yellow-500">Escola Sathya Sai</strong> (Ribeirão Preto/SP), que é nossa parceira inicial, estamos em processo de parceria com diversas outras entidades educacionais e sociais que atuam com valores humanos. Em breve divulgaremos a lista completa no site e nas redes sociais. Acreditamos em apoiar várias frentes de transformação social.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Quando será a premiação?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    A primeira grande premiação será no <strong class="text-yellow-500">Dia do Pi, 14 de março, às 15h14</strong>, com transmissão ao vivo no YouTube. Mas como temos várias datas comemorativas (22/07 e 09/11), outras premiações e ações especiais podem ocorrer ao longo do ano. Fique ligado em nossas redes!
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Quem são os jurados da live?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Teremos um time especial: representantes da <strong class="text-yellow-500">All1Ventures, ElevaD, Takashi</strong>, além de uma criança, um idoso e um convidado sorteado entre os participantes. A ideia é ter um julgamento diverso, justo e representativo da sociedade.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Como faço para acompanhar o projeto?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Entre no grupo oficial do WhatsApp (link na bio do Instagram) e siga nosso perfil <strong class="text-yellow-500">@bancosocialpi</strong> no Instagram. Lá postamos todas as novidades, atualizações da planilha de pontos, lembretes importantes e conteúdos exclusivos sobre o projeto.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ O que acontece se a data do Pi já passou?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Nossas contagens regressivas são inteligentes! Se a data já passou no ano atual, automaticamente ajustamos para o próximo ano. Assim você sempre verá o tempo restante para a próxima celebração do Pi, sem precisar se preocupar.
-                </p>
-            </div>
-            <div class="bg-zinc-900/30 p-6 rounded-xl border border-white/5 card-hover">
-                <h3 class="font-bold text-yellow-500 mb-3 text-lg">❓ Como funciona a pontuação?</h3>
-                <p class="text-zinc-400 text-sm leading-relaxed">
-                    Cada indicação válida (com dados corretos e dentro dos perfis) vale <strong class="text-yellow-500">100 pontos</strong>. Ao final do ciclo de cada data do Pi, os três participantes com maior pontuação acumulada ganham prêmios em BSPI. A planilha de pontuação é pública e atualizada diariamente.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEWSLETTER / CONTATO -->
-    <section class="py-16 px-6 max-w-3xl mx-auto">
-        <div class="bg-gradient-to-br from-zinc-900 to-black p-8 md:p-12 rounded-3xl border border-white/5 gold-glow text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">📬 FIQUE POR <span class="gradient-text">DENTRO</span></h2>
-            <p class="text-zinc-400 mb-6">Receba novidades sobre o Golden Ticket e as datas do Pi diretamente no seu e-mail.</p>
-            <form class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
-                <input type="email" placeholder="Seu melhor e-mail" class="flex-1 bg-black/50 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-zinc-600 focus:outline-none focus:border-yellow-500">
-                <button type="submit" class="bg-yellow-500 text-black px-8 py-4 rounded-xl font-bold hover:bg-yellow-400 transition whitespace-nowrap">
-                    INSCREVER-SE
-                </button>
-            </form>
-            <p class="text-xs text-zinc-600 mt-4">Prometemos não enviar spam. Apenas conteúdo relevante.</p>
-        </div>
-    </section>
-
-    <!-- FOOTER COMPLETO -->
-    <footer class="py-16 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <div class="text-3xl font-bold mb-4"><span class="gradient-text">π BSPI</span></div>
-                    <p class="text-zinc-500 text-sm leading-relaxed">
-                        O Banco Social Pi é uma iniciativa que une tecnologia blockchain, educação e valores humanos para transformar vidas.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="text-yellow-500 font-bold mb-4">Navegação</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#home" class="text-zinc-400 hover:text-yellow-500 transition">Home</a></li>
-                        <li><a href="#sobre" class="text-zinc-400 hover:text-yellow-500 transition">Sobre</a></li>
-                        <li><a href="#datas" class="text-zinc-400 hover:text-yellow-500 transition">Datas do Pi</a></li>
-                        <li><a href="#golden" class="text-zinc-400 hover:text-yellow-500 transition">Golden Ticket</a></li>
-                        <li><a href="#indicar" class="text-zinc-400 hover:text-yellow-500 transition">Indicar</a></li>
-                        <li><a href="#faq" class="text-zinc-400 hover:text-yellow-500 transition">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-yellow-500 font-bold mb-4">Redes Sociais</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="text-zinc-400 hover:text-yellow-500 transition">Instagram</a></li>
-                        <li><a href="#" class="text-zinc-400 hover:text-yellow-500 transition">YouTube</a></li>
-                        <li><a href="#" class="text-zinc-400 hover:text-yellow-500 transition">WhatsApp</a></li>
-                        <li><a href="#" class="text-zinc-400 hover:text-yellow-500 transition">Telegram</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-yellow-500 font-bold mb-4">Contato</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li class="text-zinc-400">✉️ contato@bancosocialpi.com</li>
-                        <li class="text-zinc-400">📱 (16) 99177-0762</li>
-                        <li class="text-zinc-400">📍 Ribeirão Preto/SP</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-white/5 pt-8 text-center text-zinc-600 text-xs">
-                <p class="mb-2">BSPI PROTOCOL – ALL1VENTURES & ELEVAD</p>
-                <p class="mb-2">Criado por <span class="text-yellow-500">Gabriel Akira Kussuda de Souza Moretti</span>, 13 anos</p>
-                <p class="mb-2">© 2026 Banco Social Pi. Todos os direitos reservados.</p>
-                <p class="text-[10px] mt-4">📅 Próximas datas: 14/03, 22/07, 09/11</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Font Awesome para ícones -->
-    <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
-    
-    <!-- JAVASCRIPT PRINCIPAL (MAIS DE 500 LINHAS DE FUNÇÕES) -->
-    <script>
-        // ==============================================
-        // BANCO SOCIAL PI - SISTEMA COMPLETO v2.0
-        // ==============================================
-        // CONSTANTES E CONFIGURAÇÕES
-        // ==============================================
-        
-        const CONFIG = {
-            contractAddress: "0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10",
-            totalSupply: 31416000,
-            initialPrice: 0.56,
-            decimals: 18,
-            apiEndpoint: '/api/saldo',
-            refreshInterval: 30000, // 30 segundos
-            countdownInterval: 1000, // 1 segundo
-            piDates: [
-                { name: '14 de Março', day: 14, month: 2, hour: 15, minute: 14, second: 0 }, // Março = mês 2
-                { name: '22 de Julho', day: 22, month: 6, hour: 15, minute: 14, second: 0 }, // Julho = mês 6
-                { name: '9 de Novembro', day: 9, month: 10, hour: 15, minute: 14, second: 0 } // Novembro = mês 10
-            ]
-        };
-
-        // ==============================================
-        // ESTADO GLOBAL DA APLICAÇÃO
-        // ==============================================
-        
-        const AppState = {
-            masterBalance: 0,
-            totalBurned: 0,
-            burnedPercentage: 0,
-            holdersCount: 157,
-            lastUpdate: null,
-            countdowns: [
-                { dias: 0, horas: 0, minutos: 0, segundos: 0 },
-                { dias: 0, horas: 0, minutos: 0, segundos: 0 },
-                { dias: 0, horas: 0, minutos: 0, segundos: 0 }
-            ],
-            nextDates: []
-        };
-
-        // ==============================================
-        // FUNÇÕES DE UTILIDADE GERAL
-        // ==============================================
-        
-        const Utils = {
-            // Formata números com 2 dígitos (ex: 5 -> 05)
-            formatTwoDigits: (num) => String(num).padStart(2, '0'),
-            
-            // Formata data para exibição
-            formatDate: (date) => {
-                return date.toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                });
-            },
-            
-            // Calcula porcentagem com segurança
-            calculatePercentage: (value, total) => {
-                if (total === 0) return 0;
-                return (value / total * 100).toFixed(2);
-            },
-            
-            // Valida se um valor é número
-            isValidNumber: (value) => {
-                return !isNaN(value) && isFinite(value);
-            },
-            
-            // Log seguro para debug
-            log: (message, data = null) => {
-                if (data) {
-                    console.log(`[BSPI] ${message}:`, data);
-                } else {
-                    console.log(`[BSPI] ${message}`);
-                }
-            },
-            
-            // Mostra erro de forma amigável
-            showError: (message) => {
-                console.error(`[BSPI ERRO] ${message}`);
-                // Aqui poderia ter um toast ou notificação
-            }
-        };
-
-        // ==============================================
-        // GERENCIADOR DE CONTAGENS REGRESSIVAS
-        // ==============================================
-        
-        const CountdownManager = {
-            // Calcula a próxima ocorrência de uma data
-            getNextDate: function(dateConfig) {
-                const now = new Date();
-                let targetDate = new Date(
-                    now.getFullYear(),
-                    dateConfig.month,
-                    dateConfig.day,
-                    dateConfig.hour,
-                    dateConfig.minute,
-                    dateConfig.second
-                );
-                
-                // Se já passou, pega do próximo ano
-                if (targetDate < now) {
-                    targetDate = new Date(
-                        now.getFullYear() + 1,
-                        dateConfig.month,
-                        dateConfig.day,
-                        dateConfig.hour,
-                        dateConfig.minute,
-                        dateConfig.second
-                    );
-                }
-                
-                return targetDate;
-            },
-            
-            // Calcula diferença entre duas datas
-            getTimeDifference: function(targetDate) {
-                const now = new Date();
-                const diffMs = targetDate - now;
-                
-                if (diffMs <= 0) {
-                    return {
-                        dias: 0,
-                        horas: 0,
-                        minutos: 0,
-                        segundos: 0,
-                        totalMs: 0,
-                        expired: true
-                    };
-                }
-                
-                const segundos = Math.floor(diffMs / 1000);
-                const minutos = Math.floor(segundos / 60);
-                const horas = Math.floor(minutos / 60);
-                const dias = Math.floor(horas / 24);
-                
-                return {
-                    dias: dias,
-                    horas: horas % 24,
-                    minutos: minutos % 60,
-                    segundos: segundos % 60,
-                    totalMs: diffMs,
-                    expired: false
-                };
-            },
-            
-            // Atualiza todos os contadores
-            updateAllCountdowns: function() {
-                try {
-                    const now = new Date();
-                    
-                    // Para cada data configurada
-                    CONFIG.piDates.forEach((dateConfig, index) => {
-                        const targetDate = this.getNextDate(dateConfig);
-                        const diff = this.getTimeDifference(targetDate);
-                        
-                        // Atualiza o estado global
-                        AppState.countdowns[index] = {
-                            dias: diff.dias,
-                            horas: diff.horas,
-                            minutos: diff.minutos,
-                            segundos: diff.segundos
-                        };
-                        
-                        // Atualiza os elementos HTML
-                        const prefix = index + 1;
-                        const elements = ['dias', 'horas', 'minutos', 'segundos'];
-                        
-                        elements.forEach((el, i) => {
-                            const elementId = `${el}${prefix}`;
-                            const element = document.getElementById(elementId);
-                            if (element) {
-                                const values = [diff.dias, diff.horas, diff.minutos, diff.segundos];
-                                element.textContent = Utils.formatTwoDigits(values[i]);
-                            }
-                        });
-                        
-                        // Atualiza as datas de próxima edição
-                        const dataElement = document.getElementById(`proximaData${prefix}`);
-                        if (dataElement) {
-                            dataElement.textContent = Utils.formatDate(targetDate);
-                        }
-                    });
-                    
-                    // Atualiza timestamp
-                    AppState.lastUpdate = now;
-                    
-                } catch (error) {
-                    Utils.showError('Erro ao atualizar contagens: ' + error.message);
-                }
-            },
-            
-            // Inicia o loop de contagem
-            startCountdownLoop: function() {
-                // Atualiza imediatamente
-                this.updateAllCountdowns();
-                
-                // Depois a cada segundo
-                setInterval(() => {
-                    this.updateAllCountdowns();
-                }, CONFIG.countdownInterval);
-            }
-        };
-
-        // ==============================================
-        // GERENCIADOR DE DADOS DA API
-        // ==============================================
-        
-        const ApiManager = {
-            // Busca saldo da conta master
-            fetchMasterBalance: async function() {
-                try {
-                    const response = await fetch(CONFIG.apiEndpoint);
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    
-                    if (data.erro) {
-                        throw new Error(data.erro);
-                    }
-                    
-                    if (data.saldo) {
-                        const saldo = parseFloat(data.saldo);
-                        if (Utils.isValidNumber(saldo)) {
-                            AppState.masterBalance = saldo;
-                            this.updateBalanceDisplay();
-                        }
-                    }
-                    
-                    return data;
-                    
-                } catch (error) {
-                    Utils.log('API não disponível - modo offline');
-                    // Usa dados simulados para demonstração
-                    this.useMockData();
-                    return null;
-                }
-            },
-            
-            // Usa dados simulados quando API está offline
-            useMockData: function() {
-                // Simula uma queima de tokens aleatória para demonstração
-                const mockBurned = Math.floor(Math.random() * 500000) + 100000;
-                AppState.totalBurned = mockBurned;
-                this.updateStatsDisplay();
-            },
-            
-            // Atualiza display do saldo
-            updateBalanceDisplay: function() {
-                const totalSupply = CONFIG.totalSupply;
-                const burned = totalSupply - AppState.masterBalance;
-                
-                if (Utils.isValidNumber(burned)) {
-                    AppState.totalBurned = burned;
-                    AppState.burnedPercentage = Utils.calculatePercentage(burned, totalSupply);
-                    
-                    this.updateStatsDisplay();
-                }
-            },
-            
-            // Atualiza estatísticas na tela
-            updateStatsDisplay: function() {
-                // Total queimado
-                const burnedElement = document.getElementById('totalQueimado');
-                if (burnedElement) {
-                    burnedElement.textContent = Math.round(AppState.totalBurned).toLocaleString();
-                }
-                
-                // Percentual queimado
-                const percentElement = document.getElementById('percentualQueimado');
-                if (percentElement) {
-                    percentElement.textContent = `${AppState.burnedPercentage}% do supply`;
-                }
-                
-                // Holders (mockado)
-                const holdersElement = document.getElementById('holdersCount');
-                if (holdersElement) {
-                    holdersElement.textContent = AppState.holdersCount.toLocaleString();
-                }
-            },
-            
-            // Inicia loop de atualização
-            startApiLoop: function() {
-                // Primeira busca
-                this.fetchMasterBalance();
-                
-                // Depois a cada intervalo
-                setInterval(() => {
-                    this.fetchMasterBalance();
-                }, CONFIG.refreshInterval);
-            }
-        };
-
-        // ==============================================
-        // GERENCIADOR DE INTERAÇÕES DA PÁGINA
-        // ==============================================
-        
-        const PageManager = {
-            // Inicializa todas as funcionalidades
-            init: function() {
-                Utils.log('Inicializando sistema BSPI');
-                
-                // Inicia contagens regressivas
-                CountdownManager.startCountdownLoop();
-                
-                // Inicia API
-                ApiManager.startApiLoop();
-                
-                // Configura scroll suave para links internos
-                this.setupSmoothScroll();
-                
-                // Configura lazy loading de imagens
-                this.setupLazyLoading();
-                
-                // Configura botão de voltar ao topo
-                this.setupBackToTop();
-                
-                // Configura animações de entrada
-                this.setupEntryAnimations();
-                
-                Utils.log('Sistema inicializado com sucesso');
-            },
-            
-            // Scroll suave para âncoras
-            setupSmoothScroll: function() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const target = document.querySelector(this.getAttribute('href'));
-                        if (target) {
-                            target.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                    });
-                });
-            },
-            
-            // Lazy loading para elementos
-            setupLazyLoading: function() {
-                // Implementação simples de lazy loading
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('animate__animated', 'animate__fadeIn');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                });
-                
-                document.querySelectorAll('.card-hover').forEach(el => {
-                    observer.observe(el);
-                });
-            },
-            
-            // Botão de voltar ao topo
-            setupBackToTop: function() {
-                const backToTop = document.createElement('button');
-                backToTop.innerHTML = '↑';
-                backToTop.className = 'fixed bottom-24 right-8 w-12 h-12 bg-yellow-500 rounded-full text-black font-bold text-xl shadow-lg opacity-0 transition-opacity duration-300 hover:bg-yellow-400 z-50';
-                backToTop.style.display = 'none';
-                document.body.appendChild(backToTop);
-                
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 500) {
-                        backToTop.style.display = 'block';
-                        setTimeout(() => backToTop.style.opacity = '1', 10);
-                    } else {
-                        backToTop.style.opacity = '0';
-                        setTimeout(() => backToTop.style.display = 'none', 300);
-                    }
-                });
-                
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            },
-            
-            // Animações de entrada
-            setupEntryAnimations: function() {
-                document.querySelectorAll('.animate__animated').forEach(el => {
-                    // Já aplicado via classes
-                });
-            }
-        };
-
-        // ==============================================
-        // VALIDAÇÕES E VERIFICAÇÕES DE SEGURANÇA
-        // ==============================================
-        
-        const SecurityManager = {
-            // Verifica se elementos críticos existem
-            validateCriticalElements: function() {
-                const requiredIds = [
-                    'dias1', 'horas1', 'minutos1', 'segundos1',
-                    'dias2', 'horas2', 'minutos2', 'segundos2',
-                    'dias3', 'horas3', 'minutos3', 'segundos3',
-                    'totalQueimado', 'percentualQueimado', 'holdersCount'
-                ];
-                
-                let allValid = true;
-                
-                requiredIds.forEach(id => {
-                    if (!document.getElementById(id)) {
-                        Utils.showError(`Elemento crítico não encontrado: #${id}`);
-                        allValid = false;
-                    }
-                });
-                
-                return allValid;
-            },
-            
-            // Monitora performance
-            monitorPerformance: function() {
-                if (window.performance) {
-                    const perfData = performance.timing;
-                    const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-                    Utils.log(`Página carregada em ${pageLoadTime}ms`);
-                }
-            }
-        };
-
-        // ==============================================
-        // INICIALIZAÇÃO DO SISTEMA
-        // ==============================================
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verifica elementos críticos
-            if (!SecurityManager.validateCriticalElements()) {
-                Utils.showError('Erro crítico na estrutura da página');
-                return;
-            }
-            
-            // Inicia o sistema
-            PageManager.init();
-            
-            // Monitora performance
-            SecurityManager.monitorPerformance();
-            
-            // Adiciona listeners para eventos de rede
-            window.addEventListener('online', () => {
-                Utils.log('Conexão restabelecida - atualizando dados');
-                ApiManager.fetchMasterBalance();
-            });
-        });
-
-        // ==============================================
-        // EXPORTA FUNÇÕES PARA O CONSOLE (DEBUG)
-        // ==============================================
-        
-        window.BSPI = {
-            state: AppState,
-            refreshCountdowns: () => CountdownManager.updateAllCountdowns(),
-            refreshApi: () => ApiManager.fetchMasterBalance(),
-            version: '2.0.0'
-        };
-
-        // ==============================================
-        // FIM DO JAVASCRIPT - TOTAL DE LINHAS: ~650
-        // ==============================================
-    </script>
-</body>
-</html>
+    <!-- CONTATO (ELEVA) -->
+    <section id="contato" class="py-16 px-6 max-w-3xl mx-auto">
+        <div class="bg-zinc-900/50 p-8 rounded-2xl border borde
