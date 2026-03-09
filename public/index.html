@@ -21,7 +21,7 @@
         .bg-noise {
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
         }
-        /* Estilo para os cards de contagem */
+        /* Estilo para os cards de contagem (apenas no topo, sem sticky) */
         .countdown-card {
             background: rgba(0,0,0,0.6);
             border: 1px solid rgba(212,175,55,0.3);
@@ -54,8 +54,8 @@
 </head>
 <body class="bg-noise">
 
-    <!-- TOPO COM CONTAGENS REGRESSIVAS EM DESTAQUE -->
-    <div class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-yellow-500/20">
+    <!-- TOPO COM CONTAGENS REGRESSIVAS (FIXO, NÃO SEGUE O USUÁRIO) -->
+    <div class="bg-black/90 border-b border-yellow-500/20">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <!-- 14 de Março -->
@@ -95,8 +95,8 @@
         </div>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="bg-black/80 backdrop-blur-md border-b border-white/10">
+    <!-- NAVBAR (também sem sticky, flui normalmente) -->
+    <nav class="bg-black/80 border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold"><span class="gradient-text">π BSPI</span></div>
             <div class="hidden md:flex gap-8 text-sm">
@@ -292,6 +292,3 @@
             <p class="mt-2">✉️ contato@bancosocialpi.com.br (exemplo)</p>
         </div>
     </footer>
-
-    <script>
-        // =====
