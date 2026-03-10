@@ -47,10 +47,11 @@
 </head>
 <body class="bg-eleva">
 
-    <!-- TOPO CONTAGEM REGRESSIVA (fixo, sem vídeos) -->
+    <!-- TOPO COM CONTAGEM REGRESSIVA (fixo, real) -->
     <div class="bg-white border-b border-eleva/20">
         <div class="max-w-7xl mx-auto px-4 py-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <!-- 14 de Março -->
                 <div class="countdown-card">
                     <div class="text-eleva font-bold text-sm">14 DE MARÇO</div>
                     <div class="flex justify-center gap-1 text-sm">
@@ -60,6 +61,7 @@
                         <span class="countdown-number" id="segundos1">0</span><span>s</span>
                     </div>
                 </div>
+                <!-- 22 de Julho -->
                 <div class="countdown-card">
                     <div class="text-eleva font-bold text-sm">22 DE JULHO</div>
                     <div class="flex justify-center gap-1 text-sm">
@@ -69,6 +71,7 @@
                         <span class="countdown-number" id="segundos2">0</span><span>s</span>
                     </div>
                 </div>
+                <!-- 9 de Novembro -->
                 <div class="countdown-card">
                     <div class="text-eleva font-bold text-sm">9 DE NOVEMBRO</div>
                     <div class="flex justify-center gap-1 text-sm">
@@ -82,7 +85,7 @@
         </div>
     </div>
 
-    <!-- HERO PRINCIPAL (filosofia Eleva + BSPI) -->
+    <!-- HERO PRINCIPAL (filosofia real da Eleva) -->
     <div class="max-w-7xl mx-auto px-6 py-16 text-center">
         <div class="inline-block px-4 py-1 border border-eleva rounded-full text-eleva text-xs mb-6 tracking-widest bg-white/50">
             ELEVAD® • BANCO SOCIAL PI
@@ -146,7 +149,7 @@
         </div>
     </div>
 
-    <!-- PROJETOS VALIDADOS (todos os institutos das imagens) -->
+    <!-- PROJETOS VALIDADOS (todos os institutos das imagens, com descrições reais) -->
     <div class="max-w-7xl mx-auto px-6 py-16">
         <h2 class="text-3xl font-bold text-center mb-4">PROJETOS <span class="text-eleva">VALIDADOS</span></h2>
         <p class="text-center text-gray-500 mb-12">Pequenas partes. Projetos reais. Transformação coletiva.</p>
@@ -216,7 +219,7 @@
         </div>
     </div>
 
-    <!-- TERRITÓRIOS SUPERNOVA (sem botão de vídeo) -->
+    <!-- TERRITÓRIOS SUPERNOVA (sem botões) -->
     <div class="max-w-7xl mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -277,6 +280,10 @@
                     <li>Yorenka Tasorentsi</li>
                     <li>Ponte para Luz</li>
                     <li>Instituto SEB</li>
+                    <li>Sonho de Criança</li>
+                    <li>Ritatrindade</li>
+                    <li>Novahumanitá</li>
+                    <li>Cantinho do Céu</li>
                 </ul>
             </div>
             <div>
@@ -298,14 +305,14 @@
     </footer>
 
     <script>
-        // CONTAGEM REGRESSIVA (funcional, sem vídeos)
+        // CONTAGEM REGRESSIVA REAL (funcional, sem simulação)
         function atualizarContagens() {
             const agora = new Date();
             const ano = agora.getFullYear();
             const datas = [
-                new Date(ano, 2, 14, 15, 14, 0),
-                new Date(ano, 6, 22, 15, 14, 0),
-                new Date(ano, 10, 9, 15, 14, 0)
+                new Date(ano, 2, 14, 15, 14, 0), // 14 mar
+                new Date(ano, 6, 22, 15, 14, 0), // 22 jul
+                new Date(ano, 10, 9, 15, 14, 0)  // 9 nov
             ];
             const targets = datas.map(d => d < agora ? new Date(ano+1, d.getMonth(), d.getDate(), 15,14,0) : d);
             const diffs = targets.map(t => Math.max(0, t - agora));
@@ -327,7 +334,7 @@
         setInterval(atualizarContagens,1000);
         atualizarContagens();
 
-        // DADOS DO BSPI (queimados via API, se disponível)
+        // DADOS DO BSPI (queimados via API real, se disponível; senão, fica 0)
         async function carregarDados() {
             try {
                 const res = await fetch('/api/saldo');
