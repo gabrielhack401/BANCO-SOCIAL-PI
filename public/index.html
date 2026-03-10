@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco Social Pi | GOLDEN | BSPI</title>
+    <title>Banco Social Pi | ELEVAD | GOLDEN TICKET</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -41,44 +41,151 @@
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 1rem;
             padding: 2rem;
-            transition: all 0.3s;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.8s ease-out;
+            opacity: 0;
+            animation-fill-mode: forwards;
         }
         .card-vip:hover {
             border-color: #D4AF37;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
-            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+            transform: translateY(-8px) scale(1.02);
         }
         .divider-gold {
             height: 2px;
             background: linear-gradient(90deg, transparent, #D4AF37, transparent);
             width: 100px;
             margin: 1rem auto;
+            animation: expandWidth 1s ease-out forwards;
         }
         .bg-noise {
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
         }
         .countdown-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #D4AF37;
             line-height: 1;
+            animation: pulse 2s infinite;
         }
-        @media (min-width: 768px) {
-            .countdown-number {
-                font-size: 3rem;
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        .glow-pulse {
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: particleFloat 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        @keyframes particleFloat {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 8s infinite linear;
+        }
+
+        .stagger-fade-in > * {
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
+        .stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
+        .stagger-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
+        .stagger-fade-in > *:nth-child(7) { animation-delay: 0.7s; }
+        .stagger-fade-in > *:nth-child(8) { animation-delay: 0.8s; }
+        .stagger-fade-in > *:nth-child(9) { animation-delay: 0.9s; }
     </style>
 </head>
 <body class="bg-noise">
+    <!-- Partículas douradas animadas -->
+    <div class="particle" style="left: 10%; width: 4px; height: 4px; background: #D4AF37; border-radius: 50%;"></div>
+    <div class="particle" style="left: 30%; width: 6px; height: 6px; background: #D4AF37; border-radius: 50%; animation-delay: -5s;"></div>
+    <div class="particle" style="left: 50%; width: 3px; height: 3px; background: #D4AF37; border-radius: 50%; animation-delay: -10s;"></div>
+    <div class="particle" style="left: 70%; width: 5px; height: 5px; background: #D4AF37; border-radius: 50%; animation-delay: -15s;"></div>
+    <div class="particle" style="left: 90%; width: 4px; height: 4px; background: #D4AF37; border-radius: 50%; animation-delay: -7s;"></div>
 
-    <!-- ============================================ -->
-    <!-- TOPO VIP COM CONTAGEM REGRESSIVA -->
-    <!-- ============================================ -->
-    <div class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gold/30">
+    <!-- TOPO COM CONTAGEM REGRESSIVA ANIMADA -->
+    <div class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gold/30 floating">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
                     <span class="text-gold font-bold text-sm tracking-widest">14 MAR</span>
                     <div class="flex gap-1">
                         <span class="countdown-number text-2xl" id="dias1">0</span><span class="text-gold">d</span>
@@ -87,7 +194,7 @@
                         <span class="countdown-number text-2xl" id="segundos1">0</span><span class="text-gold">s</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
                     <span class="text-gold font-bold text-sm tracking-widest">22 JUL</span>
                     <div class="flex gap-1">
                         <span class="countdown-number text-2xl" id="dias2">0</span><span class="text-gold">d</span>
@@ -96,7 +203,7 @@
                         <span class="countdown-number text-2xl" id="segundos2">0</span><span class="text-gold">s</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
                     <span class="text-gold font-bold text-sm tracking-widest">9 NOV</span>
                     <div class="flex gap-1">
                         <span class="countdown-number text-2xl" id="dias3">0</span><span class="text-gold">d</span>
@@ -109,16 +216,14 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- HERO PRINCIPAL VIP -->
-    <!-- ============================================ -->
+    <!-- HERO PRINCIPAL ANIMADO -->
     <div class="pt-32 pb-20 px-6 text-center relative">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
-        <div class="max-w-5xl mx-auto relative z-10">
-            <div class="inline-block px-6 py-2 border border-gold rounded-full text-gold text-xs mb-8 tracking-widest bg-black/50 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto relative z-10 stagger-fade-in">
+            <div class="inline-block px-6 py-2 border border-gold rounded-full text-gold text-xs mb-8 tracking-widest bg-black/50 backdrop-blur-sm glow-pulse">
                 ⚜️ ELEVAD • BANCO SOCIAL PI • GOLDEN TICKET ⚜️
             </div>
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 serif">
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 serif floating">
                 BANCO <span class="gold">SOCIAL PI</span>
             </h1>
             <div class="divider-gold"></div>
@@ -132,19 +237,17 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- TOKEN BSPI - SEÇÃO VIP -->
-    <!-- ============================================ -->
+    <!-- DADOS REAIS DO BSPI COM ANIMAÇÃO -->
     <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 stagger-fade-in">
             <h2 class="text-4xl md:text-5xl font-bold serif mb-2">O TOKEN <span class="gold">BSPI</span></h2>
             <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">A criptomoeda que financia projetos sociais na blockchain Polygon</p>
+            <p class="text-gray-400 mt-4">Criptomoeda real na blockchain Polygon</p>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 stagger-fade-in">
             <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">31.4M</div>
+                <div class="text-3xl md:text-4xl font-bold gold">31.416.000</div>
                 <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Supply Total</div>
             </div>
             <div class="card-vip text-center p-6">
@@ -152,7 +255,7 @@
                 <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Queimados</div>
             </div>
             <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">$0.56</div>
+                <div class="text-3xl md:text-4xl font-bold gold">$0,56</div>
                 <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Preço</div>
             </div>
             <div class="card-vip text-center p-6">
@@ -161,107 +264,98 @@
             </div>
         </div>
 
-        <div class="card-vip max-w-3xl mx-auto text-center">
+        <div class="card-vip max-w-3xl mx-auto text-center glow-pulse">
             <p class="text-gray-300 mb-3">📍 Contrato na Polygon</p>
             <div class="bg-black/50 p-3 rounded-xl border border-gold/30 mb-3">
                 <p class="text-sm font-mono break-all text-gold">0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10</p>
             </div>
-            <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="inline-block text-gold underline text-sm hover:no-underline">
+            <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="inline-block text-gold underline text-sm hover:no-underline transition-all duration-300 hover:scale-105">
                 Ver no Polygonscan →
             </a>
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- MECÂNICA DO PI / TRANSPARÊNCIA -->
-    <!-- ============================================ -->
+    <!-- MECÂNICA DO PI ANIMADA -->
     <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="grid md:grid-cols-2 gap-8 items-center stagger-fade-in">
             <div class="card-vip">
                 <h2 class="text-3xl font-bold mb-4 serif">MECÂNICA DO <span class="gold">PI</span></h2>
                 <p class="text-gray-300 mb-4 leading-relaxed">
                     Os recursos financiam projetos sociais estruturados. Tudo é acompanhado de forma auditada e transparente.
                 </p>
                 <p class="text-gray-400 leading-relaxed">
-                    Um sistema simples, contínuo e coletivo. Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
+                    Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
                 </p>
             </div>
-            <div class="card-vip text-center">
+            <div class="card-vip text-center floating">
                 <span class="text-8xl block mb-4">📊</span>
                 <p class="text-xl gold">SUPERNOVA</p>
-                <p class="text-gray-400">Transparência total em todas as operações</p>
+                <p class="text-gray-400">Transparência total</p>
             </div>
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- PROJETOS VALIDADOS - INSTITUTOS -->
-    <!-- ============================================ -->
+    <!-- PROJETOS VALIDADOS COM ANIMAÇÃO STAGGER -->
     <div class="max-w-7xl mx-auto px-6 py-20">
         <div class="text-center mb-12">
             <h2 class="text-4xl md:text-5xl font-bold serif mb-2">PROJETOS <span class="gold">VALIDADOS</span></h2>
             <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Pequenas partes. Projetos reais. Transformação coletiva.</p>
+            <p class="text-gray-400 mt-4">Instituições parceiras que transformam vidas</p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- INE – Instituto Nova Era -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-fade-in">
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">INE</h3>
-                <p class="text-gray-400 text-sm mb-3">Instituto Nova Era • Socioambiental</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Regenera florestas, biomas e promove agrofloresta, soberania alimentar, bem viver, cultura, esporte e lazer comunitário.</p>
+                <p class="text-gray-400 text-sm mb-3">Instituto Nova Era</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Regenera florestas, biomas e promove agrofloresta, soberania alimentar, cultura e lazer comunitário.</p>
             </div>
-            <!-- Instituto Yorenka Tasorentsi -->
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">Yorenka Tasorentsi</h3>
                 <p class="text-gray-400 text-sm mb-3">Povos Indígenas</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Protege e fortalece a soberania, a saúde, a cultura, o território, a educação e os saberes dos povos originários.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Protege a soberania, saúde, cultura, território e saberes dos povos originários.</p>
             </div>
-            <!-- Ponte para Luz -->
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">Ponte para Luz</h3>
                 <p class="text-gray-400 text-sm mb-3">Saúde Integrativa</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Cuida, cura e fortalece comunidades com medicinas ancestrais, farmácias vivas, bem-estar e espiritualidade como tecnologia de saúde.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Medicinas ancestrais, farmácias vivas, bem-estar e espiritualidade como tecnologia de saúde.</p>
             </div>
-            <!-- Instituto SEB -->
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">Instituto SEB</h3>
                 <p class="text-gray-400 text-sm mb-3">Educação</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Forma, educa e transforma vidas com educação viva, contraturno, saberes ancestrais e desenvolvimento de competências regenerativas.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Educação viva, contraturno, saberes ancestrais e competências regenerativas.</p>
             </div>
-            <!-- Sonho de Criança -->
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">Sonho de Criança</h3>
                 <p class="text-gray-400 text-sm mb-3">Assistência Social</p>
-                <p class="text-gray-300 text-sm leading-relaxed">A única entidade filantrópica de Ribeirão Preto que atende 24h pessoas com deficiências múltiplas e severas.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Única entidade de Ribeirão Preto com atendimento 24h a pessoas com deficiências múltiplas e severas.</p>
             </div>
-            <!-- Escola Sathya Sai (NOVA!) -->
-            <div class="card-vip border-gold border-2">
+            <div class="card-vip border-gold border-2 glow-pulse">
                 <h3 class="text-2xl font-bold gold mb-1">Escola Sathya Sai</h3>
-                <p class="text-gray-400 text-sm mb-3">Ribeirão Preto/SP • Educação Valores Humanos</p>
-                <p class="text-gray-300 text-sm leading-relaxed italic">"Educação baseada em Verdade, Retidão, Paz, Amor e Não Violência. Transformando crianças e jovens há décadas."</p>
-                <p class="text-gold text-xs mt-3">⚜️ Parceira Fundamental do BSPI</p>
+                <p class="text-gray-400 text-sm mb-3">Educação em Valores Humanos</p>
+                <p class="text-gray-300 text-sm leading-relaxed italic">"Educação baseada em Verdade, Retidão, Paz, Amor e Não Violência."</p>
+                <p class="text-gold text-xs mt-3">⚜️ Parceira Fundamental</p>
             </div>
-            <!-- Novahumanitá -->
+            <div class="card-vip">
+                <h3 class="text-2xl font-bold gold mb-1">Instituto Ritatrindade</h3>
+                <p class="text-gray-400 text-sm mb-3">Educação</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Promove educação e cultura para o desenvolvimento humano.</p>
+            </div>
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">NOVAHUMANITÁ</h3>
                 <p class="text-gray-400 text-sm mb-3">Saúde Integrativa</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Saúde integrativa e bem-estar para comunidades.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Saúde integrativa e bem-estar.</p>
             </div>
-            <!-- Cantinho do Céu -->
             <div class="card-vip">
                 <h3 class="text-2xl font-bold gold mb-1">Cantinho do Céu</h3>
                 <p class="text-gray-400 text-sm mb-3">Assistência 24h</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Atendimento 24h a pessoas com deficiências múltiplas e severas.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Atendimento ininterrupto a pessoas com deficiências múltiplas e severas.</p>
             </div>
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- ESCOLA DE GESTÃO SOCIAL PI (TAKASHI) -->
-    <!-- ============================================ -->
+    <!-- ESCOLA DE GESTÃO SOCIAL PI ANIMADA -->
     <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="card-vip text-center max-w-4xl mx-auto">
+        <div class="card-vip text-center max-w-4xl mx-auto floating">
             <h2 class="text-3xl md:text-4xl font-bold serif mb-2">ESCOLA DE GESTÃO SOCIAL PI</h2>
             <p class="text-2xl gold mb-4">com <span class="font-bold">TAKASHI YAMAUCHI</span></p>
             <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
@@ -271,17 +365,15 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- TERRITÓRIOS SUPERNOVA -->
-    <!-- ============================================ -->
+    <!-- TERRITÓRIOS SUPERNOVA ANIMADOS -->
     <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="grid md:grid-cols-2 gap-8 items-center stagger-fade-in">
             <div class="card-vip">
                 <h2 class="text-3xl font-bold mb-2 serif">TERRITÓRIOS <span class="gold">SUPERNOVA</span></h2>
                 <p class="text-gray-400 mb-4">Lançamento • Conexão na Montanha</p>
                 <p class="text-gray-300">Educação Ambiental com o Instituto Nova Era. Um novo ciclo de regeneração e aprendizado coletivo.</p>
             </div>
-            <div class="card-vip text-center">
+            <div class="card-vip text-center floating">
                 <span class="text-8xl block mb-2">🏔️</span>
                 <p class="text-gold text-xl">CONEXÃO NA MONTANHA</p>
                 <p class="text-gray-400 text-sm">Lançamento oficial</p>
@@ -289,9 +381,7 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- GOLDEN TICKET - SEÇÃO VIP -->
-    <!-- ============================================ -->
+    <!-- GOLDEN TICKET ANIMADO -->
     <div class="max-w-7xl mx-auto px-6 py-20">
         <div class="text-center mb-12">
             <h2 class="text-5xl md:text-6xl font-bold serif mb-2">GOLDEN <span class="gold">TICKET</span></h2>
@@ -299,38 +389,36 @@
             <p class="text-gray-400 mt-4">Indique líderes, acumule pontos e concorra a BSPI</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="grid md:grid-cols-3 gap-6 mb-12 stagger-fade-in">
             <div class="card-vip text-center">
-                <span class="text-6xl block mb-4">👑</span>
+                <span class="text-6xl block mb-4 floating">👑</span>
                 <h3 class="text-2xl font-bold gold mb-3">PADRINHO</h3>
-                <p class="text-gray-300 text-sm leading-relaxed">Empresário do lucro real que vai doar <strong class="gold">1 Pi (R$ 3,14)</strong> e mobilizar sua rede: colaboradores, fornecedores, parceiros e clientes.</p>
+                <p class="text-gray-300 text-sm leading-relaxed">Empresário do lucro real que vai doar <strong class="gold">1 Pi (R$ 3,14)</strong> e mobilizar sua rede.</p>
             </div>
             <div class="card-vip text-center">
-                <span class="text-6xl block mb-4">👑</span>
+                <span class="text-6xl block mb-4 floating" style="animation-delay: -2s;">👑</span>
                 <h3 class="text-2xl font-bold gold mb-3">MADRINHA</h3>
                 <p class="text-gray-300 text-sm leading-relaxed">Liderança feminina ou voz inspiradora que vai doar <strong class="gold">1 Pi</strong> e ativar sua comunidade.</p>
             </div>
             <div class="card-vip text-center">
-                <span class="text-6xl block mb-4">🎤</span>
+                <span class="text-6xl block mb-4 floating" style="animation-delay: -4s;">🎤</span>
                 <h3 class="text-2xl font-bold gold mb-3">INFLUENCER</h3>
                 <p class="text-gray-300 text-sm leading-relaxed">Pessoa com alcance nas redes que fará um <strong class="gold">vídeo de 1 minuto</strong> e o primeiro Pix Pi.</p>
             </div>
         </div>
 
-        <div class="card-vip max-w-2xl mx-auto text-center border-gold border-2">
+        <div class="card-vip max-w-2xl mx-auto text-center border-gold border-2 glow-pulse">
             <h3 class="text-3xl font-bold mb-4 serif">🎟️ FAÇA SUA INDICAÇÃO</h3>
             <p class="text-gray-300 mb-6">Cada indicação vale <strong class="gold">100 pontos</strong>. Os três primeiros colocados ganham BSPI!</p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" 
-               class="inline-block bg-gold text-black px-10 py-4 rounded-full font-bold hover:bg-yellow-500 transition transform hover:scale-105 shadow-lg">
+               class="inline-block bg-gold text-black px-10 py-4 rounded-full font-bold hover:bg-yellow-500 transition-all duration-300 transform hover:scale-110 hover:rotate-2 shadow-lg">
                 FAZER INDICAÇÃO AGORA
             </a>
-            <p class="text-xs text-gray-500 mt-4">⏳ O formulário leva menos de 2 minutos</p>
+            <p class="text-xs text-gray-500 mt-4">Formulário oficial • Leva menos de 2 minutos</p>
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- DEPOIMENTO CLIENTE -->
-    <!-- ============================================ -->
+    <!-- DEPOIMENTO REAL ANIMADO -->
     <div class="max-w-7xl mx-auto px-6 py-16">
         <div class="card-vip max-w-3xl mx-auto">
             <div class="border-l-4 border-gold pl-6 italic text-gray-300 text-lg">
@@ -341,30 +429,26 @@
         </div>
     </div>
 
-    <!-- ============================================ -->
-    <!-- FALE CONOSCO -->
-    <!-- ============================================ -->
+    <!-- CONTATOS REAIS ANIMADOS -->
     <div class="max-w-7xl mx-auto px-6 py-16 text-center">
         <h2 class="text-4xl font-bold serif mb-8">FALE <span class="gold">CONOSCO</span></h2>
         <p class="text-gray-400 mb-8">Gostaríamos muito de ouvir você.</p>
         
-        <div class="flex flex-col md:flex-row justify-center gap-8 items-center mb-8">
+        <div class="flex flex-col md:flex-row justify-center gap-8 items-center mb-8 stagger-fade-in">
             <div class="card-vip w-64">
-                <div class="text-gold text-4xl mb-3">📧</div>
+                <div class="text-gold text-4xl mb-3 floating">📧</div>
                 <p class="font-medium">E-mail</p>
                 <p class="text-sm text-gold">pi@bancosocialpi.com.br</p>
             </div>
             <div class="card-vip w-64">
-                <div class="text-gold text-4xl mb-3">📞</div>
+                <div class="text-gold text-4xl mb-3 floating" style="animation-delay: -3s;">📞</div>
                 <p class="font-medium">WhatsApp</p>
                 <p class="text-sm text-gold">(16) 99455-7000</p>
             </div>
         </div>
     </div>
 
-    <!-- ============================================ -->
     <!-- RODAPÉ -->
-    <!-- ============================================ -->
     <footer class="border-t border-gold/20 py-12 mt-12">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-sm">
             <div>
@@ -401,148 +485,76 @@
         </div>
     </footer>
 
-    <!-- ============================================ -->
-    <!-- FUNÇÕES JAVASCRIPT (mais de 1000 linhas compactadas) -->
-    <!-- ============================================ -->
     <script>
-        // ==================================================================
-        // BLOCO 1: UTILITÁRIOS (100+)
-        // ==================================================================
-        const formatNumber = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        const formatUSD = v => v.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        const formatBRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-        const validarEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
-        const validarTelefone = t => /^\(?[1-9]{2}\)? ?9?[0-9]{4}-?[0-9]{4}$/.test(t);
-        const validarEthereum = addr => /^0x[a-fA-F0-9]{40}$/.test(addr);
-        const copiarTexto = t => navigator.clipboard.writeText(t).then(() => alert('Copiado!')).catch(() => alert('Erro'));
-        const ordenar = (arr, chave, ordem='asc') => arr.sort((a,b) => (a[chave]<b[chave]? -1:1) * (ordem==='asc'?1:-1));
-        const agrupar = (arr, chave) => arr.reduce((acc, item) => ((acc[item[chave]] = acc[item[chave]] || []).push(item), acc), {});
-        const filtrar = (arr, termo, campos) => termo ? arr.filter(item => campos.some(c => item[c]?.toLowerCase().includes(termo.toLowerCase()))) : arr;
-        const totalizar = (arr, chave) => arr.reduce((acc, item) => acc + (item[chave] || 0), 0);
-        const media = (arr, chave) => arr.length ? totalizar(arr, chave) / arr.length : 0;
-
-        // ==================================================================
-        // BLOCO 2: CONTAGEM REGRESSIVA (200+)
-        // ==================================================================
-        const getDatas = () => { const a=new Date(), y=a.getFullYear(); return [
-            { nome:'14 Mar', data:new Date(y,2,14,15,14,0) },
-            { nome:'22 Jul', data:new Date(y,6,22,15,14,0) },
-            { nome:'9 Nov', data:new Date(y,10,9,15,14,0) }
-        ];};
-        const ajustar = datas => { const a=new Date(); return datas.map(d => d.data<a ? new Date(a.getFullYear()+1, d.data.getMonth(), d.data.getDate(),15,14,0) : d.data); };
-        const diff = t => { const d=t-new Date(); return d<=0 ? {dias:0,horas:0,minutos:0,segundos:0,total:0} : {
-            dias:Math.floor(d/(1000*60*60*24)),
-            horas:Math.floor((d/(1000*60*60))%24),
-            minutos:Math.floor((d/(1000*60))%60),
-            segundos:Math.floor((d/1000)%60),
-            total:d
-        };};
-        function atualizarCount() {
-            const targets = ajustar(getDatas());
-            const diffs = targets.map(t => diff(t));
-            for(let i=0;i<3;i++) {
-                ['dias','horas','minutos','segundos'].forEach((tipo,j) => {
-                    const el = document.getElementById(tipo+(i+1));
-                    if(el) el.textContent = diffs[i][tipo];
-                });
+        // ==============================================
+        // CONTAGEM REGRESSIVA REAL
+        // ==============================================
+        function atualizarContagens() {
+            const agora = new Date();
+            const ano = agora.getFullYear();
+            const datas = [
+                new Date(ano, 2, 14, 15, 14, 0),
+                new Date(ano, 6, 22, 15, 14, 0),
+                new Date(ano, 10, 9, 15, 14, 0)
+            ];
+            
+            const targets = datas.map(d => d < agora ? new Date(ano + 1, d.getMonth(), d.getDate(), 15, 14, 0) : d);
+            
+            for(let i = 0; i < 3; i++) {
+                const diff = targets[i] - agora;
+                if(diff <= 0) {
+                    document.getElementById('dias' + (i+1)).textContent = '0';
+                    document.getElementById('horas' + (i+1)).textContent = '0';
+                    document.getElementById('minutos' + (i+1)).textContent = '0';
+                    document.getElementById('segundos' + (i+1)).textContent = '0';
+                } else {
+                    document.getElementById('dias' + (i+1)).textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    document.getElementById('horas' + (i+1)).textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    document.getElementById('minutos' + (i+1)).textContent = Math.floor((diff / (1000 * 60)) % 60);
+                    document.getElementById('segundos' + (i+1)).textContent = Math.floor((diff / 1000) % 60);
+                }
             }
         }
-        setInterval(atualizarCount,1000);
-        atualizarCount();
+        
+        setInterval(atualizarContagens, 1000);
+        atualizarContagens();
 
-        // ==================================================================
-        // BLOCO 3: BSPI (200+)
-        // ==================================================================
-        const BSPI = {
-            endereco:'0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10',
-            supply:31416000,
-            precoUSD:0.56,
-            holders:157,
-            decimals:18,
-            simbolo:'BSPI',
-            nome:'Banco Social Pi',
-            rede:'Polygon',
-            explorador:'https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10'
-        };
-        const getBSPI = () => ({...BSPI});
-        const marketCap = () => BSPI.supply * BSPI.precoUSD;
-        const queimado = supplyAtual => BSPI.supply - supplyAtual;
-        const percQueimado = s => ((BSPI.supply - s)/BSPI.supply*100).toFixed(2)+'%';
-        const enderecoCurto = () => BSPI.endereco.slice(0,10)+'...'+BSPI.endereco.slice(-4);
-        const precoBRL = () => BSPI.precoUSD * 5.50;
-        const toUSD = q => q * BSPI.precoUSD;
-        const toBRL = q => q * precoBRL();
-        const validarContrato = () => validarEthereum(BSPI.endereco);
-
-        // ==================================================================
-        // BLOCO 4: GOLDEN TICKET (200+)
-        // ==================================================================
-        const GOLDEN = {
-            perfis:[
-                {nome:'Padrinho', icone:'👑', desc:'Empresário do lucro real que vai doar 1 Pi (R$ 3,14) e mobilizar sua rede.'},
-                {nome:'Madrinha', icone:'👑', desc:'Liderança feminina ou voz inspiradora que vai doar 1 Pi e ativar sua comunidade.'},
-                {nome:'Influencer', icone:'🎤', desc:'Pessoa com alcance nas redes que fará um vídeo de 1 minuto e o primeiro Pix Pi.'}
-            ],
-            premios:[1000,500,250],
-            pontosPorIndicacao:100,
-            formulario:'https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header',
-            dataLive:'2026-03-14T15:14:00',
-            jurados:['All1Ventures','ElevaD','Takashi','Uma criança','Um idoso','Sorteado']
-        };
-        const getPerfis = () => GOLDEN.perfis;
-        const getPremio = pos => pos>=1&&pos<=3 ? GOLDEN.premios[pos-1] : 0;
-        const calcPontos = n => n * GOLDEN.pontosPorIndicacao;
-        const getForm = () => GOLDEN.formulario;
-        const getLive = () => new Date(GOLDEN.dataLive);
-        const getJurados = () => GOLDEN.jurados;
-        const getPontosPorInd = () => GOLDEN.pontosPorIndicacao;
-
-        // ==================================================================
-        // BLOCO 5: API E DADOS (200+)
-        // ==================================================================
-        async function fetchSaldo() {
+        // ==============================================
+        // CARREGAR TOTAL QUEIMADO (via API real)
+        // ==============================================
+        async function carregarQueimado() {
             try {
                 const res = await fetch('/api/saldo');
-                if(!res.ok) throw new Error();
                 const data = await res.json();
-                return data.saldo ? parseFloat(data.saldo) : 31400000;
-            } catch { return 31400000; }
+                if(data.saldo) {
+                    const totalSupply = 31416000;
+                    const queimado = totalSupply - parseFloat(data.saldo);
+                    document.getElementById('totalQueimado').textContent = Math.round(queimado).toLocaleString('pt-BR');
+                }
+            } catch(e) {
+                document.getElementById('totalQueimado').textContent = '0';
+            }
         }
-        async function atualizarQueimado() {
-            const saldo = await fetchSaldo();
-            const qtd = BSPI.supply - saldo;
-            const el = document.getElementById('totalQueimado');
-            if(el) el.textContent = Math.round(qtd).toLocaleString();
-        }
-        const mockIndicacoes = () => [
-            { nome:'João Silva', indicacoes:15, pontos:1500, pos:1 },
-            { nome:'Maria Santos', indicacoes:12, pontos:1200, pos:2 },
-            { nome:'Pedro Oliveira', indicacoes:10, pontos:1000, pos:3 }
-        ];
-        const mockHolders = () => [
-            { end:'0xDE98...c0A', saldo:125000 },
-            { end:'0x1234...5678', saldo:98000 }
-        ];
-        const statsRede = () => ({ tx24h:152, vol24h:87500, taxas:12.45 });
-        const precoMATIC = () => 0.85;
-        const cotacaoUSD = () => 5.50;
-        const maticToUSD = m => m * precoMATIC();
-        const maticToBRL = m => m * precoMATIC() * cotacaoUSD();
+        carregarQueimado();
 
-        // ==================================================================
-        // BLOCO 6: INICIALIZAÇÃO (100+)
-        // ==================================================================
-        function init() {
-            console.log('🚀 Banco Social Pi - Modo VIP ativado');
-            atualizarQueimado();
-            document.querySelectorAll('.copy-contract').forEach(el => 
-                el.addEventListener('click', () => copiarTexto(BSPI.endereco))
-            );
-            window.addEventListener('resize', () => {
-                document.body.classList.toggle('mobile', window.innerWidth < 640);
+        // ==============================================
+        // ANIMAÇÃO DE ENTRADA PARA CARDS
+        // ==============================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
-        }
-        document.addEventListener('DOMContentLoaded', init);
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card-vip').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
     </script>
 </body>
 </html>
