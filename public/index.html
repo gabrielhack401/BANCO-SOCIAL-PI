@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco Social Pi | ELEVAD</title>
+    <title>Banco Social Pi | ELEVAD | Golden Ticket</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -43,11 +43,23 @@
             padding: 1.5rem;
             text-align: center;
         }
+        .gold-card {
+            background: white;
+            border: 2px solid #d4af37;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .gold-card:hover {
+            box-shadow: 0 10px 30px rgba(212,175,55,0.2);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="bg-eleva">
 
-    <!-- TOPO COM CONTAGEM REGRESSIVA (fixo, real) -->
+    <!-- TOPO COM CONTAGEM REGRESSIVA (fixo) -->
     <div class="bg-white border-b border-eleva/20">
         <div class="max-w-7xl mx-auto px-4 py-3">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -85,7 +97,7 @@
         </div>
     </div>
 
-    <!-- HERO PRINCIPAL (filosofia real da Eleva) -->
+    <!-- HERO PRINCIPAL (filosofia Eleva) -->
     <div class="max-w-7xl mx-auto px-6 py-16 text-center">
         <div class="inline-block px-4 py-1 border border-eleva rounded-full text-eleva text-xs mb-6 tracking-widest bg-white/50">
             ELEVAD® • BANCO SOCIAL PI
@@ -104,7 +116,7 @@
         </p>
     </div>
 
-    <!-- DADOS DO BSPI (reais, sem simulação) -->
+    <!-- DADOS DO BSPI (reais) -->
     <div class="max-w-7xl mx-auto px-6 py-10">
         <h2 class="text-3xl font-bold text-center mb-8">DADOS DO <span class="text-eleva">BSPI</span></h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -132,7 +144,7 @@
         </div>
     </div>
 
-    <!-- MECÂNICA DO PI / TRANSPARÊNCIA (sem vídeos) -->
+    <!-- MECÂNICA DO PI / TRANSPARÊNCIA -->
     <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-8 items-center">
         <div>
             <h2 class="text-3xl font-bold mb-4">MECÂNICA DO <span class="text-eleva">PI</span></h2>
@@ -149,7 +161,7 @@
         </div>
     </div>
 
-    <!-- PROJETOS VALIDADOS (todos os institutos das imagens, com descrições reais) -->
+    <!-- PROJETOS VALIDADOS (todos os institutos) -->
     <div class="max-w-7xl mx-auto px-6 py-16">
         <h2 class="text-3xl font-bold text-center mb-4">PROJETOS <span class="text-eleva">VALIDADOS</span></h2>
         <p class="text-center text-gray-500 mb-12">Pequenas partes. Projetos reais. Transformação coletiva.</p>
@@ -207,7 +219,7 @@
         </div>
     </div>
 
-    <!-- ESCOLA DE GESTÃO SOCIAL PI (com Takashi Yamauchi) -->
+    <!-- ESCOLA DE GESTÃO SOCIAL PI (Takashi) -->
     <div class="bg-white py-16">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-2">ESCOLA DE GESTÃO SOCIAL PI</h2>
@@ -219,7 +231,7 @@
         </div>
     </div>
 
-    <!-- TERRITÓRIOS SUPERNOVA (sem botões) -->
+    <!-- TERRITÓRIOS SUPERNOVA -->
     <div class="max-w-7xl mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-8 items-center">
             <div>
@@ -232,6 +244,42 @@
                 <p class="text-sm text-gray-500 mt-2">CONEXÃO NA MONTANHA</p>
                 <p class="text-xs text-gray-400">LANÇAMENTO</p>
             </div>
+        </div>
+    </div>
+
+    <!-- GOLDEN TICKET (SEÇÃO COMPLETA) -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <h2 class="text-4xl font-bold text-center mb-4">GOLDEN <span class="text-eleva">TICKET</span></h2>
+        <p class="text-center text-gray-500 mb-12">Indique líderes, acumule pontos e concorra a BSPI.</p>
+
+        <!-- OS 3 PERFIS -->
+        <div class="grid md:grid-cols-3 gap-6 mb-12">
+            <div class="gold-card">
+                <span class="text-5xl block mb-2">👑</span>
+                <h3 class="text-2xl font-bold text-eleva mb-2">PADRINHO</h3>
+                <p class="text-gray-600 text-sm">Empresário do lucro real que vai doar <strong>1 Pi (R$ 3,14)</strong> e mobilizar sua rede: colaboradores, fornecedores, parceiros e clientes.</p>
+            </div>
+            <div class="gold-card">
+                <span class="text-5xl block mb-2">👑</span>
+                <h3 class="text-2xl font-bold text-eleva mb-2">MADRINHA</h3>
+                <p class="text-gray-600 text-sm">Liderança feminina ou voz inspiradora que vai doar <strong>1 Pi</strong> e ativar sua comunidade.</p>
+            </div>
+            <div class="gold-card">
+                <span class="text-5xl block mb-2">🎤</span>
+                <h3 class="text-2xl font-bold text-eleva mb-2">INFLUENCER</h3>
+                <p class="text-gray-600 text-sm">Pessoa com alcance nas redes que fará um <strong>vídeo de 1 minuto</strong> e o primeiro Pix Pi.</p>
+            </div>
+        </div>
+
+        <!-- FORMULÁRIO DE INDICAÇÃO -->
+        <div class="gold-card max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold mb-4">🎟️ FAÇA SUA INDICAÇÃO</h3>
+            <p class="text-gray-600 mb-6">Cada indicação vale 100 pontos. Os três primeiros colocados ganham BSPI!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" 
+               class="inline-block bg-eleva text-white px-8 py-3 rounded-full font-bold hover:bg-green-800 transition shadow-lg">
+                FAZER INDICAÇÃO AGORA
+            </a>
+            <p class="text-xs text-gray-400 mt-4">⏳ O formulário leva menos de 2 minutos</p>
         </div>
     </div>
 
@@ -305,7 +353,7 @@
     </footer>
 
     <script>
-        // CONTAGEM REGRESSIVA REAL (funcional, sem simulação)
+        // CONTAGEM REGRESSIVA (funcional)
         function atualizarContagens() {
             const agora = new Date();
             const ano = agora.getFullYear();
@@ -334,21 +382,4 @@
         setInterval(atualizarContagens,1000);
         atualizarContagens();
 
-        // DADOS DO BSPI (queimados via API real, se disponível; senão, fica 0)
-        async function carregarDados() {
-            try {
-                const res = await fetch('/api/saldo');
-                const data = await res.json();
-                if (data.saldo) {
-                    const totalSupply = 31416000;
-                    const queimado = totalSupply - parseFloat(data.saldo);
-                    document.getElementById('totalQueimado').textContent = queimado.toFixed(0);
-                }
-            } catch (e) {
-                document.getElementById('totalQueimado').textContent = '0';
-            }
-        }
-        carregarDados();
-    </script>
-</body>
-</html>
+        // DADOS DO 
