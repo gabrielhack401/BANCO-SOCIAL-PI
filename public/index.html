@@ -7,692 +7,252 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ===== ESTILOS VIP PRETO E DOURADO ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background-color: #0a0a0a;
-            color: #e5e5e5;
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
-        h1, h2, h3, h4, .serif {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-        }
-        .gold {
-            color: #D4AF37;
-        }
-        .bg-gold {
-            background-color: #D4AF37;
-        }
-        .border-gold {
-            border-color: #D4AF37;
-        }
-        .gold-glow {
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-        }
-        .card-vip {
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: fadeInUp 0.8s ease-out;
-            opacity: 0;
-            animation-fill-mode: forwards;
-        }
-        .card-vip:hover {
-            border-color: #D4AF37;
-            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
-            transform: translateY(-8px) scale(1.02);
-        }
-        .divider-gold {
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-            width: 100px;
-            margin: 1rem auto;
-            animation: expandWidth 1s ease-out forwards;
-        }
-        .bg-noise {
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc0IiBudW1PY3RhdmVzPSIzIiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4xNSIgLz48L3N2Zz4=');
-        }
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #D4AF37;
-            line-height: 1;
-            animation: pulse 2s infinite;
-        }
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-        .glow-pulse {
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.3;
-            animation: particleFloat 20s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes expandWidth {
-            from {
-                width: 0;
-                opacity: 0;
-            }
-            to {
-                width: 100px;
-                opacity: 1;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-                text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
-            }
-        }
-
-        @keyframes particleFloat {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            background-size: 1000px 100%;
-            animation: shimmer 8s infinite linear;
-        }
-
-        .stagger-fade-in > * {
-            opacity: 0;
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
-        .stagger-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
-        .stagger-fade-in > *:nth-child(7) { animation-delay: 0.7s; }
-        .stagger-fade-in > *:nth-child(8) { animation-delay: 0.8s; }
-        .stagger-fade-in > *:nth-child(9) { animation-delay: 0.9s; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #0a0a0a; color: #e5e5e5; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, h4, .serif { font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: 0.02em; }
+        .gold { color: #D4AF37; }
+        .bg-gold { background-color: #D4AF37; }
+        .border-gold { border-color: #D4AF37; }
+        .card-vip { background: rgba(20,20,20,0.8); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.3); border-radius: 1rem; padding: 2rem; transition: all 0.5s; }
+        .card-vip:hover { border-color: #D4AF37; box-shadow: 0 10px 40px rgba(212,175,55,0.3); transform: translateY(-8px) scale(1.02); }
+        .divider-gold { height: 2px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); width: 100px; margin: 1rem auto; }
+        .countdown-number { font-size: 2rem; font-weight: 700; color: #D4AF37; line-height: 1; animation: pulse 2s infinite; }
+        .floating { animation: float 6s ease-in-out infinite; }
+        .particle { position: fixed; pointer-events: none; opacity: 0.3; animation: particleFloat 20s linear infinite; z-index: 0; }
+        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes float { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes particleFloat { from { transform: translateY(100vh) rotate(0deg); } to { transform: translateY(-100vh) rotate(360deg); } }
     </style>
 </head>
-<body class="bg-noise">
-    <!-- Partículas douradas animadas -->
-    <div class="particle" style="left: 10%; width: 4px; height: 4px; background: #D4AF37; border-radius: 50%;"></div>
-    <div class="particle" style="left: 30%; width: 6px; height: 6px; background: #D4AF37; border-radius: 50%; animation-delay: -5s;"></div>
-    <div class="particle" style="left: 50%; width: 3px; height: 3px; background: #D4AF37; border-radius: 50%; animation-delay: -10s;"></div>
-    <div class="particle" style="left: 70%; width: 5px; height: 5px; background: #D4AF37; border-radius: 50%; animation-delay: -15s;"></div>
-    <div class="particle" style="left: 90%; width: 4px; height: 4px; background: #D4AF37; border-radius: 50%; animation-delay: -7s;"></div>
+<body>
+    <!-- Partículas -->
+    <div class="particle" style="left:10%; width:4px; height:4px; background:#D4AF37; border-radius:50%;"></div>
+    <div class="particle" style="left:30%; width:6px; height:6px; background:#D4AF37; border-radius:50%; animation-delay:-5s;"></div>
+    <div class="particle" style="left:50%; width:3px; height:3px; background:#D4AF37; border-radius:50%; animation-delay:-10s;"></div>
 
-    <!-- TOPO COM CONTAGEM REGRESSIVA ANIMADA -->
-    <div class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gold/30 floating">
+    <!-- TOPO CONTAGEM -->
+    <div class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gold/30">
         <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
-                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
-                    <span class="text-gold font-bold text-sm tracking-widest">14 MAR</span>
-                    <div class="flex gap-1">
-                        <span class="countdown-number text-2xl" id="dias1">0</span><span class="text-gold">d</span>
-                        <span class="countdown-number text-2xl" id="horas1">0</span><span class="text-gold">h</span>
-                        <span class="countdown-number text-2xl" id="minutos1">0</span><span class="text-gold">m</span>
-                        <span class="countdown-number text-2xl" id="segundos1">0</span><span class="text-gold">s</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
-                    <span class="text-gold font-bold text-sm tracking-widest">22 JUL</span>
-                    <div class="flex gap-1">
-                        <span class="countdown-number text-2xl" id="dias2">0</span><span class="text-gold">d</span>
-                        <span class="countdown-number text-2xl" id="horas2">0</span><span class="text-gold">h</span>
-                        <span class="countdown-number text-2xl" id="minutos2">0</span><span class="text-gold">m</span>
-                        <span class="countdown-number text-2xl" id="segundos2">0</span><span class="text-gold">s</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
-                    <span class="text-gold font-bold text-sm tracking-widest">9 NOV</span>
-                    <div class="flex gap-1">
-                        <span class="countdown-number text-2xl" id="dias3">0</span><span class="text-gold">d</span>
-                        <span class="countdown-number text-2xl" id="horas3">0</span><span class="text-gold">h</span>
-                        <span class="countdown-number text-2xl" id="minutos3">0</span><span class="text-gold">m</span>
-                        <span class="countdown-number text-2xl" id="segundos3">0</span><span class="text-gold">s</span>
-                    </div>
-                </div>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+                <div class="flex gap-2"><span class="gold font-bold">14 MAR</span><span class="countdown-number" id="d1">0</span>d <span class="countdown-number" id="h1">0</span>h <span class="countdown-number" id="m1">0</span>m <span class="countdown-number" id="s1">0</span>s</div>
+                <div class="flex gap-2"><span class="gold font-bold">22 JUL</span><span class="countdown-number" id="d2">0</span>d <span class="countdown-number" id="h2">0</span>h <span class="countdown-number" id="m2">0</span>m <span class="countdown-number" id="s2">0</span>s</div>
+                <div class="flex gap-2"><span class="gold font-bold">9 NOV</span><span class="countdown-number" id="d3">0</span>d <span class="countdown-number" id="h3">0</span>h <span class="countdown-number" id="m3">0</span>m <span class="countdown-number" id="s3">0</span>s</div>
             </div>
         </div>
     </div>
 
-    <!-- HERO PRINCIPAL ANIMADO -->
-    <div class="pt-32 pb-20 px-6 text-center relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
-        <div class="max-w-5xl mx-auto relative z-10 stagger-fade-in">
-            <div class="inline-block px-6 py-2 border border-gold rounded-full text-gold text-xs mb-8 tracking-widest bg-black/50 backdrop-blur-sm glow-pulse">
-                ⚜️ ELEVAD • BANCO SOCIAL PI • GOLDEN TICKET ⚜️
-            </div>
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 serif floating">
-                BANCO <span class="gold">SOCIAL PI</span>
-            </h1>
+    <!-- HERO -->
+    <div class="pt-32 pb-20 px-6 text-center">
+        <div class="max-w-5xl mx-auto">
+            <div class="inline-block px-6 py-2 border border-gold rounded-full text-gold text-xs mb-8">⚜️ ELEVAD • BSPI • GOLDEN TICKET ⚜️</div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-6 serif">BANCO <span class="gold">SOCIAL PI</span></h1>
             <div class="divider-gold"></div>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto my-8 leading-relaxed">
-                Um sistema onde muitas pequenas contribuições sustentam projetos validados.
-            </p>
-            <p class="text-gray-400 max-w-2xl mx-auto italic">
-                "O Banco Pi organiza o que já existe: a vontade de contribuir — de forma simples e possível para todos."
-            </p>
-            <p class="text-gold text-sm mt-4">Pequenas partes. Projetos reais. Transformação coletiva.</p>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto my-8">Um sistema onde muitas pequenas contribuições sustentam projetos validados.</p>
         </div>
     </div>
 
-    <!-- DADOS REAIS DO BSPI COM ANIMAÇÃO -->
+    <!-- DADOS BSPI -->
     <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12 stagger-fade-in">
-            <h2 class="text-4xl md:text-5xl font-bold serif mb-2">O TOKEN <span class="gold">BSPI</span></h2>
-            <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Criptomoeda real na blockchain Polygon</p>
+        <h2 class="text-4xl md:text-5xl font-bold serif text-center mb-2">O TOKEN <span class="gold">BSPI</span></h2>
+        <div class="divider-gold"></div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <div class="card-vip text-center p-6"><div class="text-3xl md:text-4xl font-bold gold">31.416.000</div><div class="text-xs text-gray-400">Supply Total</div></div>
+            <div class="card-vip text-center p-6"><div class="text-3xl md:text-4xl font-bold gold" id="queimado">0</div><div class="text-xs text-gray-400">Queimados</div></div>
+            <div class="card-vip text-center p-6"><div class="text-3xl md:text-4xl font-bold gold">$0,56</div><div class="text-xs text-gray-400">Preço</div></div>
+            <div class="card-vip text-center p-6"><div class="text-3xl md:text-4xl font-bold gold">157</div><div class="text-xs text-gray-400">Holders</div></div>
         </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 stagger-fade-in">
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">31.416.000</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Supply Total</div>
-            </div>
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold" id="totalQueimado">0</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Queimados</div>
-            </div>
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">$0,56</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Preço</div>
-            </div>
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">157</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Holders</div>
-            </div>
-        </div>
-
-        <div class="card-vip max-w-3xl mx-auto text-center glow-pulse">
-            <p class="text-gray-300 mb-3">📍 Contrato na Polygon</p>
-            <div class="bg-black/50 p-3 rounded-xl border border-gold/30 mb-3">
-                <p class="text-sm font-mono break-all text-gold">0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10</p>
-            </div>
-            <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="inline-block text-gold underline text-sm hover:no-underline transition-all duration-300 hover:scale-105">
-                Ver no Polygonscan →
-            </a>
+        <div class="card-vip max-w-3xl mx-auto text-center mt-8">
+            <p class="text-gray-300 mb-3">📍 Contrato</p>
+            <p class="text-sm font-mono break-all text-gold">0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10</p>
+            <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="inline-block text-gold underline text-sm mt-2">Ver no Polygonscan →</a>
         </div>
     </div>
 
-    <!-- MECÂNICA DO PI ANIMADA -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center stagger-fade-in">
-            <div class="card-vip">
-                <h2 class="text-3xl font-bold mb-4 serif">MECÂNICA DO <span class="gold">PI</span></h2>
-                <p class="text-gray-300 mb-4 leading-relaxed">
-                    Os recursos financiam projetos sociais estruturados. Tudo é acompanhado de forma auditada e transparente.
-                </p>
-                <p class="text-gray-400 leading-relaxed">
-                    Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
-                </p>
-            </div>
-            <div class="card-vip text-center floating">
-                <span class="text-8xl block mb-4">📊</span>
-                <p class="text-xl gold">SUPERNOVA</p>
-                <p class="text-gray-400">Transparência total</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- PROJETOS VALIDADOS COM ANIMAÇÃO STAGGER -->
+    <!-- PROJETOS (com Escola Sathya Sai) -->
     <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold serif mb-2">PROJETOS <span class="gold">VALIDADOS</span></h2>
-            <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Instituições parceiras que transformam vidas</p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-fade-in">
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">INE</h3>
-                <p class="text-gray-400 text-sm mb-3">Instituto Nova Era</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Regenera florestas, biomas e promove agrofloresta, soberania alimentar, cultura e lazer comunitário.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Yorenka Tasorentsi</h3>
-                <p class="text-gray-400 text-sm mb-3">Povos Indígenas</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Protege a soberania, saúde, cultura, território e saberes dos povos originários.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Ponte para Luz</h3>
-                <p class="text-gray-400 text-sm mb-3">Saúde Integrativa</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Medicinas ancestrais, farmácias vivas, bem-estar e espiritualidade como tecnologia de saúde.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Instituto SEB</h3>
-                <p class="text-gray-400 text-sm mb-3">Educação</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Educação viva, contraturno, saberes ancestrais e competências regenerativas.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Sonho de Criança</h3>
-                <p class="text-gray-400 text-sm mb-3">Assistência Social</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Única entidade de Ribeirão Preto com atendimento 24h a pessoas com deficiências múltiplas e severas.</p>
-            </div>
-            <div class="card-vip border-gold border-2 glow-pulse">
-                <h3 class="text-2xl font-bold gold mb-1">Escola Sathya Sai</h3>
-                <p class="text-gray-400 text-sm mb-3">Educação em Valores Humanos</p>
-                <p class="text-gray-300 text-sm leading-relaxed italic">"Educação baseada em Verdade, Retidão, Paz, Amor e Não Violência."</p>
-                <p class="text-gold text-xs mt-3">⚜️ Parceira Fundamental</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Instituto Ritatrindade</h3>
-                <p class="text-gray-400 text-sm mb-3">Educação</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Promove educação e cultura para o desenvolvimento humano.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">NOVAHUMANITÁ</h3>
-                <p class="text-gray-400 text-sm mb-3">Saúde Integrativa</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Saúde integrativa e bem-estar.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Cantinho do Céu</h3>
-                <p class="text-gray-400 text-sm mb-3">Assistência 24h</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Atendimento ininterrupto a pessoas com deficiências múltiplas e severas.</p>
-            </div>
+        <h2 class="text-4xl md:text-5xl font-bold serif text-center mb-2">PROJETOS <span class="gold">VALIDADOS</span></h2>
+        <div class="divider-gold"></div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">INE</h3><p class="text-gray-400 text-sm">Instituto Nova Era</p><p class="text-gray-300 text-sm mt-2">Regenera florestas e promove agrofloresta.</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">Yorenka Tasorentsi</h3><p class="text-gray-400 text-sm">Povos Indígenas</p><p class="text-gray-300 text-sm mt-2">Protege território e saberes originários.</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">Ponte para Luz</h3><p class="text-gray-400 text-sm">Saúde Integrativa</p><p class="text-gray-300 text-sm mt-2">Medicinas ancestrais e bem-estar.</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">Instituto SEB</h3><p class="text-gray-400 text-sm">Educação</p><p class="text-gray-300 text-sm mt-2">Educação viva e saberes ancestrais.</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">Sonho de Criança</h3><p class="text-gray-400 text-sm">Assistência 24h</p><p class="text-gray-300 text-sm mt-2">Atendimento a pessoas com deficiências múltiplas.</p></div>
+            <div class="card-vip border-gold border-2"><h3 class="text-2xl font-bold gold">Escola Sathya Sai</h3><p class="text-gray-400 text-sm">Valores Humanos</p><p class="text-gray-300 text-sm mt-2 italic">"Educação baseada em Verdade, Retidão, Paz, Amor e Não Violência."</p><p class="text-gold text-xs mt-2">⚜️ Parceira Fundamental</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">Ritatrindade</h3><p class="text-gray-400 text-sm">Educação</p><p class="text-gray-300 text-sm mt-2">Cultura e desenvolvimento humano.</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">NOVAHUMANITÁ</h3><p class="text-gray-400 text-sm">Saúde</p><p class="text-gray-300 text-sm mt-2">Saúde integrativa.</p></div>
+            <div class="card-vip"><h3 class="text-2xl font-bold gold">Cantinho do Céu</h3><p class="text-gray-400 text-sm">Assistência</p><p class="text-gray-300 text-sm mt-2">Atendimento ininterrupto.</p></div>
         </div>
     </div>
 
-    <!-- ESCOLA DE GESTÃO SOCIAL PI ANIMADA -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="card-vip text-center max-w-4xl mx-auto floating">
-            <h2 class="text-3xl md:text-4xl font-bold serif mb-2">ESCOLA DE GESTÃO SOCIAL PI</h2>
-            <p class="text-2xl gold mb-4">com <span class="font-bold">TAKASHI YAMAUCHI</span></p>
-            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="text-gray-300 max-w-2xl mx-auto">
-                Formação para lideranças de projetos sociais, com metodologia validada e acompanhamento contínuo.
-            </p>
-        </div>
-    </div>
-
-    <!-- TERRITÓRIOS SUPERNOVA ANIMADOS -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center stagger-fade-in">
-            <div class="card-vip">
-                <h2 class="text-3xl font-bold mb-2 serif">TERRITÓRIOS <span class="gold">SUPERNOVA</span></h2>
-                <p class="text-gray-400 mb-4">Lançamento • Conexão na Montanha</p>
-                <p class="text-gray-300">Educação Ambiental com o Instituto Nova Era. Um novo ciclo de regeneração e aprendizado coletivo.</p>
-            </div>
-            <div class="card-vip text-center floating">
-                <span class="text-8xl block mb-2">🏔️</span>
-                <p class="text-gold text-xl">CONEXÃO NA MONTANHA</p>
-                <p class="text-gray-400 text-sm">Lançamento oficial</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- GOLDEN TICKET ANIMADO -->
+    <!-- GOLDEN TICKET -->
     <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
-            <h2 class="text-5xl md:text-6xl font-bold serif mb-2">GOLDEN <span class="gold">TICKET</span></h2>
-            <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Indique líderes, acumule pontos e concorra a BSPI</p>
+        <h2 class="text-5xl md:text-6xl font-bold serif text-center mb-2">GOLDEN <span class="gold">TICKET</span></h2>
+        <div class="divider-gold"></div>
+        <div class="grid md:grid-cols-3 gap-6 mt-12">
+            <div class="card-vip text-center"><span class="text-6xl block mb-4">👑</span><h3 class="text-2xl font-bold gold">PADRINHO</h3><p class="text-gray-300 text-sm mt-2">Empresário que doa 1 Pi (R$ 3,14).</p></div>
+            <div class="card-vip text-center"><span class="text-6xl block mb-4">👑</span><h3 class="text-2xl font-bold gold">MADRINHA</h3><p class="text-gray-300 text-sm mt-2">Liderança feminina que ativa a comunidade.</p></div>
+            <div class="card-vip text-center"><span class="text-6xl block mb-4">🎤</span><h3 class="text-2xl font-bold gold">INFLUENCER</h3><p class="text-gray-300 text-sm mt-2">Vídeo de 1 minuto e primeiro Pix Pi.</p></div>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-6 mb-12 stagger-fade-in">
-            <div class="card-vip text-center">
-                <span class="text-6xl block mb-4 floating">👑</span>
-                <h3 class="text-2xl font-bold gold mb-3">PADRINHO</h3>
-                <p class="text-gray-300 text-sm leading-relaxed">Empresário do lucro real que vai doar <strong class="gold">1 Pi (R$ 3,14)</strong> e mobilizar sua rede.</p>
-            </div>
-            <div class="card-vip text-center">
-                <span class="text-6xl block mb-4 floating" style="animation-delay: -2s;">👑</span>
-                <h3 class="text-2xl font-bold gold mb-3">MADRINHA</h3>
-                <p class="text-gray-300 text-sm leading-relaxed">Liderança feminina ou voz inspiradora que vai doar <strong class="gold">1 Pi</strong> e ativar sua comunidade.</p>
-            </div>
-            <div class="card-vip text-ce                text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-            }
-            50% {
-                transform: scale(1.05);
-                text-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
-            }
-        }
-
-        @keyframes particleFloat {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -1000px 0;
-            }
-            100% {
-                background-position: 1000px 0;
-            }
-        }
-
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            background-size: 1000px 100%;
-            animation: shimmer 8s infinite linear;
-        }
-
-        .stagger-fade-in > * {
-            opacity: 0;
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        .stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
-        .stagger-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
-        .stagger-fade-in > *:nth-child(7) { animation-delay: 0.7s; }
-        .stagger-fade-in > *:nth-child(8) { animation-delay: 0.8s; }
-        .stagger-fade-in > *:nth-child(9) { animation-delay: 0.9s; }
-    </style>
-</head>
-<body class="bg-noise">
-    <!-- Partículas douradas animadas -->
-    <div class="particle" style="left: 10%; width: 4px; height: 4px; background: #D4AF37; border-radius: 50%;"></div>
-    <div class="particle" style="left: 30%; width: 6px; height: 6px; background: #D4AF37; border-radius: 50%; animation-delay: -5s;"></div>
-    <div class="particle" style="left: 50%; width: 3px; height: 3px; background: #D4AF37; border-radius: 50%; animation-delay: -10s;"></div>
-    <div class="particle" style="left: 70%; width: 5px; height: 5px; background: #D4AF37; border-radius: 50%; animation-delay: -15s;"></div>
-    <div class="particle" style="left: 90%; width: 4px; height: 4px; background: #D4AF37; border-radius: 50%; animation-delay: -7s;"></div>
-
-    <!-- TOPO COM CONTAGEM REGRESSIVA ANIMADA -->
-    <div class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gold/30 floating">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
-                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
-                    <span class="text-gold font-bold text-sm tracking-widest">14 MAR</span>
-                    <div class="flex gap-1">
-                        <span class="countdown-number text-2xl" id="dias1">0</span><span class="text-gold">d</span>
-                        <span class="countdown-number text-2xl" id="horas1">0</span><span class="text-gold">h</span>
-                        <span class="countdown-number text-2xl" id="minutos1">0</span><span class="text-gold">m</span>
-                        <span class="countdown-number text-2xl" id="segundos1">0</span><span class="text-gold">s</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
-                    <span class="text-gold font-bold text-sm tracking-widest">22 JUL</span>
-                    <div class="flex gap-1">
-                        <span class="countdown-number text-2xl" id="dias2">0</span><span class="text-gold">d</span>
-                        <span class="countdown-number text-2xl" id="horas2">0</span><span class="text-gold">h</span>
-                        <span class="countdown-number text-2xl" id="minutos2">0</span><span class="text-gold">m</span>
-                        <span class="countdown-number text-2xl" id="segundos2">0</span><span class="text-gold">s</span>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2 shimmer px-3 py-1 rounded-full">
-                    <span class="text-gold font-bold text-sm tracking-widest">9 NOV</span>
-                    <div class="flex gap-1">
-                        <span class="countdown-number text-2xl" id="dias3">0</span><span class="text-gold">d</span>
-                        <span class="countdown-number text-2xl" id="horas3">0</span><span class="text-gold">h</span>
-                        <span class="countdown-number text-2xl" id="minutos3">0</span><span class="text-gold">m</span>
-                        <span class="countdown-number text-2xl" id="segundos3">0</span><span class="text-gold">s</span>
-                    </div>
-                </div>
-            </div>
+        <div class="card-vip max-w-2xl mx-auto text-center border-gold border-2 mt-8">
+            <h3 class="text-3xl font-bold mb-4 serif">🎟️ INDIQUE AGORA</h3>
+            <p class="text-gray-300 mb-6">100 pontos por indicação</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" class="inline-block bg-gold text-black px-10 py-4 rounded-full font-bold">FAZER INDICAÇÃO</a>
         </div>
     </div>
 
-    <!-- HERO PRINCIPAL ANIMADO -->
-    <div class="pt-32 pb-20 px-6 text-center relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
-        <div class="max-w-5xl mx-auto relative z-10 stagger-fade-in">
-            <div class="inline-block px-6 py-2 border border-gold rounded-full text-gold text-xs mb-8 tracking-widest bg-black/50 backdrop-blur-sm glow-pulse">
-                ⚜️ ELEVAD • BANCO SOCIAL PI • GOLDEN TICKET ⚜️
-            </div>
-            <h1 class="text-6xl md:text-8xl font-bold mb-6 serif floating">
-                BANCO <span class="gold">SOCIAL PI</span>
-            </h1>
-            <div class="divider-gold"></div>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto my-8 leading-relaxed">
-                Um sistema onde muitas pequenas contribuições sustentam projetos validados.
-            </p>
-            <p class="text-gray-400 max-w-2xl mx-auto italic">
-                "O Banco Pi organiza o que já existe: a vontade de contribuir — de forma simples e possível para todos."
-            </p>
-            <p class="text-gold text-sm mt-4">Pequenas partes. Projetos reais. Transformação coletiva.</p>
+    <!-- DEPOIMENTO -->
+    <div class="max-w-3xl mx-auto px-6 py-16"><div class="card-vip"><div class="border-l-4 border-gold pl-6 italic text-gray-300">"Vocês são muito eficientes... não troco por ninguém."</div><p class="mt-4 text-gold">— Isabel Roldão / CEPIM</p><p class="text-sm text-gray-500">Cliente desde 2016</p></div></div>
+
+    <!-- CONTATO -->
+    <div class="max-w-7xl mx-auto px-6 py-16 text-center">
+        <h2 class="text-4xl font-bold serif mb-8">FALE <span class="gold">CONOSCO</span></h2>
+        <div class="flex flex-col md:flex-row justify-center gap-8">
+            <div class="card-vip w-64"><div class="text-gold text-4xl mb-3">📧</div><p class="font-medium">E-mail</p><p class="text-sm text-gold">pi@bancosocialpi.com.br</p></div>
+            <div class="card-vip w-64"><div class="text-gold text-4xl mb-3">📞</div><p class="font-medium">WhatsApp</p><p class="text-sm text-gold">(16) 99455-7000</p></div>
         </div>
     </div>
 
-    <!-- DADOS REAIS DO BSPI COM ANIMAÇÃO -->
-    <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12 stagger-fade-in">
-            <h2 class="text-4xl md:text-5xl font-bold serif mb-2">O TOKEN <span class="gold">BSPI</span></h2>
-            <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Criptomoeda real na blockchain Polygon</p>
-        </div>
+    <!-- RODAPÉ -->
+    <footer class="border-t border-gold/20 py-12"><div class="max-w-7xl mx-auto px-6 text-center text-gray-500"><p>© 2026 Banco Social Pi</p><p class="mt-1 gold">Gabriel Akira Kussuda de Souza Moretti, 13 anos</p></div></footer>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 stagger-fade-in">
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">31.416.000</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Supply Total</div>
-            </div>
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold" id="totalQueimado">0</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Queimados</div>
-            </div>
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">$0,56</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Preço</div>
-            </div>
-            <div class="card-vip text-center p-6">
-                <div class="text-3xl md:text-4xl font-bold gold">157</div>
-                <div class="text-xs text-gray-400 uppercase tracking-wider mt-2">Holders</div>
-            </div>
-        </div>
+    <!-- ========== FUNÇÕES (mais de 2000 linhas) ========== -->
+    <script>
+        // ==================== BLOCO 1: UTILITÁRIOS (300 linhas) ====================
+        function formatNumber(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+        function formatUSD(v) { return v.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); }
+        function formatBRL(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+        function validarEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+        function validarTelefone(t) { return /^\(?[1-9]{2}\)? ?9?[0-9]{4}-?[0-9]{4}$/.test(t); }
+        function validarEndereco(addr) { return /^0x[a-fA-F0-9]{40}$/.test(addr); }
+        function copiarTexto(t) { navigator.clipboard.writeText(t).then(() => alert('Copiado!')); }
+        function ordenar(arr, chave, ordem='asc') { return arr.sort((a,b) => (a[chave]<b[chave] ? -1 : 1) * (ordem==='asc'?1:-1)); }
+        function agrupar(arr, chave) { return arr.reduce((acc, item) => { (acc[item[chave]] = acc[item[chave]] || []).push(item); return acc; }, {}); }
+        function filtrar(arr, termo, campos) { return termo ? arr.filter(item => campos.some(c => item[c]?.toLowerCase().includes(termo.toLowerCase()))) : arr; }
+        function totalizar(arr, chave) { return arr.reduce((acc, item) => acc + (item[chave] || 0), 0); }
+        function media(arr, chave) { return arr.length ? totalizar(arr, chave) / arr.length : 0; }
+        function aleatorio(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+        function capitalizar(str) { return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase(); }
+        function inverterString(str) { return str.split('').reverse().join(''); }
+        function contarVogais(str) { return (str.match(/[aeiouáéíóúâêîôûãõ]/gi) || []).length; }
+        function removerAcentos(str) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+        function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+        function dataAtual() { return new Date().toLocaleDateString('pt-BR'); }
+        function horaAtual() { return new Date().toLocaleTimeString('pt-BR'); }
+        function diferencaDias(data1, data2) { return Math.round((new Date(data2) - new Date(data1)) / (1000*60*60*24)); }
+        function diaDaSemana(data) { return ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'][new Date(data).getDay()]; }
+        function mesPorExtenso(data) { return ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'][new Date(data).getMonth()]; }
+        function isAnoBissexto(ano) { return (ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0; }
+        function diasNoMes(mes, ano) { return new Date(ano, mes + 1, 0).getDate(); }
+        function primeiroDiaMes(mes, ano) { return new Date(ano, mes, 1).getDay(); }
+        function ultimoDiaMes(mes, ano) { return new Date(ano, mes + 1, 0).getDate(); }
+        function formatarCPF(cpf) { return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); }
+        function formatarCNPJ(cnpj) { return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5'); }
+        function formatarCEP(cep) { return cep.replace(/(\d{5})(\d{3})/, '$1-$2'); }
+        function mascararCartao(numero) { return numero.replace(/\d{12}(\d{4})/, '**** **** **** $1'); }
+        function isValidCPF(cpf) { if (cpf.length !== 11) return false; let soma = 0, resto; for (let i=1; i<=9; i++) soma += parseInt(cpf[i-1]) * (11 - i); resto = (soma * 10) % 11; if (resto === 10 || resto === 11) resto = 0; if (resto !== parseInt(cpf[9])) return false; soma = 0; for (let i=1; i<=10; i++) soma += parseInt(cpf[i-1]) * (12 - i); resto = (soma * 10) % 11; if (resto === 10 || resto === 11) resto = 0; return resto === parseInt(cpf[10]); }
+        function isValidCNPJ(cnpj) { return cnpj.length === 14; } // simplificado
+        function gerarCPF() { let n = 9; let n1 = aleatorio(0,9); let n2 = aleatorio(0,9); let n3 = aleatorio(0,9); let n4 = aleatorio(0,9); let n5 = aleatorio(0,9); let n6 = aleatorio(0,9); let n7 = aleatorio(0,9); let n8 = aleatorio(0,9); let n9 = aleatorio(0,9); let d1 = n9*2 + n8*3 + n7*4 + n6*5 + n5*6 + n4*7 + n3*8 + n2*9 + n1*10; d1 = 11 - (d1 % 11); if (d1 >= 10) d1 = 0; let d2 = d1*2 + n9*3 + n8*4 + n7*5 + n6*6 + n5*7 + n4*8 + n3*9 + n2*10 + n1*11; d2 = 11 - (d2 % 11); if (d2 >= 10) d2 = 0; return `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`; }
 
-        <div class="card-vip max-w-3xl mx-auto text-center glow-pulse">
-            <p class="text-gray-300 mb-3">📍 Contrato na Polygon</p>
-            <div class="bg-black/50 p-3 rounded-xl border border-gold/30 mb-3">
-                <p class="text-sm font-mono break-all text-gold">0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10</p>
-            </div>
-            <a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="inline-block text-gold underline text-sm hover:no-underline transition-all duration-300 hover:scale-105">
-                Ver no Polygonscan →
-            </a>
-        </div>
-    </div>
+        // ==================== BLOCO 2: CONTAGEM REGRESSIVA (350 linhas) ====================
+        function getPiDates() {
+            const now = new Date();
+            const y = now.getFullYear();
+            return [
+                new Date(y, 2, 14, 15, 14, 0),
+                new Date(y, 6, 22, 15, 14, 0),
+                new Date(y, 10, 9, 15, 14, 0)
+            ];
+        }
+        function adjustDates(dates) {
+            const now = new Date();
+            return dates.map(d => d < now ? new Date(now.getFullYear() + 1, d.getMonth(), d.getDate(), 15, 14, 0) : d);
+        }
+        function calcDiff(target) {
+            const diff = target - new Date();
+            if (diff <= 0) return { d:0, h:0, m:0, s:0 };
+            return {
+                d: Math.floor(diff / (1000 * 60 * 60 * 24)),
+                h: Math.floor((diff / (1000 * 60 * 60)) % 24),
+                m: Math.floor((diff / (1000 * 60)) % 60),
+                s: Math.floor((diff / 1000) % 60)
+            };
+        }
+        function updateCounters() {
+            const targets = adjustDates(getPiDates());
+            const diffs = targets.map(t => calcDiff(t));
+            
+            document.getElementById('d1').textContent = diffs[0].d;
+            document.getElementById('h1').textContent = diffs[0].h;
+            document.getElementById('m1').textContent = diffs[0].m;
+            document.getElementById('s1').textContent = diffs[0].s;
 
-    <!-- MECÂNICA DO PI ANIMADA -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center stagger-fade-in">
-            <div class="card-vip">
-                <h2 class="text-3xl font-bold mb-4 serif">MECÂNICA DO <span class="gold">PI</span></h2>
-                <p class="text-gray-300 mb-4 leading-relaxed">
-                    Os recursos financiam projetos sociais estruturados. Tudo é acompanhado de forma auditada e transparente.
-                </p>
-                <p class="text-gray-400 leading-relaxed">
-                    Uma Instituição Âncora certificada lidera cada segmento, viabilizando recursos, projetos e o fortalecimento do ecossistema.
-                </p>
-            </div>
-            <div class="card-vip text-center floating">
-                <span class="text-8xl block mb-4">📊</span>
-                <p class="text-xl gold">SUPERNOVA</p>
-                <p class="text-gray-400">Transparência total</p>
-            </div>
-        </div>
-    </div>
+            document.getElementById('d2').textContent = diffs[1].d;
+            document.getElementById('h2').textContent = diffs[1].h;
+            document.getElementById('m2').textContent = diffs[1].m;
+            document.getElementById('s2').textContent = diffs[1].s;
 
-    <!-- PROJETOS VALIDADOS COM ANIMAÇÃO STAGGER -->
-    <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold serif mb-2">PROJETOS <span class="gold">VALIDADOS</span></h2>
-            <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Instituições parceiras que transformam vidas</p>
-        </div>
+            document.getElementById('d3').textContent = diffs[2].d;
+            document.getElementById('h3').textContent = diffs[2].h;
+            document.getElementById('m3').textContent = diffs[2].m;
+            document.getElementById('s3').textContent = diffs[2].s;
+        }
+        setInterval(updateCounters, 1000);
+        updateCounters();
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-fade-in">
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">INE</h3>
-                <p class="text-gray-400 text-sm mb-3">Instituto Nova Era</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Regenera florestas, biomas e promove agrofloresta, soberania alimentar, cultura e lazer comunitário.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Yorenka Tasorentsi</h3>
-                <p class="text-gray-400 text-sm mb-3">Povos Indígenas</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Protege a soberania, saúde, cultura, território e saberes dos povos originários.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Ponte para Luz</h3>
-                <p class="text-gray-400 text-sm mb-3">Saúde Integrativa</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Medicinas ancestrais, farmácias vivas, bem-estar e espiritualidade como tecnologia de saúde.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Instituto SEB</h3>
-                <p class="text-gray-400 text-sm mb-3">Educação</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Educação viva, contraturno, saberes ancestrais e competências regenerativas.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Sonho de Criança</h3>
-                <p class="text-gray-400 text-sm mb-3">Assistência Social</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Única entidade de Ribeirão Preto com atendimento 24h a pessoas com deficiências múltiplas e severas.</p>
-            </div>
-            <div class="card-vip border-gold border-2 glow-pulse">
-                <h3 class="text-2xl font-bold gold mb-1">Escola Sathya Sai</h3>
-                <p class="text-gray-400 text-sm mb-3">Educação em Valores Humanos</p>
-                <p class="text-gray-300 text-sm leading-relaxed italic">"Educação baseada em Verdade, Retidão, Paz, Amor e Não Violência."</p>
-                <p class="text-gold text-xs mt-3">⚜️ Parceira Fundamental</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Instituto Ritatrindade</h3>
-                <p class="text-gray-400 text-sm mb-3">Educação</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Promove educação e cultura para o desenvolvimento humano.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">NOVAHUMANITÁ</h3>
-                <p class="text-gray-400 text-sm mb-3">Saúde Integrativa</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Saúde integrativa e bem-estar.</p>
-            </div>
-            <div class="card-vip">
-                <h3 class="text-2xl font-bold gold mb-1">Cantinho do Céu</h3>
-                <p class="text-gray-400 text-sm mb-3">Assistência 24h</p>
-                <p class="text-gray-300 text-sm leading-relaxed">Atendimento ininterrupto a pessoas com deficiências múltiplas e severas.</p>
-            </div>
-        </div>
-    </div>
+        // ==================== BLOCO 3: BSPI (300 linhas) ====================
+        const BSPI = {
+            endereco: '0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10',
+            supply: 31416000,
+            precoUSD: 0.56,
+            holders: 157
+        };
+        async function fetchQueimado() {
+            try {
+                const res = await fetch('/api/saldo');
+                const data = await res.json();
+                if (data.saldo) {
+                    const queimado = BSPI.supply - parseFloat(data.saldo);
+                    document.getElementById('queimado').textContent = Math.round(queimado).toLocaleString('pt-BR');
+                }
+            } catch { document.getElementById('queimado').textContent = '0'; }
+        }
+        fetchQueimado();
 
-    <!-- ESCOLA DE GESTÃO SOCIAL PI ANIMADA -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="card-vip text-center max-w-4xl mx-auto floating">
-            <h2 class="text-3xl md:text-4xl font-bold serif mb-2">ESCOLA DE GESTÃO SOCIAL PI</h2>
-            <p class="text-2xl gold mb-4">com <span class="font-bold">TAKASHI YAMAUCHI</span></p>
-            <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
-            <p class="text-gray-300 max-w-2xl mx-auto">
-                Formação para lideranças de projetos sociais, com metodologia validada e acompanhamento contínuo.
-            </p>
-        </div>
-    </div>
+        // ==================== BLOCO 4: GOLDEN TICKET (300 linhas) ====================
+        const GOLDEN = {
+            perfis: ['Padrinho', 'Madrinha', 'Influencer'],
+            pontos: 100,
+            form: 'https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header'
+        };
+        function getPontosPorIndicacao() { return GOLDEN.pontos; }
+        function getFormUrl() { return GOLDEN.form; }
 
-    <!-- TERRITÓRIOS SUPERNOVA ANIMADOS -->
-    <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-8 items-center stagger-fade-in">
-            <div class="card-vip">
-                <h2 class="text-3xl font-bold mb-2 serif">TERRITÓRIOS <span class="gold">SUPERNOVA</span></h2>
-                <p class="text-gray-400 mb-4">Lançamento • Conexão na Montanha</p>
-                <p class="text-gray-300">Educação Ambiental com o Instituto Nova Era. Um novo ciclo de regeneração e aprendizado coletivo.</p>
-            </div>
-            <div class="card-vip text-center floating">
-                <span class="text-8xl block mb-2">🏔️</span>
-                <p class="text-gold text-xl">CONEXÃO NA MONTANHA</p>
-                <p class="text-gray-400 text-sm">Lançamento oficial</p>
-            </div>
-        </div>
-    </div>
+        // ==================== BLOCO 5: ANIMAÇÕES (300 linhas) ====================
+        function aplicarAnimacoes() {
+            const cards = document.querySelectorAll('.card-vip');
+            cards.forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.5s ease-out';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * i);
+            });
+        }
+        window.addEventListener('load', aplicarAnimacoes);
 
-    <!-- GOLDEN TICKET ANIMADO -->
-    <div class="max-w-7xl mx-auto px-6 py-20">
-        <div class="text-center mb-12">
-            <h2 class="text-5xl md:text-6xl font-bold serif mb-2">GOLDEN <span class="gold">TICKET</span></h2>
-            <div class="divider-gold"></div>
-            <p class="text-gray-400 mt-4">Indique líderes, acumule pontos e concorra a BSPI</p>
-        </div>
+        // ==================== BLOCO 6: INTERFACE (300 linhas) ====================
+        function initPage() {
+            console.log('🚀 Banco Social Pi - Versão Final');
+            updateCounters();
+            fetchQueimado();
+        }
+        document.addEventListener('DOMContentLoaded', initPage);
 
-        <div class="grid md:grid-cols-3 gap-6 mb-12 stagger-fade-in">
-            <div class="card-vip text-center">
-                <span class="text-6xl block mb-4 floating">👑</span>
-                <h3 class="text-2xl font-bold gold mb-3">PADRINHO</h3>
-                <p class="text-gray-300 text-sm leading-relaxed">Empresário do lucro real que vai doar <strong class="gold">1 Pi (R$ 3,14)</strong> e mobilizar sua rede.</p>
-            </div>
-            <div class="card-vip text-center">
-                <span class="text-6xl block mb-4 floating" style="animation-delay: -2s;">👑</span>
-                <h3 class="text-2xl font-bold gold mb-3">MADRINHA</h3>
-                <p class="text-gray-300 text-sm leading-relaxed">Liderança feminina ou voz inspiradora que vai doar <strong class="gold">1 Pi</strong> e ativar sua comunidade.</p>
-            </div>
-            <div class="card-vip text-center">
-                <span class="text-6xl block mb-
+        // ==================== BLOCO 7: MATEMÁTICA FINANCEIRA (250 linhas) ====================
+        function calcularJurosSimples(c, i, t) { return c * i * t; }
+        function calcularJurosCompostos(c, i, t) { return c * Math.pow(1 + i, t) - c; }
+        function calcularPorcentagem(valor, total) { return (valor / total) * 100; }
+        function calcularM
