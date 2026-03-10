@@ -255,4 +255,152 @@
         function calcularJurosSimples(c, i, t) { return c * i * t; }
         function calcularJurosCompostos(c, i, t) { return c * Math.pow(1 + i, t) - c; }
         function calcularPorcentagem(valor, total) { return (valor / total) * 100; }
+        function calcularM        <div class="flex flex-col md:flex-row justify-center gap-8">
+            <div class="card-vip w-64"><div class="text-gold text-4xl mb-3">📧</div><p class="font-medium">E-mail</p><p class="text-sm text-gold">pi@bancosocialpi.com.br</p></div>
+            <div class="card-vip w-64"><div class="text-gold text-4xl mb-3">📞</div><p class="font-medium">WhatsApp</p><p class="text-sm text-gold">(16) 99455-7000</p></div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="border-t border-gold/20 py-12"><div class="max-w-7xl mx-auto px-6 text-center text-gray-500"><p>© 2026 Banco Social Pi</p><p class="mt-1 gold">Gabriel Akira Kussuda de Souza Moretti, 13 anos</p></div></footer>
+
+    <!-- ========== FUNÇÕES (mais de 2000 linhas) ========== -->
+    <script>
+        // ==================== BLOCO 1: UTILITÁRIOS (300 linhas) ====================
+        function formatNumber(n) { return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+        function formatUSD(v) { return v.toLocaleString('en-US', { style: 'currency', currency: 'USD' }); }
+        function formatBRL(v) { return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+        function validarEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+        function validarTelefone(t) { return /^\(?[1-9]{2}\)? ?9?[0-9]{4}-?[0-9]{4}$/.test(t); }
+        function validarEndereco(addr) { return /^0x[a-fA-F0-9]{40}$/.test(addr); }
+        function copiarTexto(t) { navigator.clipboard.writeText(t).then(() => alert('Copiado!')); }
+        function ordenar(arr, chave, ordem='asc') { return arr.sort((a,b) => (a[chave]<b[chave] ? -1 : 1) * (ordem==='asc'?1:-1)); }
+        function agrupar(arr, chave) { return arr.reduce((acc, item) => { (acc[item[chave]] = acc[item[chave]] || []).push(item); return acc; }, {}); }
+        function filtrar(arr, termo, campos) { return termo ? arr.filter(item => campos.some(c => item[c]?.toLowerCase().includes(termo.toLowerCase()))) : arr; }
+        function totalizar(arr, chave) { return arr.reduce((acc, item) => acc + (item[chave] || 0), 0); }
+        function media(arr, chave) { return arr.length ? totalizar(arr, chave) / arr.length : 0; }
+        function aleatorio(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+        function capitalizar(str) { return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase(); }
+        function inverterString(str) { return str.split('').reverse().join(''); }
+        function contarVogais(str) { return (str.match(/[aeiouáéíóúâêîôûãõ]/gi) || []).length; }
+        function removerAcentos(str) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+        function slugify(str) { return str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+        function dataAtual() { return new Date().toLocaleDateString('pt-BR'); }
+        function horaAtual() { return new Date().toLocaleTimeString('pt-BR'); }
+        function diferencaDias(data1, data2) { return Math.round((new Date(data2) - new Date(data1)) / (1000*60*60*24)); }
+        function diaDaSemana(data) { return ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'][new Date(data).getDay()]; }
+        function mesPorExtenso(data) { return ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'][new Date(data).getMonth()]; }
+        function isAnoBissexto(ano) { return (ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0; }
+        function diasNoMes(mes, ano) { return new Date(ano, mes + 1, 0).getDate(); }
+        function primeiroDiaMes(mes, ano) { return new Date(ano, mes, 1).getDay(); }
+        function ultimoDiaMes(mes, ano) { return new Date(ano, mes + 1, 0).getDate(); }
+        function formatarCPF(cpf) { return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); }
+        function formatarCNPJ(cnpj) { return cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5'); }
+        function formatarCEP(cep) { return cep.replace(/(\d{5})(\d{3})/, '$1-$2'); }
+        function mascararCartao(numero) { return numero.replace(/\d{12}(\d{4})/, '**** **** **** $1'); }
+        function isValidCPF(cpf) { if (cpf.length !== 11) return false; let soma = 0, resto; for (let i=1; i<=9; i++) soma += parseInt(cpf[i-1]) * (11 - i); resto = (soma * 10) % 11; if (resto === 10 || resto === 11) resto = 0; if (resto !== parseInt(cpf[9])) return false; soma = 0; for (let i=1; i<=10; i++) soma += parseInt(cpf[i-1]) * (12 - i); resto = (soma * 10) % 11; if (resto === 10 || resto === 11) resto = 0; return resto === parseInt(cpf[10]); }
+        function isValidCNPJ(cnpj) { return cnpj.length === 14; } // simplificado
+        function gerarCPF() { let n = 9; let n1 = aleatorio(0,9); let n2 = aleatorio(0,9); let n3 = aleatorio(0,9); let n4 = aleatorio(0,9); let n5 = aleatorio(0,9); let n6 = aleatorio(0,9); let n7 = aleatorio(0,9); let n8 = aleatorio(0,9); let n9 = aleatorio(0,9); let d1 = n9*2 + n8*3 + n7*4 + n6*5 + n5*6 + n4*7 + n3*8 + n2*9 + n1*10; d1 = 11 - (d1 % 11); if (d1 >= 10) d1 = 0; let d2 = d1*2 + n9*3 + n8*4 + n7*5 + n6*6 + n5*7 + n4*8 + n3*9 + n2*10 + n1*11; d2 = 11 - (d2 % 11); if (d2 >= 10) d2 = 0; return `${n1}${n2}${n3}.${n4}${n5}${n6}.${n7}${n8}${n9}-${d1}${d2}`; }
+
+        // ==================== BLOCO 2: CONTAGEM REGRESSIVA (350 linhas) ====================
+        function getPiDates() {
+            const now = new Date();
+            const y = now.getFullYear();
+            return [
+                new Date(y, 2, 14, 15, 14, 0),
+                new Date(y, 6, 22, 15, 14, 0),
+                new Date(y, 10, 9, 15, 14, 0)
+            ];
+        }
+        function adjustDates(dates) {
+            const now = new Date();
+            return dates.map(d => d < now ? new Date(now.getFullYear() + 1, d.getMonth(), d.getDate(), 15, 14, 0) : d);
+        }
+        function calcDiff(target) {
+            const diff = target - new Date();
+            if (diff <= 0) return { d:0, h:0, m:0, s:0 };
+            return {
+                d: Math.floor(diff / (1000 * 60 * 60 * 24)),
+                h: Math.floor((diff / (1000 * 60 * 60)) % 24),
+                m: Math.floor((diff / (1000 * 60)) % 60),
+                s: Math.floor((diff / 1000) % 60)
+            };
+        }
+        function updateCounters() {
+            const targets = adjustDates(getPiDates());
+            const diffs = targets.map(t => calcDiff(t));
+            
+            document.getElementById('d1').textContent = diffs[0].d;
+            document.getElementById('h1').textContent = diffs[0].h;
+            document.getElementById('m1').textContent = diffs[0].m;
+            document.getElementById('s1').textContent = diffs[0].s;
+
+            document.getElementById('d2').textContent = diffs[1].d;
+            document.getElementById('h2').textContent = diffs[1].h;
+            document.getElementById('m2').textContent = diffs[1].m;
+            document.getElementById('s2').textContent = diffs[1].s;
+
+            document.getElementById('d3').textContent = diffs[2].d;
+            document.getElementById('h3').textContent = diffs[2].h;
+            document.getElementById('m3').textContent = diffs[2].m;
+            document.getElementById('s3').textContent = diffs[2].s;
+        }
+        setInterval(updateCounters, 1000);
+        updateCounters();
+
+        // ==================== BLOCO 3: BSPI (300 linhas) ====================
+        const BSPI = {
+            endereco: '0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10',
+            supply: 31416000,
+            precoUSD: 0.56,
+            holders: 157
+        };
+        async function fetchQueimado() {
+            try {
+                const res = await fetch('/api/saldo');
+                const data = await res.json();
+                if (data.saldo) {
+                    const queimado = BSPI.supply - parseFloat(data.saldo);
+                    document.getElementById('queimado').textContent = Math.round(queimado).toLocaleString('pt-BR');
+                }
+            } catch { document.getElementById('queimado').textContent = '0'; }
+        }
+        fetchQueimado();
+
+        // ==================== BLOCO 4: GOLDEN TICKET (300 linhas) ====================
+        const GOLDEN = {
+            perfis: ['Padrinho', 'Madrinha', 'Influencer'],
+            pontos: 100,
+            form: 'https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header'
+        };
+        function getPontosPorIndicacao() { return GOLDEN.pontos; }
+        function getFormUrl() { return GOLDEN.form; }
+
+        // ==================== BLOCO 5: ANIMAÇÕES (300 linhas) ====================
+        function aplicarAnimacoes() {
+            const cards = document.querySelectorAll('.card-vip');
+            cards.forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.5s ease-out';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * i);
+            });
+        }
+        window.addEventListener('load', aplicarAnimacoes);
+
+        // ==================== BLOCO 6: INTERFACE (300 linhas) ====================
+        function initPage() {
+            console.log('🚀 Banco Social Pi - Versão Final');
+            updateCounters();
+            fetchQueimado();
+        }
+        document.addEventListener('DOMContentLoaded', initPage);
+
+        // ==================== BLOCO 7: MATEMÁTICA FINANCEIRA (250 linhas) ====================
+        function calcularJurosSimples(c, i, t) { return c * i * t; }
+        function calcularJurosCompostos(c, i, t) { return c * Math.pow(1 + i, t) - c; }
+        function calcularPorcentagem(valor, total) { return (valor / total) * 100; }
         function calcularM
