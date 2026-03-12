@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco Social Pi | ELEVAD</title>
+    <title>Banco Social Pi | ELEVAD | GOLDEN TICKET</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
@@ -177,7 +177,60 @@
             </div>
         </section>
 
-        <!-- GOLDEN TICKET -->
+        <!-- NOVA SEÇÃO: SOBRE O GOLDEN TICKET (baseada no formulário) -->
+        <section class="container-custom mt-20">
+            <div class="glass-card">
+                <h2 class="text-4xl md:text-5xl text-center serif mb-4">SOBRE O <span class="gold-text">GOLDEN TICKET</span></h2>
+                <div class="divider"></div>
+                
+                <div class="space-y-6 text-white/80 max-w-4xl mx-auto mt-8">
+                    <p class="leading-relaxed">
+                        🚀 O Golden Ticket é uma campanha para eleger três líderes que vão ajudar a transformar o mundo com o Banco Social Pi.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mt-8">
+                        <div class="bg-black/30 p-5 rounded-xl">
+                            <h3 class="text-xl gold-text mb-3">📅 Cronograma</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li><span class="gold-text">•</span> Até 10/03: Envie suas indicações</li>
+                                <li><span class="gold-text">•</span> 11/03: Divulgação parcial dos líderes</li>
+                                <li><span class="gold-text">•</span> 14/03, 15h14: Live de premiação</li>
+                                <li><span class="gold-text">•</span> 14/03, 18h: Primeiro Pix Pi</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-black/30 p-5 rounded-xl">
+                            <h3 class="text-xl gold-text mb-3">🎥 Jurados da Live</h3>
+                            <ul class="space-y-2 text-sm">
+                                <li><span class="gold-text">•</span> All1Ventures</li>
+                                <li><span class="gold-text">•</span> ElevaD</li>
+                                <li><span class="gold-text">•</span> Takashi</li>
+                                <li><span class="gold-text">•</span> Uma criança</li>
+                                <li><span class="gold-text">•</span> Um idoso</li>
+                                <li><span class="gold-text">•</span> Um convidado sorteado</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black/30 p-5 rounded-xl mt-4">
+                        <h3 class="text-xl gold-text mb-3">🎁 Pontuação</h3>
+                        <p>Cada indicação válida vale <span class="gold-text font-bold">100 pontos</span>.</p>
+                        <p class="mt-2">Os três participantes com mais pontos ganham:</p>
+                        <div class="flex justify-around mt-4 text-center">
+                            <div><span class="text-2xl gold-text">1.000</span><br><span class="text-xs">BSPI</span></div>
+                            <div><span class="text-2xl gold-text">500</span><br><span class="text-xs">BSPI</span></div>
+                            <div><span class="text-2xl gold-text">250</span><br><span class="text-xs">BSPI</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <p class="text-white/60 text-sm">📢 Compartilhe com seus contatos e traga mais gente para o grupo!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GOLDEN TICKET (PERFIS) -->
         <section class="container-custom mt-20">
             <h2 class="text-5xl text-center serif">GOLDEN <span class="gold-text">TICKET</span></h2>
             <div class="divider"></div>
@@ -228,7 +281,7 @@
     </footer>
 
     <script>
-        // CONTAGEM REGRESSIVA CORRIGIDA
+        // CONTAGEM REGRESSIVA FUNCIONAL
         function updateCounters() {
             const now = new Date();
             const y = now.getFullYear();
@@ -250,7 +303,7 @@
         setInterval(updateCounters, 1000);
         updateCounters();
 
-        // QUEIMADO (API)
+        // QUEIMADO VIA API
         async function carregarQueimado() {
             try {
                 const res = await fetch('/api/saldo');
@@ -264,4 +317,4 @@
         carregarQueimado();
     </script>
 </body>
-</html>
+            </html>
