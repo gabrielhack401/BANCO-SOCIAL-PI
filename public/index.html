@@ -102,7 +102,6 @@
                 grid-template-columns: repeat(10, 1fr);
             }
         }
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -110,7 +109,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -129,6 +128,8 @@
             padding: 1rem;
             border-radius: 16px;
             margin: 1rem 0;
+            display: flex;
+            justify-content: center;
         }
         .close-modal {
             position: absolute;
@@ -138,22 +139,28 @@
             cursor: pointer;
             color: white;
         }
+        button {
+            transition: all 0.2s;
+        }
+        button:hover:not(:disabled) {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body>
-    <!-- MODAL PIX -->
+    <!-- MODAL PIX (definido uma única vez) -->
     <div id="pixModal" class="modal">
         <span class="close-modal">&times;</span>
         <div class="modal-content">
             <h3 class="text-2xl gold-text mb-2">💸 Pagamento via Pix</h3>
             <p class="text-white/70 text-sm mb-4">Escaneie o QR Code abaixo ou copie o código Pix:</p>
-            <div id="qrCodeContainer" class="qr-code flex justify-center">
+            <div id="qrCodeContainer" class="qr-code">
                 <!-- QR Code será gerado aqui -->
             </div>
             <div class="bg-black/30 p-2 rounded-lg mt-2">
                 <p id="pixCode" class="text-xs text-white break-all font-mono"></p>
             </div>
-            <button id="copyPixBtn" class="gold-bg px-4 py-2 rounded-full text-sm mt-3">Copiar código Pix</button>
+            <button id="copyPixBtn" class="gold-bg px-4 py-2 rounded-full text-sm mt-3">📋 Copiar código Pix</button>
             <p class="text-white/50 text-xs mt-4">Após o pagamento, clique no botão abaixo para confirmar a compra e marcar o pixel como vendido.</p>
             <button id="confirmarPagamentoBtn" class="gold-bg px-6 py-2 rounded-full font-bold mt-3">✅ CONFIRMAR PAGAMENTO</button>
             <div id="pixStatusMsg" class="text-sm mt-3"></div>
@@ -303,219 +310,4 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- DEPOIMENTO -->
-        <section class="container-custom mt-20">
-            <div class="glass-card max-w-3xl mx-auto">
-                <div class="border-l-4 border-go        <section class="container-custom text-center">
-            <div class="inline-block px-5 py-2 rounded-full border border-gold-text/30 bg-opacity-30 text-sm gold-text mb-8">⚡ CRIADO POR UM JOVEM DE 13 ANOS</div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4 serif">Banco <span class="gold-text">Social Pi</span></h1>
-            <div class="divider"></div>
-            <p class="text-xl text-white/70 max-w-3xl mx-auto">Um sistema onde muitas pequenas contribuições sustentam projetos validados.</p>
-            <p class="text-white/50 italic max-w-2xl mx-auto mt-4">“O Banco Pi organiza o que já existe: a vontade de contribuir — de forma simples e possível para todos.”</p>
-        </section>
-
-        <!-- BSPI -->
-        <section class="container-custom mt-20">
-            <div class="glass-card">
-                <h2 class="text-4xl text-center serif">O token <span class="gold-text">BSPI</span></h2>
-                <div class="divider"></div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-                    <div class="text-center"><div class="text-3xl font-bold gold-text">31.416.000</div><p class="text-white/50 text-sm mt-2">Supply Total</p></div>
-                    <div class="text-center"><div class="text-3xl font-bold gold-text" id="totalQueimado">0</div><p class="text-white/50 text-sm mt-2">Queimados</p></div>
-                    <div class="text-center"><div class="text-3xl font-bold gold-text">$0,56</div><p class="text-white/50 text-sm mt-2">Preço</p></div>
-                    <div class="text-center"><div class="text-3xl font-bold gold-text">157</div><p class="text-white/50 text-sm mt-2">Holders</p></div>
-                </div>
-                <div class="text-center mt-12">
-                    <p class="text-white/60 mb-2">Contrato na Polygon</p>
-                    <code class="text-sm gold-text break-all bg-black/30 p-2 rounded-xl inline-block">0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10</code>
-                    <div class="mt-4"><a href="https://polygonscan.com/token/0x9cbA7EE455eED643555D12B65D28b82A3AdB3f10" target="_blank" class="gold-text underline text-sm">Ver no Polygonscan →</a></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONHEÇA A ELEVAD -->
-        <section class="container-custom mt-20">
-            <div class="glass-card text-center">
-                <h2 class="text-4xl serif mb-4">Conheça a <span class="gold-text">ELEVAD</span></h2>
-                <p class="text-white/70 max-w-2xl mx-auto mb-6">Consultoria especializada no terceiro setor desde 2016.</p>
-                <a href="https://consultoriaeleva.com.br" target="_blank" class="gold-bg px-8 py-3 rounded-full font-bold inline-block transition hover:scale-105">Saber mais sobre parcerias →</a>
-            </div>
-        </section>
-
-        <!-- INSTITUTOS -->
-        <section class="container-custom mt-20">
-            <h2 class="text-4xl text-center serif mb-12">Projetos <span class="gold-text">validados</span></h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">INE</h3><p class="text-white/40 text-sm">Instituto Nova Era</p><p class="text-white/70 text-sm mt-2">Regenera florestas e promove agrofloresta.</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">Yorenka Tasorentsi</h3><p class="text-white/40 text-sm">Povos Indígenas</p><p class="text-white/70 text-sm mt-2">Protege a cultura e território.</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">Ponte para Luz</h3><p class="text-white/40 text-sm">Saúde Integrativa</p><p class="text-white/70 text-sm mt-2">Medicinas ancestrais.</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">Instituto SEB</h3><p class="text-white/40 text-sm">Educação</p><p class="text-white/70 text-sm mt-2">Educação viva.</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">Sonho de Criança</h3><p class="text-white/40 text-sm">Assistência 24h</p><p class="text-white/70 text-sm mt-2">Atendimento a pessoas com deficiência.</p></div>
-                <div class="glass-card p-6 border-2 border-gold-text"><h3 class="text-2xl gold-text">Escola Sathya Sai</h3><p class="text-white/40 text-sm">Valores Humanos</p><p class="text-white/70 text-sm mt-2 italic">“Educação baseada em valores.”</p><p class="gold-text text-xs mt-2">⚜️ Parceira Fundamental</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">Ritatrindade</h3><p class="text-white/40 text-sm">Educação</p><p class="text-white/70 text-sm mt-2">Cultura e desenvolvimento.</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">NOVAHUMANITÁ</h3><p class="text-white/40 text-sm">Saúde</p><p class="text-white/70 text-sm mt-2">Saúde integrativa.</p></div>
-                <div class="glass-card p-6"><h3 class="text-2xl gold-text">Cantinho do Céu</h3><p class="text-white/40 text-sm">Assistência</p><p class="text-white/70 text-sm mt-2">Atendimento 24h.</p></div>
-            </div>
-        </section>
-
-        <!-- TAKASHI -->
-        <section class="container-custom mt-20">
-            <div class="glass-card text-center max-w-4xl mx-auto">
-                <h2 class="text-3xl serif">Escola de Gestão Social Pi</h2>
-                <p class="text-2xl gold-text mt-2">com <span class="font-bold">TAKASHI YAMAUCHI</span></p>
-                <div class="divider"></div>
-                <p class="text-white/70">Formação para lideranças de projetos sociais.</p>
-            </div>
-        </section>
-
-        <!-- SUPERNOVA -->
-        <section class="container-custom mt-20">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="glass-card"><h2 class="text-3xl serif">Territórios <span class="gold-text">SUPERNOVA</span></h2><p class="text-white/50 mt-2">Conexão na Montanha</p><p class="text-white/70 mt-4">Educação Ambiental com o Instituto Nova Era.</p></div>
-                <div class="glass-card text-center"><span class="text-8xl">🏔️</span><p class="text-xl gold-text mt-2">CONEXÃO NA MONTANHA</p><p class="text-white/40 text-sm">LANÇAMENTO</p></div>
-            </div>
-        </section>
-
-        <!-- NOVA SEÇÃO: SOBRE O GOLDEN TICKET (baseada no formulário) -->
-        <section class="container-custom mt-20">
-            <div class="glass-card">
-                <h2 class="text-4xl md:text-5xl text-center serif mb-4">SOBRE O <span class="gold-text">GOLDEN TICKET</span></h2>
-                <div class="divider"></div>
-                
-                <div class="space-y-6 text-white/80 max-w-4xl mx-auto mt-8">
-                    <p class="leading-relaxed">
-                        🚀 O Golden Ticket é uma campanha para eleger três líderes que vão ajudar a transformar o mundo com o Banco Social Pi.
-                    </p>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 mt-8">
-                        <div class="bg-black/30 p-5 rounded-xl">
-                            <h3 class="text-xl gold-text mb-3">📅 Cronograma</h3>
-                            <ul class="space-y-2 text-sm">
-                                <li><span class="gold-text">•</span> Até 10/03: Envie suas indicações</li>
-                                <li><span class="gold-text">•</span> 11/03: Divulgação parcial dos líderes</li>
-                                <li><span class="gold-text">•</span> 14/03, 15h14: Live de premiação</li>
-                                <li><span class="gold-text">•</span> 14/03, 18h: Primeiro Pix Pi</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="bg-black/30 p-5 rounded-xl">
-                            <h3 class="text-xl gold-text mb-3">🎥 Jurados da Live</h3>
-                            <ul class="space-y-2 text-sm">
-                                <li><span class="gold-text">•</span> All1Ventures</li>
-                                <li><span class="gold-text">•</span> ElevaD</li>
-                                <li><span class="gold-text">•</span> Takashi</li>
-                                <li><span class="gold-text">•</span> Uma criança</li>
-                                <li><span class="gold-text">•</span> Um idoso</li>
-                                <li><span class="gold-text">•</span> Um convidado sorteado</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-black/30 p-5 rounded-xl mt-4">
-                        <h3 class="text-xl gold-text mb-3">🎁 Pontuação</h3>
-                        <p>Cada indicação válida vale <span class="gold-text font-bold">100 pontos</span>.</p>
-                        <p class="mt-2">Os três participantes com mais pontos ganham:</p>
-                        <div class="flex justify-around mt-4 text-center">
-                            <div><span class="text-2xl gold-text">1.000</span><br><span class="text-xs">BSPI</span></div>
-                            <div><span class="text-2xl gold-text">500</span><br><span class="text-xs">BSPI</span></div>
-                            <div><span class="text-2xl gold-text">250</span><br><span class="text-xs">BSPI</span></div>
-                        </div>
-                    </div>
-                    
-                    <div class="text-center mt-8">
-                        <p class="text-white/60 text-sm">📢 Compartilhe com seus contatos e traga mais gente para o grupo!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- GOLDEN TICKET (PERFIS) -->
-        <section class="container-custom mt-20">
-            <h2 class="text-5xl text-center serif">GOLDEN <span class="gold-text">TICKET</span></h2>
-            <div class="divider"></div>
-            <p class="text-center text-white/50 mb-12">Indique líderes e concorra a BSPI</p>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="glass-card text-center"><span class="text-6xl">👑</span><h3 class="text-2xl gold-text mt-2">PADRINHO</h3><p class="text-white/70 text-sm mt-2">Empresário que doa 1 Pi.</p></div>
-                <div class="glass-card text-center"><span class="text-6xl">👑</span><h3 class="text-2xl gold-text mt-2">MADRINHA</h3><p class="text-white/70 text-sm mt-2">Liderança feminina.</p></div>
-                <div class="glass-card text-center"><span class="text-6xl">🎤</span><h3 class="text-2xl gold-text mt-2">INFLUENCER</h3><p class="text-white/70 text-sm mt-2">Vídeo de 1 minuto.</p></div>
-            </div>
-            <div class="glass-card max-w-2xl mx-auto text-center mt-12 border-2 border-gold-text">
-                <h3 class="text-3xl serif mb-4">🎟️ INDIQUE AGORA</h3>
-                <p class="text-white/70 mb-4">100 pontos por indicação</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfnuym__giNsqsNrnVdkwrNCJfBxsY6-ptLElvcZdgz1tpNA/viewform?usp=header" target="_blank" class="gold-bg px-10 py-3 rounded-full font-bold inline-block transition hover:scale-105">FAZER INDICAÇÃO</a>
-            </div>
-        </section>
-
-        <!-- DEPOIMENTO -->
-        <section class="container-custom mt-20">
-            <div class="glass-card max-w-3xl mx-auto">
-                <div class="border-l-4 border-gold-text pl-6 italic text-white/80 text-lg">“Vocês são muito eficientes... não troco por ninguém.”</div>
-                <p class="mt-4 gold-text">— Isabel Roldão / CEPIM</p>
-                <p class="text-white/40 text-sm">Cliente desde 2016</p>
-            </div>
-        </section>
-
-        <!-- CONTATOS -->
-        <section class="container-custom mt-20 text-center">
-            <h2 class="text-4xl serif mb-8">Fale <span class="gold-text">Conosco</span></h2>
-            <div class="flex flex-col md:flex-row justify-center gap-8">
-                <div class="glass-card w-64 p-6"><div class="text-5xl gold-text mb-3">📧</div><p class="font-medium">E-mail</p><p class="text-sm gold-text">pi@bancosocialpi.com.br</p></div>
-                <div class="glass-card w-64 p-6"><div class="text-5xl gold-text mb-3">📞</div><p class="font-medium">WhatsApp</p><p class="text-sm gold-text">(16) 99455-7000</p></div>
-            </div>
-            <p class="text-white/30 text-sm mt-6">Ligue: 16-994557000</p>
-        </section>
-
-<!-- AGENDAR (AGORA COM LINK) -->
-<section class="container-custom text-center mt-12">
-    <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2fSDB5XznOnUGNMbmXwFrk_S_3KpnRQONQPkZnaqkrcvUmBR2uKio4Mh0Up0gHeOnydiM0Wk6K" target="_blank" class="gold-bg px-12 py-4 rounded-full font-bold inline-block transition hover:scale-105">
-        AGENDAR REUNIÃO
-    </a>
-</section>
-    <!-- RODAPÉ -->
-    <footer class="border-t border-white/10 py-12 mt-12">
-        <div class="container-custom text-center text-white/40 text-sm">
-            <p>© 2026 Banco Social Pi</p>
-            <p class="mt-2 gold-text">Gabriel Moretti e Eleva</p>
-        </div>
-    </footer>
-
-    <script>
-        // CONTAGEM REGRESSIVA FUNCIONAL
-        function updateCounters() {
-            const now = new Date();
-            const y = now.getFullYear();
-            const dates = [
-                new Date(y, 2, 14, 15, 14, 0),
-                new Date(y, 6, 22, 15, 14, 0),
-                new Date(y, 10, 9, 15, 14, 0)
-            ];
-            const targets = dates.map(d => d < now ? new Date(y+1, d.getMonth(), d.getDate(), 15, 14, 0) : d);
-
-            for (let i = 0; i < 3; i++) {
-                const diff = targets[i] - now;
-                document.getElementById('d'+(i+1)).textContent = diff > 0 ? Math.floor(diff / (1000*60*60*24)) : 0;
-                document.getElementById('h'+(i+1)).textContent = diff > 0 ? Math.floor((diff / (1000*60*60)) % 24) : 0;
-                document.getElementById('m'+(i+1)).textContent = diff > 0 ? Math.floor((diff / (1000*60)) % 60) : 0;
-                document.getElementById('s'+(i+1)).textContent = diff > 0 ? Math.floor((diff / 1000) % 60) : 0;
-            }
-        }
-        setInterval(updateCounters, 1000);
-        updateCounters();
-
-        // QUEIMADO VIA API
-        async function carregarQueimado() {
-            try {
-                const res = await fetch('/api/saldo');
-                const data = await res.json();
-                if (data.saldo) {
-                    const queimado = 31416000 - parseFloat(data.saldo);
-                    document.getElementById('totalQueimado').textContent = Math.round(queimado).toLocaleString('pt-BR');
-                }
-            } catch {}
-        }
-        carregarQueimado();
-    </script>
-</body>
-            </html>
+   
